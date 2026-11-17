@@ -1,0 +1,188 @@
+[
+  {
+    "id": 1,
+    "title": "CDC: Create an Emergency Water Supply",
+    "url": "https://www.cdc.gov/water-emergency/about/how-to-create-and-store-an-emergency-water-supply.html",
+    "use": "Water baseline, storage containers and rotation"
+  },
+  {
+    "id": 2,
+    "title": "CDC: Make Water Safe in an Emergency",
+    "url": "https://www.cdc.gov/water-emergency/about/index.html",
+    "use": "Boiling and limits of treatment"
+  },
+  {
+    "id": 3,
+    "title": "American Red Cross: Survival Kit Supplies",
+    "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html",
+    "use": "Home and evacuation kit baseline"
+  },
+  {
+    "id": 4,
+    "title": "CDC: Keep Food Safe After a Disaster",
+    "url": "https://www.cdc.gov/food-safety/foods/keep-food-safe-after-emergency.html",
+    "use": "Refrigerator/freezer outage limits"
+  },
+  {
+    "id": 5,
+    "title": "CDC: Avoiding Carbon Monoxide Poisoning",
+    "url": "https://www.cdc.gov/natural-disasters/psa-toolkit/avoiding-carbon-monoxide-poisoning.html",
+    "use": "Generator separation and outdoor combustion"
+  },
+  {
+    "id": 6,
+    "title": "CPSC: Portable Generator Hazards",
+    "url": "https://www.cpsc.gov/s3fs-public/pdfs/foia_PortableGenerators.pdf",
+    "use": "Backfeeding, cords, fuel and refueling"
+  },
+  {
+    "id": 7,
+    "title": "FDA: Safe Drug Use After a Natural Disaster",
+    "url": "https://www.fda.gov/drugs/emergency-preparedness-drugs/safe-drug-use-after-natural-disaster",
+    "use": "Medication planning and storage"
+  },
+  {
+    "id": 8,
+    "title": "CDC: Emergency List for Families With Infants",
+    "url": "https://www.cdc.gov/infant-feeding-emergencies-toolkit/php/checklist.html",
+    "use": "Infant feeding and supplies"
+  },
+  {
+    "id": 9,
+    "title": "CDC: Sheltering and Evacuating With Disabilities",
+    "url": "https://www.cdc.gov/disability-emergency-preparedness/people-with-disabilities/sheltering-and-evacuating.html",
+    "use": "Accessible transportation and needs planning"
+  },
+  {
+    "id": 10,
+    "title": "NWS: During a Flood",
+    "url": "https://www.weather.gov/safety/flood-during",
+    "use": "Floodwater and evacuation safety"
+  },
+  {
+    "id": 11,
+    "title": "NWS: During a Tornado",
+    "url": "https://www.weather.gov/safety/tornado-during",
+    "use": "Protective shelter"
+  },
+  {
+    "id": 12,
+    "title": "NWS: Wildfire Preparedness",
+    "url": "https://www.weather.gov/safety/wildfire-ready",
+    "use": "Routes and household preparation"
+  },
+  {
+    "id": 13,
+    "title": "EPA: Create a Cleaner Air Room",
+    "url": "https://www.epa.gov/wildfires/how-create-cleaner-air-room-home",
+    "use": "Smoke preparation"
+  },
+  {
+    "id": 14,
+    "title": "CDC: During an Earthquake",
+    "url": "https://www.cdc.gov/earthquakes/safety/stay-safe-during-an-earthquake.html",
+    "use": "Drop, cover and hold on"
+  },
+  {
+    "id": 15,
+    "title": "CDC: Heat and Your Health",
+    "url": "https://www.cdc.gov/extreme-heat/prevention/",
+    "use": "Cooling and heat planning"
+  },
+  {
+    "id": 16,
+    "title": "CDC: Winter Storm Safety",
+    "url": "https://www.cdc.gov/winter-weather/safety/stay-safe-during-after-a-winter-storm-safety.html",
+    "use": "Safe warmth"
+  },
+  {
+    "id": 17,
+    "title": "NC DPS: Emergency Preparedness",
+    "url": "https://www.ncdps.gov/our-organization/emergency-management/emergency-preparedness",
+    "use": "Local planning gateway"
+  },
+  {
+    "id": 18,
+    "title": "ReadyNC: Plan, Prepare, Stay Informed",
+    "url": "https://www.readync.gov/",
+    "use": "North Carolina emergency information"
+  },
+  {
+    "id": 19,
+    "title": "NWS Raleigh: Preparedness",
+    "url": "https://www.weather.gov/rah/preparedness",
+    "use": "Central North Carolina weather resources"
+  },
+  {
+    "id": 20,
+    "title": "American Red Cross: Power Outage Safety",
+    "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/power-outage.html",
+    "use": "Support networks, backup needs and evacuation"
+  },
+  {
+    "id": 21,
+    "title": "NWS: Severe Weather Safety",
+    "url": "https://www.weather.gov/ffc/safety",
+    "use": "Lightning and storm precautions"
+  },
+  {
+    "id": 22,
+    "title": "NC DPS: Know Your Zone FAQ",
+    "url": "https://www.ncdps.gov/our-organization/emergency-management/emergency-preparedness/know-your-zone/frequently-asked-questions-about-know-your-zone",
+    "use": "Coastal evacuation planning"
+  },
+  {
+    "id": 23,
+    "title": "NWS: NOAA Weather Radio and SAME",
+    "url": "https://www.weather.gov/pah/NOAAWeatherRadio",
+    "use": "Automatic alerts, county selection and receiver setup"
+  },
+  {
+    "id": 24,
+    "title": "eCFR: FRS individual licenses, 47 CFR 95.505",
+    "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-D/part-95/subpart-B/section-95.505",
+    "use": "FRS operation without an individual license"
+  },
+  {
+    "id": 25,
+    "title": "eCFR: GMRS eligibility and family operation",
+    "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-D/part-95/subpart-E/section-95.1705",
+    "use": "GMRS licensing and permitted family operators"
+  },
+  {
+    "id": 26,
+    "title": "Meshtastic: Getting Started",
+    "url": "https://meshtastic.org/docs/getting-started/",
+    "use": "Radio and local client setup"
+  },
+  {
+    "id": 27,
+    "title": "Meshtastic: MQTT Configuration",
+    "url": "https://meshtastic.org/docs/configuration/module/mqtt/",
+    "use": "Internet bridging and upload dependencies"
+  },
+  {
+    "id": 28,
+    "title": "MeshCore: Frequently Asked Questions",
+    "url": "https://docs.meshcore.io/faq/",
+    "use": "Compatible hardware, companion nodes and repeaters"
+  },
+  {
+    "id": 29,
+    "title": "Garmin: inReach Device Questions",
+    "url": "https://www.garmin.com/en-US/blog/general/you-asked-we-answered-your-inreach-device-questions/",
+    "use": "Active subscription and sky-view requirements"
+  },
+  {
+    "id": 30,
+    "title": "ARRL: Getting Licensed",
+    "url": "https://www.arrl.org/getting-licensed",
+    "use": "Amateur radio licensing and examinations"
+  },
+  {
+    "id": 31,
+    "title": "Meshtastic: Encryption",
+    "url": "https://meshtastic.org/docs/overview/encryption/",
+    "use": "Channel keys, exposed metadata and internet forwarding"
+  }
+]

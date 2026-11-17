@@ -1,0 +1,10 @@
+ready-together-private-plan*.json
+.env*
+!.env.example
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+docs/pdf-layout-check.json
+
+docs/beginner-pdf-layout-check.json

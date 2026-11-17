@@ -1,0 +1,1571 @@
+[
+  {
+    "title": "Start here",
+    "kicker": "A calmer way to prepare",
+    "intro": "Preparedness is the ability to keep ordinary needs met when ordinary systems stop working. Start with what your household uses every day, then add time, backup options and practiced skills.",
+    "sections": [
+      {
+        "title": "Your first evening: about 30 minutes",
+        "bullets": [
+          "Count everyone who may depend on you: adults, children, infants, frequent visitors, pets and anyone you help outside your home.",
+          "Locate existing water, shelf-stable food, flashlights, chargers, first-aid supplies and bags. Count usable supplies before buying anything.",
+          "Choose an out-of-area contact, a nearby meeting point and a second destination outside your neighborhood. Write them on paper.",
+          "Enable local emergency alerts and check smoke and carbon monoxide alarms. Identify the safest room for the hazards where you live.",
+          "Put shoes, a light and essential medication information where you can find them in the dark."
+        ]
+      },
+      {
+        "title": "Your first shopping trip",
+        "text": "Fill the most important gap first: safe water, ready-to-eat food, essential care supplies or a working light. Add a manual can opener if your food needs one. Reuse an existing bag or bin. A branded survival kit is not required."
+      },
+      {
+        "title": "How to use this guide",
+        "text": "Read the tier ladder and household quantity tables, then complete the core checklist. Add the regional and personal-needs modules that apply. Print the household plan and inventory worksheets. Use the dashboard for calculations and progress; keep a paper copy because phones and websites can become unavailable."
+      }
+    ],
+    "callout": "Readiness is not a shopping contest. A clear evacuation plan and a neighbor who can help may matter more than another gadget.",
+    "sources": [
+      3,
+      20
+    ]
+  },
+  {
+    "title": "Choose your prepper experience",
+    "kicker": "Your skill level is not your supply duration",
+    "intro": "Choose how much guidance you need, then choose how many days to prepare for. A beginner can build a 14-day or 30-day kit without becoming an electrical or water-treatment expert.",
+    "table": {
+      "headers": [
+        "Experience",
+        "Use this approach",
+        "Dashboard behavior"
+      ],
+      "rows": [
+        [
+          "Beginner",
+          "Clear shopping quantities, familiar meals and a short practice checklist",
+          "Water calculated for you; food counted as complete meal-days; simple phone-power starter; short guide"
+        ],
+        [
+          "Intermediate",
+          "Expand a working kit and learn one backup at a time",
+          "Editable assumptions, calorie inventory, optional power calculator and radio comparison"
+        ],
+        [
+          "Advanced",
+          "Measure loads, validate independent backups and document limits",
+          "Detailed power sizing, full reference guide and mesh communication acceptance testing"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "The beginner water answer",
+        "text": "Start with 1 gallon per person per day. You do not need to know your water bill or normal daily household use. The dashboard turns this into one-gallon jug counts. When heat or higher needs are selected in Beginner mode, it adds a visible half-gallon/person/day planning buffer; that buffer is an editorial convenience, not a medical rule. Add pet needs separately. [1]"
+      },
+      {
+        "title": "The beginner power answer",
+        "text": "Begin with LED lights, spare batteries and one reputable USB power bank around 20,000 mAh per phone, plus the correct cables. Charge everything and practice. This is a starter equipment suggestion, not a claim that it powers a refrigerator, medical device or a multiweek outage. No whole-house usage calculation is needed."
+      },
+      {
+        "title": "Read at your own depth",
+        "text": "New to this? Start with the separate Beginner Guide. Use this full guide when you want more explanation, special-needs planning or an upgrade. Experienced readers should use the detailed water, electrical-load, communication and maintenance chapters, plus the worksheets."
+      }
+    ],
+    "callout": "Experience changes the explanation and defaults. Core / Advanced / Super prep still mean 3 / 14 / 30 days of planned supplies.",
+    "sources": [
+      1
+    ]
+  },
+  {
+    "title": "Three levels, one foundation",
+    "kicker": "Choose a milestone",
+    "intro": "These tier names and progression rules are this guide's planning framework, not government certification. Supplies are cumulative: a higher level includes the lower-level capabilities.",
+    "table": {
+      "headers": [
+        "Level",
+        "Supply target",
+        "What completion means"
+      ],
+      "rows": [
+        [
+          "01 Core",
+          "72 hours",
+          "Water, food, light, care, alerts, sanitation and a way to leave. Every adult knows the plan."
+        ],
+        [
+          "02 Advanced",
+          "14 days",
+          "A rotating pantry, more water, tested backups, workable sanitation and a supported evacuation plan."
+        ],
+        [
+          "03 Super prep",
+          "30 days",
+          "Measured consumption, independent backups for critical needs, resupply options, maintenance and community support."
+        ],
+        [
+          "Optional extension",
+          "60-90 days",
+          "Extend only after the 30-day system works. Food and consumables can scale; safe water, care and energy need a realistic replenishment plan."
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "72 hours is a starting line",
+        "text": "The Red Cross distinguishes a three-day evacuation supply from two weeks of supplies at home. Make 14 days your practical home goal when space and money allow. A 30-day store does not make a damaged home safe or override an evacuation order."
+      },
+      {
+        "title": "A level is complete only when it works",
+        "bullets": [
+          "You can find and use the supplies without internet access.",
+          "Your household can eat the planned menu and meet its care needs.",
+          "You have tested lighting, charging and communications.",
+          "You know when to relocate and how to take dependents with you.",
+          "You have a rotation date and a person responsible for it."
+        ]
+      },
+      {
+        "title": "Build breadth before depth",
+        "text": "One day of balanced essentials is more useful than a month of rice with no safe water, medication access or sanitation. Complete the core across categories before expensive upgrades."
+      }
+    ],
+    "sources": [
+      3
+    ]
+  },
+  {
+    "title": "Know your household and your risks",
+    "kicker": "Personalize before purchasing",
+    "intro": "Plan for the loss of services, not just named disasters. A storm, cyber incident, broken water main or job disruption may create overlapping needs.",
+    "table": {
+      "headers": [
+        "Ask",
+        "What changes"
+      ],
+      "rows": [
+        [
+          "Who lives here?",
+          "Food, water, personal supplies, caregiving and transport capacity."
+        ],
+        [
+          "Who cannot safely wait?",
+          "Earlier relocation for powered equipment, temperature-sensitive care, infants or access needs."
+        ],
+        [
+          "Which services can fail?",
+          "Power, water, sewer, roads, cellular networks, payment systems and pharmacy access."
+        ],
+        [
+          "Where could we stay?",
+          "Safe host, accessible shelter or lodging outside the same hazard area."
+        ],
+        [
+          "What constrains us?",
+          "Storage weight, stairs, rental rules, transport, budget and safe outdoor space."
+        ],
+        [
+          "What happens while apart?",
+          "School pickup, work travel, contact schedule and reunification."
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "Make a simple risk list",
+        "text": "List five plausible disruptions. Give each a low/medium/high likelihood and consequence based on local emergency management information and your own experience. Address high-consequence dependencies even when events are uncommon. This is a prioritization exercise, not a prediction."
+      },
+      {
+        "title": "Geography is a starting point",
+        "text": "A broad regional preset cannot determine your flood zone, wildfire exposure, landslide risk, tsunami zone or building safety. Check your county/city emergency management office, official evacuation maps and local weather office. Include routes to school and work, not only your home."
+      },
+      {
+        "title": "Renters and small spaces",
+        "text": "Use several liftable containers instead of one huge tank. Keep exits clear, distribute weight appropriately and ask building management about water, elevators and emergency access. Where safe generator placement is impossible, plan battery use and early relocation."
+      }
+    ],
+    "sources": [
+      9,
+      17,
+      20
+    ]
+  },
+  {
+    "title": "Household quantities at a glance",
+    "kicker": "One adult, two adults, a full family",
+    "intro": "The family example is two adults plus two children who eat solid food. Infants, guests and pets require adjustments. Children receive the same baseline water allowance as adults.",
+    "table": {
+      "headers": [
+        "Target",
+        "1 adult",
+        "2 adults",
+        "2 adults + 2 children"
+      ],
+      "rows": [
+        [
+          "3-day water",
+          "3 gal",
+          "6 gal",
+          "12 gal"
+        ],
+        [
+          "14-day water",
+          "14 gal",
+          "28 gal",
+          "56 gal"
+        ],
+        [
+          "30-day water",
+          "30 gal",
+          "60 gal",
+          "120 gal"
+        ],
+        [
+          "3-day food planning",
+          "6,000 kcal",
+          "12,000 kcal",
+          "21,600 kcal"
+        ],
+        [
+          "14-day food planning",
+          "28,000 kcal",
+          "56,000 kcal",
+          "100,800 kcal"
+        ],
+        [
+          "30-day food planning",
+          "60,000 kcal",
+          "120,000 kcal",
+          "216,000 kcal"
+        ],
+        [
+          "3-day meal slots*",
+          "9",
+          "18",
+          "36"
+        ],
+        [
+          "14-day meal slots*",
+          "42",
+          "84",
+          "168"
+        ],
+        [
+          "30-day meal slots*",
+          "90",
+          "180",
+          "360"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "Understand the assumptions",
+        "text": "Water uses 1 US gallon per person per day as a baseline for drinking and limited food preparation/hygiene. Add more for heat, illness, pregnancy/nursing and water-intensive food. It does not cover normal showers, laundry or repeated toilet flushing. Pets are additional. [1]"
+      },
+      {
+        "title": "Calories are planning placeholders",
+        "text": "The examples use 2,000 kcal per adult and 1,600 per child daily. These are editable inventory assumptions, not dietary prescriptions or ration limits. Actual needs vary with age, body size, activity and health; teenagers may need adult-sized or larger allowances. Infants need a separate feeding plan."
+      },
+      {
+        "title": "Use food labels",
+        "text": "*A meal slot means one person's planned meal, not a manufacturer's serving. Three meal slots a day must still include enough total calories, protein, fats and other nutrients. A bucket labeled '120 servings' is not automatically 40 days of adequate food."
+      }
+    ],
+    "callout": "Calculation: people x days x daily allowance. Add pets and special-use water separately. Round purchases up to actual package sizes.",
+    "sources": [
+      1
+    ]
+  },
+  {
+    "title": "Core: the must-have checklist",
+    "kicker": "Level 01 / 72 hours",
+    "intro": "Use this as a purchase-and-find list. Quantities marked 'per person' scale; shared household tools usually do not.",
+    "table": {
+      "headers": [
+        "Category",
+        "Core target / action"
+      ],
+      "rows": [
+        [
+          "Water",
+          "3 gallons per person; food-grade containers; add pet and special-use needs."
+        ],
+        [
+          "Food",
+          "3 days of familiar shelf-stable meals; first day entirely no-cook; opener and utensils."
+        ],
+        [
+          "Light",
+          "1 usable flashlight or headlamp per person; adult-controlled for young children; spare batteries or recharge capacity."
+        ],
+        [
+          "Phone power",
+          "Charging cable per device and tested power-bank capacity for your actual phones."
+        ],
+        [
+          "Information",
+          "Battery radio / NOAA weather alerts; local alerts enabled; paper contacts and map."
+        ],
+        [
+          "First aid and care",
+          "1 household kit, thermometer, personal care supplies and medication continuity plan."
+        ],
+        [
+          "Sanitation",
+          "Soap, safe handwashing water, toilet paper, waste bags, menstrual/incontinence items and cleaning supplies."
+        ],
+        [
+          "Warmth / cooling",
+          "Seasonal clothing and bedding for each person; a safe temperature-controlled destination."
+        ],
+        [
+          "Documents / access",
+          "Protected ID and essential records, spare keys, affordable small-bill cash reserve."
+        ],
+        [
+          "Leaving",
+          "Carryable bag(s), destination, transport, pet arrangements and a practiced household plan."
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "Before adding optional equipment",
+        "text": "Check alarms; identify exits; choose a safe meeting point. Assign who takes medication, who handles children/pets and who carries the contact sheet. A solo adult should name someone who will check on them."
+      },
+      {
+        "title": "Pass the core test",
+        "text": "Prepare one no-cook meal, find a light in the dark, charge a phone from stored power and show another household member where the supplies are. Keep medical equipment and essential services operating during practice."
+      }
+    ],
+    "sources": [
+      3
+    ]
+  },
+  {
+    "title": "Household kit: practical starting counts",
+    "kicker": "Scale people, share tools",
+    "intro": "These are suggested purchase counts for a starting kit, not official minimums. Reuse working items you already own. Supply duration still follows your selected tier.",
+    "table": {
+      "headers": [
+        "Item",
+        "1 adult",
+        "2 adults",
+        "Family of 4"
+      ],
+      "rows": [
+        [
+          "Personal lights",
+          "1",
+          "2",
+          "4, adult-managed if needed"
+        ],
+        [
+          "Refillable drinking bottles",
+          "1",
+          "2",
+          "4; not the whole water reserve"
+        ],
+        [
+          "Seasonal bedding / sleep sets",
+          "1",
+          "2",
+          "4"
+        ],
+        [
+          "Rain / cold clothing sets",
+          "1",
+          "2",
+          "4 in current sizes"
+        ],
+        [
+          "Work-glove pairs",
+          "1",
+          "2",
+          "2 adult pairs"
+        ],
+        [
+          "Phone cables",
+          "Per device",
+          "Per device",
+          "Per device"
+        ],
+        [
+          "Household first-aid kit",
+          "1",
+          "1",
+          "1, sized for all members"
+        ],
+        [
+          "Battery / NOAA radio",
+          "1",
+          "1",
+          "1; everyone knows where"
+        ],
+        [
+          "Manual can opener",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "Protected plan / record packet",
+          "1 + backup copy",
+          "1 + backup copy",
+          "1 + backup copy"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "One adult",
+        "text": "Keep the kit light enough to move alone, distribute small water containers and arrange a check-in partner. If you become injured or cannot drive, another person must know how to help. A spare charging cable is useful; a second heavy appliance may not be."
+      },
+      {
+        "title": "Two adults",
+        "text": "Share the radio, opener and household first-aid kit. Each adult needs personal light, clothing and care items. Split departure tasks, then practice switching roles so the plan still works if one person is away."
+      },
+      {
+        "title": "A full family",
+        "text": "This example means two adults and two children. Adults manage shared gear and heavy loads; children get appropriate personal items and comfort supplies. Size food, hygiene, transport and caregiving for actual ages. A single parent with children can use the same per-person quantities but needs a stronger backup-caregiver plan."
+      }
+    ],
+    "sources": []
+  },
+  {
+    "title": "Water: store it so you can use it",
+    "kicker": "A reliable supply first",
+    "intro": "Water storage is a household logistics problem: volume, weight, access and rotation matter as much as the number of containers.",
+    "sections": [
+      {
+        "title": "Build the supply",
+        "bullets": [
+          "Start with sealed commercially bottled water or food-grade containers intended for water. Do not reuse containers that held toxic substances.",
+          "Label containers with fill date and next rotation. Replace water you fill yourself every six months; follow commercial bottled-water dates.",
+          "Keep containers closed, cool and away from sunlight and chemicals. Clean and sanitize reused containers using the linked CDC instructions.",
+          "Use a clean spigot or pour water; avoid dipping hands or used cups into storage. Keep smaller daily-use bottles available."
+        ]
+      },
+      {
+        "title": "Plan the footprint",
+        "text": "A US gallon of water weighs about 8.34 lb before its container. A four-person 14-day baseline is 56 gallons, about 467 lb; 30 days is 120 gallons, about 1,001 lb. Distribute loads and use storage surfaces suited to them. Do not place a large tank on an unverified shelf or elevated deck."
+      },
+      {
+        "title": "Choose liftable sizes",
+        "text": "A filled five-gallon container weighs roughly 42 lb plus its container. If that is too heavy, use smaller containers. Put some water near the exit for vehicle evacuation and some in another protected location so one leak or room damage does not destroy the whole supply."
+      },
+      {
+        "title": "When storage is limited",
+        "text": "Build the largest practical safe reserve, then document a verified source and transport method for replenishment. A future water distribution site is not guaranteed to open promptly. The dashboard shows the remaining volume gap; owning a filter does not count as gallons on hand."
+      }
+    ],
+    "callout": "Do not reduce daily drinking to make inventory last. Increase supply, seek distribution or relocate when the plan cannot meet needs.",
+    "sources": [
+      1
+    ]
+  },
+  {
+    "title": "Water: treatment and source limits",
+    "kicker": "Know what your method can do",
+    "intro": "Follow the current advisory from your water utility or health department. A boil-water notice and a chemical 'do not drink' notice require different responses.",
+    "sections": [
+      {
+        "title": "If the concern is germs",
+        "text": "If advised to boil, clarify cloudy water first, then bring clear water to a rolling boil for 1 minute, or 3 minutes above 6,500 feet. Cool it safely in a clean, covered container. Boiling consumes fuel and does not create a continuing water source. [2]"
+      },
+      {
+        "title": "If the concern is chemicals",
+        "text": "Boiling or disinfecting does not make water containing fuel, toxic chemicals or radioactive material safe. Use another safe source and follow health-department instructions. Do not assume floodwater, pool water or a nearby creek can become drinking water with a camping filter. [2]"
+      },
+      {
+        "title": "Buy treatment by capability",
+        "text": "Read the specific product's claims, maintenance requirements, flow and capacity. Many outdoor filters remove some organisms but do not reliably address viruses, dissolved chemicals or salt. Keep instructions with the device, protect it from damage and follow its replacement schedule. Pair collection, treatment and clean storage as one system."
+      },
+      {
+        "title": "Chemical disinfection",
+        "text": "Use a product labeled for drinking-water treatment and follow its exact concentration, dose and contact-time instructions. For household bleach, use the current CDC concentration-specific directions; do not improvise a universal drops-per-gallon recipe or use scented/splashless products. Store chemicals safely away from children."
+      },
+      {
+        "title": "Practice before a disruption",
+        "text": "With known-safe tap water, assemble the equipment, check seals and learn the workflow. Label untreated and treated containers. Record the amount you can process in a realistic hour. This familiarization does not prove that a device makes every source safe."
+      }
+    ],
+    "sources": [
+      2
+    ]
+  },
+  {
+    "title": "Food: build a pantry you will eat",
+    "kicker": "Meals before bulk buckets",
+    "intro": "Rotate familiar groceries through normal use. A balanced pantry is easier to afford, easier to cook and less likely to fail because nobody likes the food.",
+    "sections": [
+      {
+        "title": "Start with a three-day menu",
+        "text": "Write breakfast, lunch, dinner and snacks for every person. Choose shelf-stable proteins, grains/starches, vegetables/fruit, fats and foods that meet your household's dietary needs. Include comfort foods and drinks if useful. Buy single-meal quantities when leftovers cannot be refrigerated."
+      },
+      {
+        "title": "One no-cook day: mix and match",
+        "bullets": [
+          "Breakfast: shelf-stable milk or an appropriate alternative, cereal, fruit and a nut/seed product if safe for the household.",
+          "Lunch: ready-to-eat beans or protein pouches, crackers and canned vegetables.",
+          "Dinner: shelf-stable ready-to-eat meal components with fruit and an added calorie source as needed.",
+          "Snacks: familiar bars, dried fruit or other age-appropriate foods. Verify allergens, choking risks, serving counts and label calories."
+        ]
+      },
+      {
+        "title": "Then expand the menu",
+        "text": "Repeat and vary the three-day pattern to reach 14 days, then develop a seven-day rotation for 30 days. Mark each meal 'no heat', 'heat only' or 'cook with water'. Include the cooking water and energy in your plan. Dry beans and uncooked grains can be economical but are a poor first purchase without a tested cooking setup."
+      },
+      {
+        "title": "Use a deep pantry",
+        "text": "Keep newly purchased stock behind older usable items. Mark purchase/opening dates where needed. Store dry food cool, dry and protected from pests according to its packaging. Do not count spoiled, damaged or diet-incompatible food. Learn validated food-preservation methods before treating home-canned food as emergency stock."
+      },
+      {
+        "title": "Count energy, not marketing portions",
+        "text": "Total calories = servings per package x calories per serving x packages. Compare the total with your household's daily plan. Check protein variety, dietary restrictions and actual willingness to eat each item. The calculator's calorie total alone cannot verify nutritional adequacy."
+      }
+    ],
+    "sources": [
+      3,
+      4
+    ]
+  },
+  {
+    "title": "Cooking and cold-food decisions",
+    "kicker": "Outage safety",
+    "intro": "Your core pantry should work without a stove. Add cooking capability only where you can operate and fuel it safely.",
+    "sections": [
+      {
+        "title": "Choose the simplest workable method",
+        "text": "No-cook meals work in apartments and bad weather. A battery-powered cooking appliance may require far more energy than lights and phones. Outdoor camping stoves and grills require a suitable outdoor area and strict adherence to their instructions; do not use them indoors, in a garage or in other enclosed or partially enclosed spaces. Never use a gas oven to heat your home. [5,20]"
+      },
+      {
+        "title": "Test a real meal",
+        "text": "Measure the fuel or electricity needed to make your planned food and heat its water. Record setup time, cleanup water and whether you can do it in the dark. Keep matches/lighters and fuel secured away from children, and follow local storage rules. Do not stock large quantities of fuel before confirming safe storage."
+      },
+      {
+        "title": "Keep refrigerator and freezer doors closed",
+        "text": "With doors closed, a refrigerator generally keeps food safe for about 4 hours; a full freezer for about 48 hours and a half-full freezer for about 24 hours. Use appliance thermometers and a cooler with ice. Discard refrigerated perishables after four hours without power or another adequate cold source. [4]"
+      },
+      {
+        "title": "Use temperatures, not taste",
+        "text": "Keep cold food at 40°F or below. Frozen food that still has ice crystals or is 40°F or below can generally be refrozen or cooked. Consult the CDC/FoodSafety.gov item-specific guidance; never taste food to test safety. Discard food contacted by floodwater unless official guidance specifically permits safe recovery. [4]"
+      }
+    ],
+    "callout": "If refrigeration is uncertain, open only what the household will finish. Do not rely on smell to decide whether perishable food is safe.",
+    "sources": [
+      4,
+      5,
+      20
+    ]
+  },
+  {
+    "title": "Light, power and safe temperatures",
+    "kicker": "Keep critical functions running",
+    "intro": "Power planning starts with the loads you need, not with the largest battery or generator you can buy.",
+    "table": {
+      "headers": [
+        "Priority",
+        "Start with",
+        "Upgrade when justified"
+      ],
+      "rows": [
+        [
+          "Light",
+          "LED flashlights/headlamps; spare batteries",
+          "Rechargeable lantern and a second charging path"
+        ],
+        [
+          "Communication",
+          "Charged phones, cables and a tested power bank",
+          "Larger battery, vehicle charging or compatible solar"
+        ],
+        [
+          "Medical needs",
+          "Provider-approved backup and relocation plan",
+          "Measured runtime, compatible backup and support contact"
+        ],
+        [
+          "Food cooling",
+          "Thermometers, closed doors and ice/cooler plan",
+          "Measured refrigerator energy and surge-capable supply"
+        ],
+        [
+          "Heat / cooling",
+          "Clothing, bedding and a safe destination",
+          "Professionally installed or correctly used equipment"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "Size stored electricity",
+        "text": "Energy in watt-hours (Wh) = watts x hours. Add each load's daily energy. Divide by an assumed usable fraction, such as 0.8, to allow for conversion losses; then test it. Example: a 10 W light used 5 hours plus 40 Wh of phone charging = 90 Wh/day, or about 113 Wh of nominal capacity at 80% usable energy. This example is a planning assumption, not a product promise."
+      },
+      {
+        "title": "Watts and watt-hours are different",
+        "text": "Output watts limit what can run at once; watt-hours limit how long. Motors may need starting surge. Verify connectors, voltage, continuous/surge ratings and device compatibility. Solar output depends on sun, shade, season and equipment; do not assume the panel's rated watts all day."
+      },
+      {
+        "title": "Relocate before temperature becomes dangerous",
+        "text": "Identify a cooling or warming destination and transport before an outage. Fans are not a substitute for effective cooling in extreme heat. Never use outdoor combustion appliances for indoor heat. For medically vulnerable people, make the threshold and timing with their care team. [15,16]"
+      }
+    ],
+    "sources": [
+      15,
+      16,
+      20
+    ]
+  },
+  {
+    "title": "Generators: an optional system",
+    "kicker": "Advanced equipment requires safe operation",
+    "intro": "A generator is not a core requirement. A battery and a safe place to go may be more appropriate for a renter, apartment resident or small property.",
+    "sections": [
+      {
+        "title": "Placement is a nonnegotiable constraint",
+        "text": "Operate a fuel-burning generator outdoors, at least 20 feet from doors, windows and vents, with exhaust directed away from buildings. Never run one inside a home, garage, basement, carport or other enclosed/partially enclosed area. Open doors do not make an unsafe location safe. Maintain working carbon monoxide alarms. [5]"
+      },
+      {
+        "title": "Connect loads safely",
+        "text": "Never energize house wiring by plugging a generator into a wall outlet. This backfeeding can electrocute others. Have a qualified electrician install code-compliant transfer equipment for house circuits. For direct appliance connections, use intact outdoor-rated cords appropriately rated for the connected load, following the manufacturer's instructions. [6]"
+      },
+      {
+        "title": "Plan fuel, weather and maintenance",
+        "text": "Turn the unit off and let it cool before refueling. Use approved labeled fuel containers and permitted storage away from living areas and ignition sources. Keep the equipment dry using manufacturer-approved protection that preserves safe ventilation. Record fuel use at the load you actually need; add oil/service parts specified in the manual. [6]"
+      },
+      {
+        "title": "Pass the real-world test",
+        "bullets": [
+          "Confirm a compliant operating location before purchase.",
+          "Practice start, load connection, shutdown and cool-down with the manual.",
+          "Measure runtime under the intended load, including starting surge.",
+          "Assign one trained operator and write down the schedule and service needs.",
+          "Choose a relocation plan for fuel shortages, failure, unsafe weather or noise/access constraints."
+        ]
+      }
+    ],
+    "callout": "If a CO alarm sounds or occupants feel ill near combustion equipment, get everyone into fresh air and call emergency services. Do not re-enter to investigate.",
+    "sources": [
+      5,
+      6
+    ]
+  },
+  {
+    "title": "Health, medication and access needs",
+    "kicker": "Continuity beats a giant first-aid bag",
+    "intro": "Build around the people who depend on care every day. A supply tier does not authorize medication changes or guarantee that treatment can continue at home.",
+    "sections": [
+      {
+        "title": "Basic first aid",
+        "text": "Choose a household kit with dressings, gauze, adhesive tape, gloves, wound-cleaning supplies and tools you know how to use. Add a thermometer and personal items. Check package dates and quantities. Take first-aid/CPR training; add bleeding-control supplies only alongside practical training."
+      },
+      {
+        "title": "Keep a concise medication record",
+        "text": "Record names, strengths, instructions, allergies, prescriber, pharmacy and refill information. Discuss an emergency reserve and early refills with your pharmacist or clinician; do not skip doses to create a stockpile. Protect medicines from floodwater and excessive temperatures. Follow product-specific storage limits and ask a pharmacist after a temperature excursion. [7]"
+      },
+      {
+        "title": "Power-dependent or refrigerated care",
+        "text": "List exact device models, settings provided by the care team, battery/runtime requirements and replacement consumables. Test backup equipment without interrupting care. Plan an alternative location, transportation and a point of contact before backup capacity runs out. Do not assume a utility priority list guarantees uninterrupted service."
+      },
+      {
+        "title": "Access and communication",
+        "text": "Arrange a support network, accessible transport and backup caregivers. Pack glasses, hearing-aid supplies, mobility-device chargers/parts, communication cards and any needed personal-care items. Confirm the destination can meet access and care needs; contact local transport providers in advance. [9]"
+      },
+      {
+        "title": "Keep care decisions personal",
+        "text": "Do not stock antibiotics, sedatives or other prescription drugs for self-directed emergency use. Keep medicines secured from children and visitors. This guide supplies planning tools; use individualized professional guidance for dosing, treatment, oxygen and medical equipment."
+      }
+    ],
+    "sources": [
+      7,
+      9
+    ]
+  },
+  {
+    "title": "Sanitation, hygiene and waste",
+    "kicker": "Plan for water and sewer failure",
+    "intro": "Food and drinking water are not the whole plan. A household also needs clean hands, manageable waste and a way to avoid contaminating its living space.",
+    "sections": [
+      {
+        "title": "Build a small hygiene station",
+        "text": "Set aside soap, safe handwashing water, paper towels or washable towels, a basin, toilet paper and household cleaning products. Add menstrual supplies, diapers, incontinence items, toothbrushes and skin-care needs. Use each person's normal daily consumption to estimate quantities, then add a sensible margin."
+      },
+      {
+        "title": "If the toilet cannot be used",
+        "text": "Do not flush when officials warn of sewer backup or damage. Have a portable toilet or compatible waste-bag system with the manufacturer's liners and absorbent material. Keep it separate from cooking and clean-water storage. Seal waste, keep it away from people and animals, and follow local instructions for disposal; never put human waste into storm drains or surface water."
+      },
+      {
+        "title": "Know the limit of the workaround",
+        "text": "A bag-lined toilet is temporary containment, not a complete waste-disposal plan. Large households and multiweek outages can generate substantial waste. If safe sanitation cannot be maintained or disposal guidance is unavailable, relocation may be the better option."
+      },
+      {
+        "title": "Cleaning without creating another hazard",
+        "text": "Keep products in labeled original containers. Never mix bleach with ammonia, acids or other cleaners. Follow label ventilation, dilution and contact-time directions. Store gloves and supplies with the kit; protect children from chemicals and collected waste."
+      },
+      {
+        "title": "Do a household consumption check",
+        "text": "For one normal week, record toilet-paper use, diapers, wipes, menstrual/incontinence supplies and cleaning needs. Use those figures for 14- and 30-day planning. A generic one-size-fits-all list cannot reliably size these items."
+      }
+    ],
+    "sources": [
+      3
+    ]
+  },
+  {
+    "title": "Communication, money and records",
+    "kicker": "When phones and payments are unreliable",
+    "intro": "Keep the essential plan readable without an app. Every responsible adult should have the same destinations, contact information and fallback steps.",
+    "sections": [
+      {
+        "title": "A simple communication ladder",
+        "bullets": [
+          "First: mobile voice/text and official alerts while available. Keep messages brief during congestion.",
+          "Next: battery radio for one-way public information, and a written household check-in schedule.",
+          "If separated: contact the agreed out-of-area person and use the predetermined meeting plan when travel is safe.",
+          "Optional: tested local radios or other backup communication. Confirm operating rules, realistic range, charging and who is actually listening."
+        ]
+      },
+      {
+        "title": "Advanced radios are supporting tools",
+        "text": "Use the following communication chapters to select a receiver, nearby voice option and any longer-range backup. Choose equipment around a real person or group to contact. Broadcast reception, two-way voice, mesh texting and satellite messaging solve different problems."
+      },
+      {
+        "title": "Choose an affordable cash reserve",
+        "text": "Set aside small bills for plausible fuel, food, transport or lodging expenses, without undermining rent or other essentials. The right amount depends on your evacuation plan and finances. Build accessible emergency savings alongside supplies; avoid financing optional equipment before covering critical needs."
+      },
+      {
+        "title": "Protect records",
+        "text": "Keep a protected paper summary of contacts, prescriptions, insurance and identification needs. Store sensitive originals and digital backups securely, with a way to access them during an outage. Photograph possessions and retain important receipts for recovery. Never place IDs, account numbers, access codes or your household inventory in a public repository."
+      },
+      {
+        "title": "Practice a missed check-in",
+        "text": "Agree on check-in times and what a missed contact means. Do not send people into a hazard to search just because a message is late. Follow local emergency guidance and use emergency services for immediate threats."
+      }
+    ],
+    "sources": [
+      3,
+      20
+    ]
+  },
+  {
+    "title": "Communication: what should you buy?",
+    "kicker": "Receive information and reach people",
+    "intro": "Beginner recommendation: phones with backup charging, a paper contact plan, and one household receiver covering AM/FM plus automatic NOAA weather alerts. Add two-way radios only for a real communication need.",
+    "table": {
+      "headers": [
+        "Tool",
+        "What it does",
+        "Limits / setup"
+      ],
+      "rows": [
+        [
+          "AM/FM receiver",
+          "Receives local news and emergency broadcasts",
+          "Cannot transmit. Tune useful local stations and keep spare batteries."
+        ],
+        [
+          "NOAA weather-alert receiver",
+          "Receives weather broadcasts and supported warning alerts",
+          "Verify automatic alerts, not just weather-band tuning. SAME can select counties. Test reception. [23]"
+        ],
+        [
+          "FRS walkie-talkies",
+          "Simple nearby group voice",
+          "Use compliant radios; no individual US license. Need a radio at each end and a tested path. [24]"
+        ],
+        [
+          "GMRS radios",
+          "Family voice; repeaters where supported and available",
+          "US license required. Defined immediate family can be covered; friends are not automatically covered. [25]"
+        ],
+        [
+          "Mesh text radios",
+          "Short messages over a compatible radio network",
+          "Needs working radio paths, powered devices and matching setup. Not a voice phone or 911 dispatcher. [26,28]"
+        ],
+        [
+          "Amateur / ham radio",
+          "Flexible communication for trained operators",
+          "Requires licensing, appropriate equipment and practice; find a group that actually listens. [30]"
+        ],
+        [
+          "Satellite messenger",
+          "Remote messages and supported emergency assistance",
+          "Check activation, coverage, sky view and service requirements. inReach requires an active plan, including for SOS. [29]"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "A useful radio shopping label",
+        "text": "Look for AM/FM, NOAA weather reception, automatic weather alert, readable controls and dependable battery power. SAME county selection is useful for a home warning receiver. If a portable all-in-one lacks reliable standby alerts, use a dedicated home NOAA alert radio plus a portable AM/FM receiver. Hand-crank or small solar panels are supplemental features."
+      },
+      {
+        "title": "Buy for the number of separated groups",
+        "text": "One broadcast receiver can serve a household. Two walkie-talkies serve two separated groups, not an unlimited family. For a solo adult, the second radio belongs with a willing nearby contact. Advertising range is not a guarantee; test where you will actually use them."
+      }
+    ],
+    "sources": [
+      23,
+      24,
+      25,
+      26,
+      28,
+      29,
+      30
+    ]
+  },
+  {
+    "title": "Mesh: useful, but prove the radio path",
+    "kicker": "Intermediate overview / advanced implementation",
+    "intro": "Mesh text radios can exchange short messages without cellular service when a compatible radio path exists. They are a useful optional layer after the basic contact and warning plan.",
+    "sections": [
+      {
+        "title": "Beginner: understand the job",
+        "text": "Think of two small text-message radios. Each separated person/group needs a compatible device and a way to type/read messages, often a phone over Bluetooth. Suitable standalone devices can work without a phone. Start with an experienced helper and two devices; do not start by installing a tower. [26,28]"
+      },
+      {
+        "title": "Choose one compatible system",
+        "text": "Meshtastic and MeshCore are different ecosystems; do not assume devices on the two systems exchange messages directly. Match the firmware/system, regional radio hardware, frequency/preset and required channel credentials. Their relay behavior differs, so follow the chosen project's instructions rather than copying settings blindly. [26,28]"
+      },
+      {
+        "title": "A map dot is not a coverage guarantee",
+        "text": "Terrain, buildings, antennas, placement, interference and relay power affect results. Online maps can show devices that have no usable radio route to you. MQTT bridges can move Meshtastic traffic over the internet; reception through a bridge does not demonstrate an off-grid path. [27]"
+      },
+      {
+        "title": "Advanced: conduct an off-grid test",
+        "bullets": [
+          "Start nearby with correctly configured devices and send messages both ways.",
+          "For the radio-only test, disable MQTT/internet bridges on the nodes involved; disable phone cellular/Wi-Fi internet while keeping local Bluetooth enabled as needed.",
+          "Test from actual home/work locations and routes. Record sent/received acknowledgements, delays and failed spots, without exposing private location data publicly.",
+          "Identify every relay and power dependency. Add safely located infrastructure only when measured gaps justify it.",
+          "Retest after changes and write the fallback if a check-in fails. If a test needs the internet, label it as internet-assisted."
+        ]
+      },
+      {
+        "title": "Privacy and emergency limits",
+        "text": "Use appropriate private channel keys and protect them; public/default channels are not private simply because encryption is present. Review location sharing and MQTT upload settings. Some metadata remains visible. Mesh is not a broadband connection and has no universal monitored emergency dispatch service. [27,31]"
+      }
+    ],
+    "sources": [
+      26,
+      27,
+      28,
+      31
+    ]
+  },
+  {
+    "title": "Set it up, then practice once",
+    "kicker": "A communication plan anyone can follow",
+    "intro": "Keep these instructions with your radios. Simple, repeatable steps are more useful than buying equipment nobody else can operate.",
+    "sections": [
+      {
+        "title": "1. Set up the listening radio",
+        "text": "Install fresh batteries, connect the recommended antenna and find a clear local AM/FM broadcast. Find a NOAA transmitter that serves your area, and set county codes if the unit supports SAME. Leave alert mode enabled as the manual directs. Confirm backup power and a scheduled test where available; do not assume hearing the weather channel proves alerts will sound. [23]"
+      },
+      {
+        "title": "2. Set up nearby voice radios",
+        "text": "With a matching pair of FRS radios, choose the same channel and matching tone settings. For initial troubleshooting, turn tones off on both. Press the talk button, pause briefly, speak clearly, release and wait for the reply. Test from the places you plan to use them. Privacy tones do not encrypt or reserve the channel."
+      },
+      {
+        "title": "3. Use a short message format",
+        "text": "Say who you are, where you are, whether you are safe and what you will do next. Example: 'Alex at the school pickup area. We are safe. Waiting here until 4:30. Please confirm.' Avoid broadcasting sensitive medical details or precise inventory information."
+      },
+      {
+        "title": "4. Agree on a missed-contact rule",
+        "text": "Pick check-in times and how long to try before using the backup. Decide in advance where to wait safely or meet. A missed radio call may mean a dead battery or blocked signal; it is not a reason to enter a hazard. Use emergency services for immediate danger when available."
+      },
+      {
+        "title": "5. Maintain the system",
+        "text": "Check charge/batteries and reception regularly, and repeat the location test after changes. Store a paper card with station names, channel, check-in times, contacts and fallback. Use a manufacturer's test mode for satellite equipment; never activate a real SOS as a practice. [29]"
+      }
+    ],
+    "form": [
+      "Local AM/FM station / NOAA transmitter or channel",
+      "Two-way system / channel / check-in time",
+      "Out-of-area contact / meeting point / fallback"
+    ],
+    "sources": [
+      23,
+      24,
+      29
+    ]
+  },
+  {
+    "title": "Stay, shelter or leave",
+    "kicker": "Make the decision before the pressure",
+    "intro": "Supplies buy time; they do not remove every reason to leave. Follow evacuation instructions promptly and do not delay to collect equipment.",
+    "table": {
+      "headers": [
+        "Situation",
+        "Default action"
+      ],
+      "rows": [
+        [
+          "Official evacuation order",
+          "Leave by the directed route and timing. Take essentials only if immediately accessible."
+        ],
+        [
+          "Fire, gas leak, CO alarm or major structural damage",
+          "Get out of danger and contact emergency services. Do not investigate from inside."
+        ],
+        [
+          "Flood threat / water covering a route",
+          "Move to a safe location early; never walk or drive through floodwater."
+        ],
+        [
+          "Tornado warning",
+          "Use a suitable protective shelter immediately; avoid mobile homes and large open rooms."
+        ],
+        [
+          "Medical power, safe temperature or sanitation cannot be maintained",
+          "Relocate before reserves or safe conditions are exhausted."
+        ],
+        [
+          "Hazard-specific shelter-in-place instruction",
+          "Follow the current official instructions; generic evacuation rules may not fit a chemical release."
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "Select two destinations and two routes",
+        "text": "One may be nearby for a house-specific problem; the other should be outside the likely regional impact. Confirm hosts, pets, accessibility, sleeping capacity and essential care. Mark routes on paper and save offline maps. Routes and shelters may close; verify current instructions before travel."
+      },
+      {
+        "title": "Write a last-minute list",
+        "text": "People, essential medicines/devices, phones/chargers, keys, protected records, pets/carriers and the portable kit. Keep the list beside the bags. Assign tasks but allow a backup adult to take over. Never return to an unsafe building for possessions."
+      },
+      {
+        "title": "Vehicles and no-car households",
+        "text": "Keep transport ready and account for every person, child restraint, mobility aid and pet carrier. If you depend on a ride, confirm two options before a crisis and learn local evacuation assistance procedures. Never presume public transit or a rideshare will still operate."
+      }
+    ],
+    "sources": [
+      9,
+      10,
+      11,
+      20
+    ]
+  },
+  {
+    "title": "Portable kits: home, bag and vehicle",
+    "kicker": "Do not put your whole pantry on your back",
+    "intro": "Home supplies and evacuation supplies overlap, but a long-duration home water reserve is not a realistic carry load.",
+    "table": {
+      "headers": [
+        "Kit",
+        "What it should do"
+      ],
+      "rows": [
+        [
+          "Home reserve",
+          "Support the selected tier with water, food, sanitation and critical functions."
+        ],
+        [
+          "Personal grab bag",
+          "Provide immediately usable water/food, light, clothing, care essentials, contacts and charging while moving."
+        ],
+        [
+          "Shared evacuation bin",
+          "Add vehicle-carried water, extra food, bedding, family supplies and documents as capacity allows."
+        ],
+        [
+          "Vehicle kit",
+          "Add roadside visibility, seasonal warmth, phone charging, first aid and vehicle-specific tools you can use."
+        ],
+        [
+          "Work / school / commute",
+          "Support safe waiting and reunification: contacts, needed care items, walking shoes and a light where allowed."
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "A practical grab-bag check",
+        "text": "Pack a bottle of water, easy food, light, phone cable/power bank, basic hygiene, weather-appropriate layers, socks, personal care items, paper contacts and a protected essential-record summary. Add individual medical needs. Stage additional water in smaller vehicle-loadable containers rather than implying one bottle supports three days."
+      },
+      {
+        "title": "Carry-test it",
+        "text": "Lift and walk with the bag, use stairs if relevant and load the vehicle. Reduce weight until the intended carrier can manage it. Do not assign children or people with mobility limitations unrealistic loads. A rolling bag or caregiver-carried kit may work better."
+      },
+      {
+        "title": "Avoid double counting",
+        "text": "A bottle stored in a grab bag counts toward household water only if it is actually available for that scenario. Supplies kept at work or in another person's car may not be accessible at home. Mark location on the inventory and maintain a quick-load list."
+      },
+      {
+        "title": "Heat and cold in vehicles",
+        "text": "Review product storage limits. Hot cars can damage medicines, batteries and some foods; cold conditions can reduce battery performance and freeze containers. Keep sensitive essentials in a daily carry kit where appropriate and rotate vehicle stock seasonally."
+      }
+    ],
+    "sources": [
+      3
+    ]
+  },
+  {
+    "title": "Children, infants, pets and dependents",
+    "kicker": "The household is more than a head count",
+    "intro": "Adapt roles, supplies and practice to real abilities. Keep familiar routines and comfort items alongside the practical equipment.",
+    "sections": [
+      {
+        "title": "Children who eat solid food",
+        "text": "Stock foods they already accept, verify allergy needs and account for growing appetites. Include clothing that fits, suitable rain/cold layers, a quiet activity and a comfort item. Teach simple steps: find the adult, put on shoes, go to the meeting place. Keep drills short and calm; avoid frightening scenarios."
+      },
+      {
+        "title": "Infants",
+        "text": "Use a separate feeding plan, diapers, cleaning supplies, safe sleep space and a practical carrier. For formula-fed infants, ready-to-feed single-use formula is the safest emergency option when available because it avoids mixing with unsafe water. Do not dilute formula or improvise substitutes. Plan feeding amounts and handling around the child's needs and product instructions. Recheck growing babies' supplies monthly. [8]"
+      },
+      {
+        "title": "Pets and service animals",
+        "text": "Store the animal's usual food, measured water allowance, medications and waste supplies. Include leash/harness, ID, carrier, vaccination records and a familiar item. Confirm destinations accept the animal and arrange backup transport. Do not assume a generic quarter-gallon water estimate fits every pet; size and temperature can change needs substantially."
+      },
+      {
+        "title": "Special species",
+        "text": "Reptiles, birds, fish and other animals may require temperature, humidity, water chemistry or powered equipment. Make a species-specific plan with qualified guidance, measure energy needs and identify an alternate caretaker/location. Do not improvise unsafe heating in an evacuation container."
+      },
+      {
+        "title": "Dependent adults and caregivers",
+        "text": "Write assistance tasks, communication preferences, transfer/transport needs and medication responsibilities. Name a backup caregiver who has practiced the tasks. Keep a copy of the plan with the dependent person in an accessible format. [9]"
+      }
+    ],
+    "sources": [
+      8,
+      9
+    ]
+  },
+  {
+    "title": "Advanced: two weeks that work",
+    "kicker": "Level 02 / 14 days",
+    "intro": "Extend ordinary routines through a sustained disruption. Buy based on the gaps revealed by your core test.",
+    "table": {
+      "headers": [
+        "Capability",
+        "Add to the core",
+        "Prove it works"
+      ],
+      "rows": [
+        [
+          "Water",
+          "14-day baseline, extra use allowance and an appropriate treatment backup",
+          "Lift, dispense and rotate it; identify a verified resupply option."
+        ],
+        [
+          "Food",
+          "14-day menu with no-cook coverage and dietary variety",
+          "Eat a planned day; measure cooking water and fuel."
+        ],
+        [
+          "Power",
+          "Measured capacity for selected critical loads",
+          "Run lights/phones for a trial period and document runtime."
+        ],
+        [
+          "Sanitation",
+          "Supplies based on actual usage and a temporary toilet contingency",
+          "Assemble the setup; identify disposal guidance."
+        ],
+        [
+          "Care",
+          "Authorized medication reserve and backup care contacts",
+          "Confirm refills, storage and transport arrangements."
+        ],
+        [
+          "Leaving",
+          "Complete family/pet transport and two destinations",
+          "Load the vehicle or practice the ride plan."
+        ],
+        [
+          "Skills",
+          "First-aid training, utility-location knowledge and simple repair tools",
+          "Practice safe tasks; leave specialized work to qualified people."
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "A two-hour practice evening",
+        "text": "Pretend the kitchen outlets and home internet are unavailable, while keeping actual medical and safety systems powered. Use your lights, serve the planned meal, locate paper contacts and run a family check-in. Record what was missing, hard to find or unpleasant to use."
+      },
+      {
+        "title": "Add redundancy selectively",
+        "text": "A second light or alternate phone-charging route is inexpensive and useful. A backup that depends on the same failed outlet, fuel source or phone app may not be independent. Focus on water, communication and any function whose failure forces relocation."
+      },
+      {
+        "title": "Completion checkpoint",
+        "text": "Every core capability is still present; supplies cover 14 days at your actual consumption; a backup adult understands the plan; you can leave without starting from scratch. A large inventory with untested equipment is still unfinished."
+      }
+    ],
+    "sources": [
+      20
+    ]
+  },
+  {
+    "title": "What to add beyond the basics",
+    "kicker": "A purchase map for the higher tiers",
+    "intro": "Choose upgrades that address real gaps and can be used safely. Counts below are per household unless stated otherwise.",
+    "table": {
+      "headers": [
+        "Category",
+        "Advanced / 14 days",
+        "Super prep / 30 days"
+      ],
+      "rows": [
+        [
+          "Water equipment",
+          "Liftable storage, clean dispensing method and suitable treatment backup",
+          "Additional storage or documented resupply; spare treatment consumables"
+        ],
+        [
+          "Food / cooking",
+          "14-day menu; cookware and outdoor cooking option only if safe",
+          "30-day rotation; measured fuel/energy and an independent no-cook fallback"
+        ],
+        [
+          "Lighting / power",
+          "1 shared lantern; tested battery capacity; compatible spare cables",
+          "Independent recharge options and documented service/spare-parts needs"
+        ],
+        [
+          "Sanitation",
+          "1 household temporary toilet system with compatible consumables",
+          "30-day usage plan and viable waste-disposal / relocation arrangements"
+        ],
+        [
+          "Basic repair",
+          "Work gloves, eye protection, screwdriver, pliers, adjustable wrench, tape",
+          "Consumables and spares for equipment you actually own and can service"
+        ],
+        [
+          "Weather protection",
+          "Suitable tarp, cord and seasonal gear for safe ground-level use",
+          "Location-specific home improvements with qualified help where needed"
+        ],
+        [
+          "Communications",
+          "Paper maps/contact plan and a tested backup method",
+          "Redundant ways to reach a real support network; training where required"
+        ],
+        [
+          "Care / transport",
+          "Approved care reserve, accessible ride and confirmed destinations",
+          "Backup caregiver, critical-device continuity and recovery funds"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "Do not confuse repair tools with training",
+        "text": "Do not climb damaged roofs, cut storm-loaded trees, enter floodwater or work on electrical systems without appropriate expertise. Locate shutoffs beforehand. Follow utility instructions; gas shutoff and restoration require particular care and qualified assistance."
+      },
+      {
+        "title": "Home safety comes first",
+        "text": "Maintain suitable smoke/CO alarms and fire extinguishers; keep escape paths clear. Store medicines, tools, batteries and fuel safely. Learn equipment use beforehand. Escape and emergency notification take priority over fighting a fire."
+      }
+    ],
+    "sources": [
+      6,
+      20
+    ]
+  },
+  {
+    "title": "Super prep: resilience for a month",
+    "kicker": "Level 03 / 30 days",
+    "intro": "The highest tier emphasizes systems, skills and support. It is a way to manage a long disruption, not a promise of indefinite independence.",
+    "sections": [
+      {
+        "title": "1. Measure and replenish",
+        "text": "Maintain a 30-day menu and consumable inventory. Record real weekly usage, spoilage and waste. Decide which water can be safely stored and which needs verified resupply; document the remaining shortfall. An empty tank, an untested well or an assumed creek is not a completed water plan."
+      },
+      {
+        "title": "2. Support critical functions independently",
+        "text": "Provide appropriate backup paths for water, lighting, communication and essential care. If using substantial backup power, document load, fuel/solar limits, spare parts and service intervals. Use qualified installation for electrical, structural or plumbing changes."
+      },
+      {
+        "title": "3. Create a relocation and recovery reserve",
+        "text": "Set aside resources for transport, temporary lodging, care and repairs. Keep current contact and insurance records, a protected household inventory and an accessible recovery checklist. Equipment cannot replace the financial ability to leave an unsafe location."
+      },
+      {
+        "title": "4. Build human backup",
+        "text": "Coordinate consensually with trusted neighbors, family and local volunteer groups. Identify who can offer a ride, help with a dependent person or share verified information. Agree on boundaries and check-ins. Do not publish sensitive supply or household details."
+      },
+      {
+        "title": "5. Maintain the system",
+        "text": "Document equipment setup, recurring tasks, consumable replacement and shutdown steps. A second capable person should be able to find and operate essential equipment. Repeat a realistic practice day, review failures and simplify what is too complex."
+      },
+      {
+        "title": "Optional: 60-90 days",
+        "text": "Scale food and consumables only after the month-long plan is workable. At the baseline, four people need 360 gallons for 90 days, about 3,002 lb of water before containers. Long-term power, medications, waste disposal and replenishment require individualized arrangements. Gardening and newly learned preservation are useful skills, not immediate guaranteed calories."
+      }
+    ],
+    "callout": "Super prep success: fewer single points of failure, clear limits and an early exit plan. It does not mean staying home regardless of conditions.",
+    "sources": [
+      20
+    ]
+  },
+  {
+    "title": "Regional modules",
+    "kicker": "Add the hazards that fit your location",
+    "intro": "Hazards overlap. Inland households can face hurricane flooding; wildfire smoke can travel far from fires. Use local information to confirm the modules below.",
+    "table": {
+      "headers": [
+        "Hazard",
+        "Prepare / respond"
+      ],
+      "rows": [
+        [
+          "Hurricane / coastal storms",
+          "Know official zones and routes; secure loose outdoor items before unsafe weather; plan inland lodging and leave when directed. [22]"
+        ],
+        [
+          "Flood / flash flood",
+          "Store essentials above likely water exposure; identify safer routes and high ground. Never enter floodwater or bypass barricades. [10]"
+        ],
+        [
+          "Tornado / severe storms",
+          "Choose an appropriate shelter, alert method and rapid route there. Mobile homes need a nearby sturdy shelter plan before a warning. [11]"
+        ],
+        [
+          "Wildfire / smoke",
+          "Prepare early departure routes and a cleaner-air room with suitable filtration. Smoke equipment does not make staying in an evacuation zone safe. [12,13]"
+        ],
+        [
+          "Earthquake",
+          "Secure heavy/falling objects; keep shoes and light accessible; practice Drop, Cover and Hold On. Check tsunami guidance if on an exposed coast. [14]"
+        ],
+        [
+          "Extreme heat",
+          "Plan reliable cooling and additional water; check dependents and arrange transport before conditions become unsafe. [15]"
+        ],
+        [
+          "Winter / ice",
+          "Stock appropriate bedding, layers and a safe warming destination; plan for blocked roads and power loss. Never use an oven for heat. [16]"
+        ],
+        [
+          "Lightning",
+          "Move inside a substantial building or hard-topped vehicle. Avoid plumbing and wired equipment during the storm. [21]"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "Check beyond the regional preset",
+        "text": "Ask local emergency management about industrial hazards, dam failure, tsunami, landslide, volcano or other location-specific risks. Use official maps for property and route exposure. This guide and dashboard do not provide real-time warnings or address-level hazard determinations."
+      }
+    ],
+    "sources": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      21,
+      22
+    ]
+  },
+  {
+    "title": "A Central North Carolina example",
+    "kicker": "Clayton / Raleigh area illustration",
+    "intro": "Use this as a worked example of applying regional information, not a hazard rating for a specific property.",
+    "sections": [
+      {
+        "title": "A sensible starting profile",
+        "text": "For an inland central North Carolina household, begin by reviewing severe thunderstorms/tornadoes, tropical-storm impacts and flooding, heat, occasional winter/ice disruptions and extended power loss. Confirm property and travel-route exposure with local officials. NWS Raleigh and ReadyNC are useful starting resources. [17-19]"
+      },
+      {
+        "title": "What changes the kit",
+        "bullets": [
+          "Keep strong no-cook coverage for hot-weather outages, plus a cooling destination that works for children, older adults and pets.",
+          "Plan more water for heat and any food that requires rehydration; maintain a separate pet allowance.",
+          "Identify a protective storm shelter and an alert method that wakes sleeping occupants.",
+          "Avoid routes that become flooded even if the house itself is outside a mapped flood area.",
+          "Keep seasonal layers and a warming option for ice outages; test batteries and transport readiness before winter."
+        ]
+      },
+      {
+        "title": "What changes the plan",
+        "text": "If household members work or attend school in different communities, plan for a road closure between them. Decide who picks up children, who can act as backup and where each person waits safely if reunification is delayed. A radio or mesh link is optional; first make the paper plan work without any successful message."
+      },
+      {
+        "title": "Before sharing with friends elsewhere",
+        "text": "Have them select their own regional hazards, local emergency contacts, safe rooms and destinations. Do not reuse this North Carolina example for a western wildfire zone or an exposed coast without adapting it."
+      }
+    ],
+    "callout": "Local resources: ReadyNC.gov; NCDPS.gov emergency preparedness; weather.gov/rah/preparedness. Verify alerts, road information and shelter status when an event occurs.",
+    "sources": [
+      17,
+      18,
+      19
+    ]
+  },
+  {
+    "title": "Buy gradually, store deliberately",
+    "kicker": "A four-week launch plan",
+    "intro": "These steps are a suggested pace, not a requirement to spend a fixed amount. Critical medical or evacuation needs may have to move to the front.",
+    "table": {
+      "headers": [
+        "When",
+        "Do first",
+        "Buy only what is missing"
+      ],
+      "rows": [
+        [
+          "Week 1",
+          "Inventory supplies; write contacts; enable alerts; check alarms",
+          "Water and familiar no-cook food to begin the core."
+        ],
+        [
+          "Week 2",
+          "Check medication access; select destinations; assign roles",
+          "Light, charging, care and hygiene gaps."
+        ],
+        [
+          "Week 3",
+          "Pack bags; practice transport; build a three-day menu",
+          "Portable essentials, seasonal clothing and pet/child supplies."
+        ],
+        [
+          "Week 4",
+          "Do a practice evening; fix the biggest failure",
+          "Extend toward 14 days; add a justified backup."
+        ],
+        [
+          "Later",
+          "Measure real use and storage limits",
+          "Build the 30-day system only when the foundation works."
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "Use a gap-first budget",
+        "text": "Choose an affordable weekly amount and put it toward your most consequential unmet need. Compare cost per usable meal, container capacity and recurring replacement cost. Count what you already own. Avoid duplicating tools just to complete a branded list."
+      },
+      {
+        "title": "Label and locate",
+        "text": "Use clear category labels: WATER, FOOD, LIGHT/POWER, CARE, HYGIENE, DOCUMENTS and LEAVING. Keep the grab kit accessible and protect supplies from heat, water, pests and unauthorized access. Store heavy items low on suitable supports and keep exits clear."
+      },
+      {
+        "title": "Skip common traps",
+        "bullets": [
+          "Huge 'serving count' food kits without enough calories or accepted meals.",
+          "A filter treated as a guaranteed water source.",
+          "A generator without safe placement, fuel, cords or installation.",
+          "A single phone holding every contact and instruction.",
+          "Optional tactical gear purchased before water, care, transport and sanitation.",
+          "An emergency plan that only one person understands."
+        ]
+      }
+    ],
+    "sources": []
+  },
+  {
+    "title": "Maintenance and practice calendar",
+    "kicker": "Readiness expires unless you use it",
+    "intro": "Assign an owner and a next-review date. Revisit the plan after a move, new medication, new pet, new baby, school change or major equipment change.",
+    "table": {
+      "headers": [
+        "Frequency",
+        "Review"
+      ],
+      "rows": [
+        [
+          "Monthly",
+          "Check alarms per manufacturer guidance; inspect leaks and damaged packages; check battery charge; review infant sizes/feeding supplies."
+        ],
+        [
+          "Quarterly",
+          "Review contacts, pickup permissions and destinations; test lights/radio; check food dates and care inventory; update dashboard counts."
+        ],
+        [
+          "Every 6 months",
+          "Replace self-filled stored water; reassess seasonal clothing and routes; run a practice evening; review battery/fuel instructions."
+        ],
+        [
+          "Annually",
+          "Review household risks, insurance/records and equipment service; refresh training and verify an alternate caregiver/operator."
+        ],
+        [
+          "After use or disruption",
+          "Restock, recharge, clean equipment and write down failures while they are fresh."
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "Three useful drills",
+        "bullets": [
+          "The dark-room drill: safely find a light, contact sheet and medical information without home internet.",
+          "The meal drill: serve a complete planned meal using the actual equipment, water and cleanup method.",
+          "The departure drill: gather people, care supplies and pet carriers; load transport; check weight and time without driving into an actual hazard."
+        ]
+      },
+      {
+        "title": "A practice log",
+        "text": "Date: __________________  Scenario: __________________<br/>What worked: __________________________________________________<br/>What failed: ___________________________________________________<br/>One fix this week: ______________________________________________<br/>Owner / due date: ______________________________________________"
+      },
+      {
+        "title": "Make practice sustainable",
+        "text": "Keep drills brief, calm and age-appropriate. Never disconnect essential medical equipment or disable alarms to simulate an outage. A practice that exposes one fixable problem is useful."
+      }
+    ],
+    "sources": [
+      1,
+      8,
+      20
+    ]
+  },
+  {
+    "title": "Your household emergency plan",
+    "kicker": "Print, complete and keep private",
+    "intro": "Give copies to responsible household members and trusted helpers. Do not upload completed sheets to a public repository.",
+    "form": [
+      "Household members / pets / access needs",
+      "Local emergency number (US immediate danger: 911)",
+      "Out-of-area contact / phone / alternate method",
+      "Nearby meeting point / backup meeting point",
+      "Destination outside the area / address / phone",
+      "Alternate destination / pets and accessibility confirmed",
+      "Primary route / alternate route / paper map location",
+      "Who collects children / backup / school pickup rules",
+      "Who takes care supplies and devices / backup",
+      "Who handles pets / carriers / backup",
+      "Transport / driver / backup ride / capacity",
+      "Local alerts / radio station / official information sources",
+      "Leave-early triggers for care, power or temperature",
+      "Check-in schedule / action if a message is missed",
+      "Grab-bag and document locations / last-minute items",
+      "Date reviewed / next review / plan owner"
+    ],
+    "sources": []
+  },
+  {
+    "title": "Inventory and critical-load worksheets",
+    "kicker": "Make the plan measurable",
+    "intro": "Use actual quantities and accessible locations. Separate supplies available at home from those stored elsewhere.",
+    "table": {
+      "headers": [
+        "Item / unit",
+        "Target",
+        "On hand",
+        "Gap",
+        "Location / review"
+      ],
+      "rows": [
+        [
+          "Water / gallons",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Food / label calories",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Meals / planned person-meals",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Pet food / daily portions",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Personal care / days",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Lights / working units",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Batteries / type or Wh",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Hygiene / daily-use units",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Other",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "Critical electrical loads",
+        "text": "For each device: name/model, running watts, starting surge if applicable, hours/day, daily Wh, connector/voltage, backup runtime, recharge method and relocation trigger. Use measured values or the manufacturer's information; do not guess for medical equipment."
+      },
+      {
+        "title": "Example load entry",
+        "text": "LED light: 10 W x 5 h = 50 Wh/day. With an illustrative 80% usable-capacity factor, allocate about 62.5 Wh of nominal battery capacity. Include other loads and reserve before buying. Record your test result, not just the advertised rating."
+      },
+      {
+        "title": "Consumable planning formula",
+        "text": "Daily household use x target days = baseline. Add an explicit margin where appropriate. For packaged goods: round up to whole packages. Record why you chose any extra margin so another person can maintain the plan."
+      },
+      {
+        "title": "Next three actions",
+        "text": "1. ___________________________________________________________<br/>2. ___________________________________________________________<br/>3. ___________________________________________________________"
+      }
+    ],
+    "sources": []
+  },
+  {
+    "title": "Use the dashboard wisely",
+    "kicker": "A personalized companion",
+    "intro": "The dashboard translates your selections into quantities and tasks. It is a planning aid, not an emergency warning service or a readiness certification.",
+    "sections": [
+      {
+        "title": "What to enter",
+        "text": "Start with prepper experience, then choose the separate supply-duration tier. Beginner mode calculates water and suggests starter charging equipment without usage estimates. Select household, region/hazards, special needs and communication goal. Intermediate/Advanced modes expose inventory assumptions and power calculations."
+      },
+      {
+        "title": "What the numbers mean",
+        "text": "Beginner water uses 1 gallon/person/day, with an explicit half-gallon buffer when heat or higher needs are selected, plus entered pet water. Beginner food is self-reported complete meal-days, separate from detailed calorie inventory. Advanced water/calories use editable assumptions. A mode switch preserves both food inventories but does not convert one into the other."
+      },
+      {
+        "title": "Keep a backup",
+        "text": "The example saves in the current browser when storage is available. Private browsing, cleared data or a different device can lose it. Export a JSON backup and use Print to save the personalized plan as a PDF. Exported files may contain household details; keep them private."
+      },
+      {
+        "title": "Sharing the project",
+        "text": "Share the blank guide and application source. Never commit personal exported plans, credentials, medical records or precise supply locations. The repository package includes a README, documented formulas and tests. GitHub Pages can serve the static application without a database."
+      },
+      {
+        "title": "Limitations",
+        "text": "Regional presets are broad editorial prompts, not a geocoded hazard analysis. There are no live alerts, automatic local shelter lookups or guaranteed radio coverage. Supplies and energy estimates must be checked against actual needs. Review authoritative links and local instructions periodically."
+      }
+    ],
+    "callout": "Version 1.1 • Prepared November 16, 2026 • US-oriented units and emergency resources. Adapt local emergency numbers and official guidance before use elsewhere.",
+    "sources": []
+  }
+]

@@ -1,0 +1,266 @@
+[
+  {
+    "title": "Your first kit, without the homework",
+    "kicker": "Beginner / start here",
+    "intro": "You do not need to know your household's electricity use, normal water consumption or radio terminology. First, prepare for three days of ordinary needs.",
+    "sections": [
+      {
+        "title": "Step 1: count people and choose three days",
+        "text": "Count adults, children and infants. Write down pets separately. Begin with the Core / 72-hour goal. Once it works, keep the same simple approach and extend to 14 days. Being a beginner does not limit how many days you can prepare for."
+      },
+      {
+        "title": "Step 2: check what you already have",
+        "text": "Find bottled water, shelf-stable groceries, working flashlights, batteries, phone charging banks, first aid and personal care supplies. Put usable items together. Use an existing bag or bin."
+      },
+      {
+        "title": "Step 3: buy the biggest missing basics",
+        "bullets": [
+          "Water and food your family already eats.",
+          "A working light for each person, with adult supervision for children.",
+          "Phone charging, a listening radio and paper contacts.",
+          "Essential medication/care arrangements, soap, waste bags and toilet paper.",
+          "A way to leave, a place to go and the supplies dependents need."
+        ]
+      },
+      {
+        "title": "Step 4: tell the other people in the household",
+        "text": "Show them the supplies and agree who helps children, dependents and pets. Choose one nearby meeting point and one place outside the neighborhood. Keep essential contacts on paper."
+      }
+    ],
+    "callout": "Use Beginner mode in the dashboard. It gives shopping quantities and simple tasks. Leave electrical calculations and advanced radio setup for later.",
+    "sources": [
+      3
+    ]
+  },
+  {
+    "title": "Water: buy this much to start",
+    "kicker": "One-gallon jugs make it easy",
+    "intro": "Use sealed drinking water. You do not need your water bill or an estimate of showers and laundry. These amounts cover a basic emergency supply, not normal household water use.",
+    "table": {
+      "headers": [
+        "Three-day starter",
+        "1 adult",
+        "2 adults",
+        "Family of 4"
+      ],
+      "rows": [
+        [
+          "Basic water",
+          "3 one-gallon jugs",
+          "6 one-gallon jugs",
+          "12 one-gallon jugs"
+        ],
+        [
+          "With simple heat / higher-needs buffer*",
+          "5 jugs",
+          "9 jugs",
+          "18 jugs"
+        ],
+        [
+          "14-day basic goal",
+          "14 jugs",
+          "28 jugs",
+          "56 jugs"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "What the dashboard does for you",
+        "text": "It counts 1 gallon per person per day, including children and infants. In Beginner mode, choosing heat or higher water needs adds half a gallon per person per day and rounds the total up to whole jugs. *That extra amount is a planning suggestion, not a medical rule or a drinking limit. Individual needs may be higher. [1]"
+      },
+      {
+        "title": "Pets and feeding are extra",
+        "text": "Add pet water based on the animal's needs; the dashboard's pet entry is a placeholder to check, not a universal allowance. Infant feeding needs its own supplies and safe preparation plan. For formula-fed infants, ready-to-feed single-use formula is useful when safe water is limited. [8]"
+      },
+      {
+        "title": "Store it safely",
+        "text": "Keep containers sealed, cool, away from chemicals and easy to reach. Use smaller bottles if jugs are hard to lift. Follow dates on commercial water. Replace water you fill yourself every six months. If tap water becomes unsafe, follow the current local notice; a camping filter does not fix every kind of contamination. [1]"
+      }
+    ],
+    "sources": [
+      1,
+      8
+    ]
+  },
+  {
+    "title": "Food: plan days, not calorie math",
+    "kicker": "Three familiar meals and snacks",
+    "intro": "For each day, put aside breakfast, lunch, dinner and snacks for everyone who eats solid food. Use normal portions. A bag labeled '10 servings' may not make ten complete meals.",
+    "table": {
+      "headers": [
+        "Meal",
+        "Simple starting idea",
+        "Check before buying"
+      ],
+      "rows": [
+        [
+          "Breakfast",
+          "Cereal, shelf-stable milk or suitable alternative, fruit",
+          "Enough for everyone; suitable sizes if leftovers cannot stay cold."
+        ],
+        [
+          "Lunch",
+          "Ready-to-eat protein or beans, crackers, vegetables",
+          "Include a real protein portion and enough food to feel fed."
+        ],
+        [
+          "Dinner",
+          "Shelf-stable ready-to-eat meal components, fruit",
+          "Choose a full familiar meal that works without cooking."
+        ],
+        [
+          "Snacks",
+          "Accepted bars, fruit or other safe favorites",
+          "Check allergies and age-appropriate choking risks."
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "For one adult, two adults or a family",
+        "text": "Write a three-day menu. One adult needs nine individual meals plus snacks; two adults need 18; a family of four needs 36. These are meal occasions, not package servings. Infants need a separate feeding plan. Repeat and vary your menu when extending to 14 days."
+      },
+      {
+        "title": "Count what is ready",
+        "text": "In Beginner mode, enter how many complete days of meals you already have for the whole household. If breakfast is covered for three days but dinner only for one, count one complete day. Calories remain available in the detailed modes when you want to check them."
+      },
+      {
+        "title": "Try one day before buying more",
+        "text": "Eat the planned food, use the manual can opener and check how much water and cleanup it needs. Add missing foods. Keep new packages behind older usable ones and replace what you use."
+      }
+    ],
+    "callout": "You can start without a camp stove. No-cook food avoids needing extra fuel and a safe cooking location.",
+    "sources": [
+      3
+    ]
+  },
+  {
+    "title": "Lights, charging and care: a short list",
+    "kicker": "No watt-hour calculations required",
+    "intro": "This is a starter shopping suggestion. It does not promise that a few batteries can power every appliance or last for weeks.",
+    "table": {
+      "headers": [
+        "Get or find",
+        "How many",
+        "What to do"
+      ],
+      "rows": [
+        [
+          "LED light",
+          "1 per person; adults manage young children's lights",
+          "Keep handy; include two spare battery sets per battery light."
+        ],
+        [
+          "USB power bank",
+          "1 around 20,000 mAh per phone you need charged",
+          "Get the matching cable; fully charge and test it."
+        ],
+        [
+          "First-aid kit",
+          "1 household kit",
+          "Check supplies and learn basic first aid."
+        ],
+        [
+          "Personal care / hygiene",
+          "3 days of what each person normally needs",
+          "Include medicines, soap, toilet paper, waste bags and individual supplies."
+        ],
+        [
+          "Warmth / cooling plan",
+          "1 set of suitable bedding/layers per person; a safe destination",
+          "Know where you will go if home gets dangerously hot or cold."
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "title": "Test the phone bank once",
+        "text": "Charge your phone from it and note how many charges you get before the bank needs recharging. Results vary. For a 14- or 30-day goal, arrange a safe recurring recharge option or relocation; do not assume one bank is a multiweek supply."
+      },
+      {
+        "title": "Special care moves to the front",
+        "text": "If anyone uses powered medical equipment or refrigerated medicine, contact their provider/pharmacist about an approved backup and where to go before it runs out. Ordinary phone banks are not a medical backup plan. Do not skip doses to build a stockpile. [7]"
+      },
+      {
+        "title": "Avoid unsafe shortcuts",
+        "text": "Outdoor stoves, grills and generators stay outdoors in suitable locations. Never heat the house with an oven. A fuel generator must stay at least 20 feet from doors, windows and vents; never run one in a garage or carport. [5]"
+      }
+    ],
+    "sources": [
+      5,
+      7
+    ]
+  },
+  {
+    "title": "Communication: listen first, then talk",
+    "kicker": "A simple radio buying guide",
+    "intro": "An emergency listening radio and a walkie-talkie do different jobs. You do not need to buy every kind of radio.",
+    "sections": [
+      {
+        "title": "Buy first: one household listening radio",
+        "text": "Look for battery-powered AM/FM for local broadcasts AND NOAA weather reception with an automatic alert feature. A 'weather band' alone may mean listening only. For home alerts, SAME county selection and battery backup are useful. Use a separate NOAA alert radio if your portable AM/FM radio lacks automatic warnings. Tune and test it before an emergency. [23]"
+      },
+      {
+        "title": "If you need nearby conversation: two FRS radios",
+        "text": "Choose two matching, compliant FRS walkie-talkies. One stays with each separated group. No individual US license is required. Match channel/tone settings and test from the actual locations. 'Privacy codes' do not encrypt your conversation. Do not rely on a big mileage number on the box. [24]"
+      },
+      {
+        "title": "Across town: get help before buying more",
+        "text": "GMRS or mesh may help, but neither guarantees a path. GMRS needs a US license; its family coverage does not automatically include friends. Mesh radios such as Meshtastic send short text messages through compatible devices and usable radio links. They are not regular phones, and buying two does not guarantee citywide coverage. [25,26]"
+      },
+      {
+        "title": "Remote travel: consider satellite messaging later",
+        "text": "Check the exact phone/device, supported functions, coverage and activation requirements. Many dedicated messengers require service plans; Garmin inReach requires an active plan for messaging and SOS. Learn the test function before relying on it. [29]"
+      },
+      {
+        "title": "Always keep the paper fallback",
+        "text": "Write down contacts, meeting points and check-in times. Agree what happens if messages fail. A listening radio cannot call your family or 911, and mesh has no universal dispatcher."
+      }
+    ],
+    "callout": "Beginner priority: phone charging + paper plan + AM/FM/NOAA alerts. Add FRS for a nearby group. Learn GMRS, mesh or ham when a specific need justifies them.",
+    "sources": [
+      23,
+      24,
+      25,
+      26,
+      29
+    ]
+  },
+  {
+    "title": "Try it once. Then build gradually.",
+    "kicker": "A 20-minute practice and a short plan",
+    "intro": "Keep medical equipment and alarms operating. You are checking the plan, not creating a real outage.",
+    "sections": [
+      {
+        "title": "The practice",
+        "bullets": [
+          "Find a flashlight and paper contact list without using the room lights.",
+          "Show someone else how to charge a phone and turn on the radio.",
+          "Choose one no-cook meal and confirm all its ingredients are available.",
+          "Gather bags, care supplies and pet carriers; check that your transport can carry everyone.",
+          "Write down one thing to fix this week."
+        ]
+      },
+      {
+        "title": "Know when to leave",
+        "text": "Follow evacuation orders promptly. Leave danger from fire, gas or carbon monoxide; do not stay because supplies are stocked. Never drive or walk through floodwater. Relocate before you cannot maintain essential care, a safe temperature or sanitation. [10]"
+      },
+      {
+        "title": "Maintain the simple kit",
+        "text": "Check food dates, batteries and personal needs regularly. Replace self-filled water every six months. Review after a new medication, school change, new baby or move. Once the three-day kit works, extend the same menu and supplies toward two weeks. [1]"
+      }
+    ],
+    "form": [
+      "Out-of-area contact and phone",
+      "Nearby meeting point / outside-area destination",
+      "Who helps children, dependents or pets / backup person",
+      "Where bags, medicines and papers are kept",
+      "Next small purchase or fix / next review date"
+    ],
+    "sources": [
+      1,
+      10
+    ]
+  }
+]
