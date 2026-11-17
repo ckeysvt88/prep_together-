@@ -15,7 +15,8 @@ A US household preparedness guide and a working static planner for people starti
 - Water/food quantities, inventory gaps, tier-specific tasks, checklist filtering and a critical-load battery calculator.
 - Immediate and long-term preparation, seasonal priorities for immediate plans, and three checklist statuses.
 - Portable battery and solar sizing for custom devices, including a thermostat-controlled reptile enclosure example.
-- A final preview and a personalized PDF with a shopping checklist, an action plan, or both. The printable checklist fills in water and food gaps from inventory and leaves space to count the other gear. Shopping exports also include a three-day no-cook grocery basket, a first aid kit inventory and a pharmacy worksheet.
+- A buying guide in the planner and in shopping PDFs. Beginners get item examples, counts and setup checks, including three days of no-cook meals. Intermediate plans add backups and a basic roadside kit. Advanced plans add critical-load testing, communications equipment matched to the chosen goal, and road, remote or trail vehicle gear.
+- A final preview and a personalized PDF with a shopping checklist, an action plan, or both. The printable checklist fills in water and food gaps from inventory and leaves space to count the other gear.
 - Static hosting with no accounts, third-party requests, analytics or build step. The pinned, MIT-licensed pdf-lib 1.17.1 browser bundle loads locally when downloading a PDF.
 
 ## Install on your home screen
@@ -43,6 +44,8 @@ dist/
   index.html                 Dashboard
   styles.css                 Responsive and print styles
   engine.js                  Supply calculations and task selection
+  buying-guide.js          Shared buying and setup guidance for all experience levels
+  shopping-details.js        Food, first aid, medicines and worksheet ordering
   planning.js                Timing, status, seasons and portable power math
   plan-pdf.js                Local personalized PDF generation
   app.js                     UI, storage, import/export and print behavior
@@ -55,7 +58,7 @@ scripts/
   build_sources.py           Website source-directory generator
 docs/
   guide.json                 Editable full-guide content
-  beginner-guide.json        Editable beginner-guide content
+  buying-guide.json        Editable beginner-guide content
   sources.json               Numbered references
   QA.md                      Verification record and limits
 .github/workflows/pages.yml  GitHub Pages deployment
@@ -103,7 +106,7 @@ The website source directory combines the 31 reference guide sources in `docs/so
 - Never commit names, addresses, medical details, IDs, access codes, supply locations or exported personal plans. `.gitignore` excludes the default export filename pattern.
 - The town/state field is a label only. Regional presets are editorial prompts, not geocoding, real-time warnings, flood-map analysis or official risk scoring.
 - Care, drinking-water treatment, electrical work, fuel storage and evacuation require current official/product/professional guidance. Medical flags create planning tasks; they do not diagnose, prescribe or validate device compatibility.
-- This is an educational version 1.5. It does not include shopping price feeds, live alerts, account sync, inventory-by-product or guaranteed offline caching.
+- This is an educational version 1.6. It does not include shopping price feeds, live alerts, account sync, inventory-by-product or guaranteed offline caching.
 
 ## Maintaining and sharing
 

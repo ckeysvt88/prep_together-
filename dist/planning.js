@@ -32,6 +32,7 @@
     return {
       horizon: has(HORIZONS, input.horizon) ? input.horizon : 'now',
       report: has(REPORTS, input.report) ? input.report : 'both',
+      vehicleRoute: ['road', 'remote', 'trail'].includes(input.vehicleRoute) ? input.vehicleRoute : 'road',
       seasons: Array.isArray(input.seasons) ? Object.keys(SEASONS).filter(key => input.seasons.includes(key)) : [],
       notNeeded: Object.fromEntries(Object.entries(input.notNeeded ?? {}).filter(([key, value]) => /^[a-z0-9-]{1,80}$/.test(key) && value === true)),
       customPower: input.customPower === true,

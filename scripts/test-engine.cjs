@@ -81,15 +81,58 @@ test('shopping order has backward-compatible defaults and uses active seasons on
     assert(!list.essentials.some(row => row.item.includes('power banks')));
   }
 });
+const Details = require('../dist/shopping-details.js');
+function guidesFor(input) {
+  const state = E.normalize(input);
+  return Object.fromEntries(
+    Details.worksheets(state, E.calculate(state), P.portablePower(state), P.activeSeasons(state))
+      .map(page => [page.banner, page])
+  );
+}
 test('grocery examples scale for solid-food eaters and flag the remaining pantry days', () => {
-  const Details = require('../dist/shopping-details.js');
   const state = E.normalize({ adults: 2, children: 2, infants: 1, tier: 'advanced', storedWater: 4 });
-  const pages = Details.worksheets(state, E.calculate(state));
-  assert.equal(pages[0].rows[0].target, '12 each');
-  assert.equal(pages[0].rows[2].target, '12 portions');
-  assert.match(pages[0].tips[2].detail, /11 more household-days/);
-  assert.match(pages[0].tips[2].detail, /ready-to-feed formula/);
-  assert.equal(pages[1].rows[0].target, '25 assorted');
-  assert(pages[2].rows.some(item => item.item.includes('Child medicine')));
+  const pages = guidesFor(state);
+  const grocery = pages['FOOD SHOPPING'];
+  assert.equal(pages['FOOD BASICS'].menu.length, 3);
+  assert.equal(grocery.rows[0].target, '12 each');
+  assert.equal(grocery.rows[2].target, '12 portions');
+  assert.match(grocery.tips.at(-1).detail, /11 more household-days/);
+  assert.match(grocery.tips.at(-1).detail, /ready-to-feed formula/);
+  assert.equal(pages['FIRST AID'].rows[0].target, '25 assorted');
+  assert(pages['MEDICINES AND CARE'].rows.some(item => item.item.includes('Child medicine')));
+});
+test('buying guidance deepens by experience even on the same supply tier', () => {
+  const pages = ['beginner', 'intermediate', 'advanced'].map(experience =>
+    guidesFor({ experience, commsGoal: 'town', medical: true, tier: 'core' }));
+  const has = (page, topic, pattern) => page[topic].rows.some(row => pattern.test(row.item));
+  assert(!has(pages[0], 'COMMUNICATIONS', /GMRS|LoRa/));
+  assert(has(pages[1], 'COMMUNICATIONS', /GMRS/));
+  assert(!has(pages[1], 'COMMUNICATIONS', /LoRa/));
+  assert(has(pages[2], 'COMMUNICATIONS', /LoRa/));
+  assert(!has(pages[0], 'LIGHTS AND BACKUP POWER', /energy meter/));
+  assert(has(pages[1], 'LIGHTS AND BACKUP POWER', /energy meter/));
+  assert(has(pages[2], 'MEDICINES AND CARE', /specific device/));
+  assert(pages[2]['FOOD SHOPPING'].tips.some(tip => tip.label === 'Test one pantry day'));
+});
+test('the vehicle list matches experience, available transport and actual route', () => {
+  const vehicle = input => guidesFor(input)['VEHICLE KIT'];
+  const has = (input, match) => vehicle(input).rows.some(row => match.test(row.item));
+  assert.equal(E.normalize({}).vehicleRoute, 'road');
+  assert.equal(E.normalize({ vehicleRoute: '__proto__' }).vehicleRoute, 'road');
+  assert(!vehicle({ experience: 'beginner', vehicleRoute: 'trail' }));
+  assert(!vehicle({ experience: 'advanced', vehicleRoute: 'trail', noCar: true }));
+  assert(has({ experience: 'intermediate' }, /tire pressure gauge/i));
+  assert(!has({ experience: 'intermediate', vehicleRoute: 'trail' }, /recovery/i));
+  assert(!has({ experience: 'advanced', vehicleRoute: 'road' }, /recovery|offline maps/i));
+  assert(has({ experience: 'advanced', vehicleRoute: 'remote' }, /offline maps/i));
+  assert(!has({ experience: 'advanced', vehicleRoute: 'remote' }, /recovery/i));
+  assert(has({ experience: 'advanced', vehicleRoute: 'trail' }, /recovery/i));
+});
+test('buying guides use seasons only in immediate plans and retain selected hazards', () => {
+  const local = input => guidesFor(input)['LOCAL RISKS'].rows.map(row => row.item);
+  assert.deepEqual(local({ horizon: 'now', hazards: ['flood'], seasons: ['winter', 'summer'] }),
+    ['Flood or flash flood', 'Extreme heat', 'Winter weather']);
+  assert.deepEqual(local({ horizon: 'long', hazards: ['flood'], seasons: ['winter', 'summer'] }),
+    ['Flood or flash flood']);
 });
 console.log(`${checks} tests passed.`);

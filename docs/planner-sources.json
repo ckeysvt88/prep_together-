@@ -58,5 +58,47 @@
     "title": "CDC: Infant feeding during emergencies",
     "url": "https://www.cdc.gov/infant-feeding-emergencies-toolkit/php/faqs.html",
     "use": "Ready-to-feed infant formula and safe water"
+  },
+  {
+    "id": 42,
+    "title": "USDA: What shelf-stable means",
+    "url": "https://ask.fsis.usda.gov/article/What-does-shelf-stable-mean",
+    "use": "What to look for on package storage labels"
+  },
+  {
+    "id": 43,
+    "title": "FoodSafety.gov: Food safety during a power outage",
+    "url": "https://www.foodsafety.gov/food-safety-charts/food-safety-during-power-outage",
+    "use": "When to keep or discard refrigerated and frozen food"
+  },
+  {
+    "id": 44,
+    "title": "FEMA: Emergency supply checklist",
+    "url": "https://www.ready.gov/sites/default/files/2024-05/ready_supply-kit-checklist.pdf",
+    "use": "Core household and evacuation kit contents"
+  },
+  {
+    "id": 45,
+    "title": "NWS: Weather radio receivers",
+    "url": "https://www.weather.gov/nwr/nwr_receivers",
+    "use": "Automatic alerts, SAME and backup power"
+  },
+  {
+    "id": 46,
+    "title": "NHTSA: Roadside supplies",
+    "url": "https://www.nhtsa.gov/summer-driving-tips",
+    "use": "Roadside kit and trip preparation"
+  },
+  {
+    "id": 47,
+    "title": "NHTSA: Tires and tire pressure",
+    "url": "https://www.nhtsa.gov/vehicle-safety/tires",
+    "use": "Cold pressure checks and tire placard"
+  },
+  {
+    "id": 48,
+    "title": "Ford: Off-road equipment and trip preparation",
+    "url": "https://www.ford.com/experiences/off-road-adventures/moab-telluride",
+    "use": "Trail-specific equipment and recovery-point checks"
   }
 ]

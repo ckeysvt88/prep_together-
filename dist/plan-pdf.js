@@ -106,14 +106,18 @@
       y -= 12;
     }
 
-    const columns = [
+    const checklistColumns = [
       { x: left + 25, label: 'Item / what to look for', width: 222 },
       { x: left + 257, label: 'Target', width: 81 },
       { x: left + 348, label: 'On hand', width: 68 },
       { x: left + 430, label: 'Still need', width: 75 }
     ];
+    const guideColumns = [
+      { x: left + 25, label: 'Item / what to look for', width: 342 },
+      { x: left + 379, label: 'Target or specification', width: 125 }
+    ];
 
-    function tableHeader(title) {
+    function tableHeader(title, columns) {
       lines(title, bold, 13, green, 19);
       page.drawRectangle({ x: left, y: y - 22, width, height: 22, color: pale });
       for (const column of columns) {
@@ -121,17 +125,18 @@
       }
       y -= 22;
     }
-    function rowLayout(item) {
+    function rowLayout(item, columns) {
       const name = wrap(item.item, bold, 10, columns[0].width);
       const detail = wrap(item.detail, regular, 9, columns[0].width);
-      const values = [item.target, item.have, item.need].map((value, index) => {
+      const values = columns.slice(1).map((column, index) => {
         const font = index === 2 ? bold : regular;
-        return value === null ? [] : wrap(value, font, 10, columns[index + 1].width);
+        const value = [item.target, item.have, item.need][index];
+        return value === null ? [] : wrap(value, font, 10, column.width);
       });
       const height = Math.max(34, 8 + name.length * 12 + detail.length * 11, 15 + Math.max(...values.map(cell => cell.length)) * 12);
       return { name, detail, values, height };
     }
-    function drawRow(layout, index) {
+    function drawRow(layout, index, columns) {
       const { name, detail, values, height } = layout;
       if (index % 2 === 1) page.drawRectangle({ x: left, y: y - height, width, height, color: stripe });
       page.drawRectangle({ x: left + 5, y: y - 19, width: 11, height: 11, borderColor: green, borderWidth: .9 });
@@ -147,16 +152,16 @@
       y -= height;
       page.drawLine({ start: { x: left, y }, end: { x: right, y }, color: grid, thickness: .5 });
     }
-    function shoppingTable(title, rows, newPage) {
-      const layouts = rows.map(rowLayout);
+    function shoppingTable(title, rows, newPage, columns = checklistColumns) {
+      const layouts = rows.map(row => rowLayout(row, columns));
       if (y - 41 - layouts[0].height < bottom) newPage();
-      tableHeader(title);
+      tableHeader(title, columns);
       layouts.forEach((layout, index) => {
         if (y - layout.height < bottom) {
           newPage();
-          tableHeader(title);
+          tableHeader(title, columns);
         }
-        drawRow(layout, index);
+        drawRow(layout, index, columns);
       });
       y -= 17;
     }
@@ -168,7 +173,7 @@
       }
       pageStart('SHOPPING CHECKLIST');
       introduction('Your shopping checklist');
-      lines('Check boxes as you cover each target. Water and food use your entries. See the Food, First Aid, and Medicines pages for specific items and quantities.');
+      lines('Check boxes as you cover each target. Water and food use your entries. The buying guides that follow explain what to buy, what to check, and how to use it.');
       y -= 11;
       shoppingTable('Get the essentials first', shopping.essentials, continueList);
       if (shopping.addOns.length) shoppingTable('Add for your household and risks', shopping.addOns, continueList);
@@ -191,22 +196,36 @@
         lines(worksheet.highlight, bold);
         y -= 9;
       }
-      shoppingTable(worksheet.tableTitle, worksheet.rows, () => {
-        pageStart(worksheet.banner);
-        lines(worksheet.title + ' (continued)', display, 21, green, 31);
-      });
+      if (worksheet.rows?.length) {
+        shoppingTable(worksheet.tableTitle, worksheet.rows, () => {
+          pageStart(worksheet.banner);
+          lines(worksheet.title + ' (continued)', display, 21, green, 31);
+        }, guideColumns);
+      }
+      if (worksheet.menu) {
+        heading('Three days of easy meals');
+        lines('Every day, start with cereal and shelf-stable milk and include your usual snacks.');
+        for (const { day, lunch, dinner } of worksheet.menu) {
+          lines(`${day}   Lunch · ${lunch}   |   Dinner · ${dinner}`, regular, 10, muted);
+        }
+        y -= 10;
+      }
       for (const tip of worksheet.tips) {
         ensure(itemHeight(tip) + 7);
         lines(tip.label, bold);
         lines(tip.detail, regular, 10, muted);
         y -= 7;
       }
-      const sourceY = 53;
+      let sourceY = 53;
       const prefix = 'Sources: ';
       page.drawText(prefix, { x: left, y: sourceY, font: regular, size: 9, color: muted });
       let x = left + regular.widthOfTextAtSize(prefix, 9) + 3;
       for (const source of worksheet.references) {
         const linkWidth = regular.widthOfTextAtSize(source.label, 9);
+        if (x + linkWidth > right) {
+          x = left;
+          sourceY -= 12;
+        }
         page.drawText(source.label, { x, y: sourceY, font: regular, size: 9, color: green });
         page.drawLine({ start: { x, y: sourceY - 2 }, end: { x: x + linkWidth, y: sourceY - 2 }, color: grid, thickness: .6 });
         page.node.addAnnot(doc.context.register(doc.context.obj({

@@ -15,7 +15,7 @@ $('seasons').innerHTML = Object.entries(P.SEASONS).map(([key, season]) =>
 function sync() {
   for (const key of [...numberKeys, 'capacityWh', 'usable']) $(key).value = state[key];
   for (const key of boolKeys) $(key).checked = state[key];
-  for (const key of ['horizon', 'report', 'experience', 'commsGoal', 'region', 'place', 'housing', 'notes']) $(key).value = state[key];
+  for (const key of ['horizon', 'report', 'experience', 'commsGoal', 'vehicleRoute', 'region', 'place', 'housing', 'notes']) $(key).value = state[key];
   $('preset').value = presetValue();
   document.querySelectorAll('[data-hazard]').forEach(el => el.checked = state.hazards.includes(el.dataset.hazard));
   document.querySelectorAll('[data-season]').forEach(el => el.checked = state.seasons.includes(el.dataset.season));
@@ -33,6 +33,7 @@ function render() {
   const applicable = tasks.length - skipped;
   $('horizon-help').textContent = P.HORIZONS[state.horizon].detail;
  $('report-help').textContent = P.REPORTS[state.report].detail;
+ $('vehicle-route-options').hidden = state.experience !== 'advanced' || state.noCar;
  $('season-options').hidden = state.horizon === 'long';
  $('experience-help').textContent=E.EXPERIENCES[state.experience].description;
  $('tiers').innerHTML=Object.entries(E.TIERS).map(([k,v],i)=>`<button class="tier" data-tier="${k}" aria-pressed="${state.tier===k}"><span class="number">0${i+1} / ${i===0?'START HERE':i===1?'BUILD CONFIDENCE':'BUILD RESILIENCE'}</span><strong>${v.name}</strong><span class="duration">${v.label}</span></button>`).join('');
@@ -69,8 +70,10 @@ function render() {
    return `<h3 class="task-group">${phase}</h3>${rows}`;
  }).join('') || '<p class="empty">No tasks in this view.</p>';
  const power = P.portablePower(state);
+ const guides = ReadyShoppingDetails.worksheets(state, m, power, P.activeSeasons(state));
+ renderBuyingGuide(guides);
  renderPortable(power);
- renderPlan(m, tasks, power);
+ renderPlan(m, tasks, power, guides);
  renderExperience(m);
  $('power-result').innerHTML=m.powerDays===null?'No daily load entered. Add measured watt-hours to estimate runtime.':`<strong>${fmt(m.powerNeed)} Wh</strong> nominal battery capacity for ${m.days} days without recharging.<br>Your entered battery supports about <strong>${fmt(m.powerDays,1)} days</strong> at this load.`;
  if(state.dailyWh===0)$('power-result').textContent='No daily load entered. Add measured watt-hours to estimate runtime.';
@@ -113,7 +116,32 @@ function renderPortable(power) {
     index === 0 ? `<p><strong>${escape(line)}</strong></p>` : `<p>${escape(line)}</p>`
   ).join('');
 }
-function planSnapshot(m, tasks, power) {
+function renderBuyingGuide(guides) {
+  const container = $('buying-topics');
+  const expanded = new Set([...container.querySelectorAll('details[open]')].map(topic => topic.dataset.topic));
+  $('buying-intro').textContent = {
+    beginner: 'Open a topic for plain-language examples, quantities, and a first step you can do today.',
+    intermediate: 'Open a topic to fill gaps, set up a backup, and check that your supplies work.',
+    advanced: 'Open a topic for equipment specifications, ways to test your setup, and options for your routes and risks.'
+  }[state.experience];
+  container.innerHTML = guides.map(guide => {
+    const id = guide.banner.toLowerCase().replaceAll(' ', '-');
+    const rows = guide.rows?.length ? `<h3>${escape(guide.tableTitle)}</h3><ul class="buying-items">${guide.rows.map(row => `
+      <li><strong>${escape(row.item)}</strong><span class="buying-quantity">${escape(row.target)}</span><p>${escape(row.detail)}</p></li>`).join('')}</ul>` : '';
+    const menu = guide.menu ? `<h3>Three days of easy meals</h3><p>Every day, start with cereal and shelf-stable milk and include your usual snacks.</p><ul class="buying-menu">${guide.menu.map(({ day, lunch, dinner }) => `
+      <li><strong>${escape(day)}</strong><p>Lunch · ${escape(lunch)}<br>Dinner · ${escape(dinner)}</p></li>`).join('')}</ul>` : '';
+    return `<details class="buying-topic" data-topic="${id}" ${expanded.has(id) ? 'open' : ''}>
+      <summary>${escape(guide.title)}</summary>
+      <p>${escape(guide.lead)}</p>
+      ${guide.highlight ? `<p class="buying-highlight">${escape(guide.highlight)}</p>` : ''}
+      ${rows}${menu}
+      <dl class="buying-tips">${guide.tips.map(tip => `<dt>${escape(tip.label)}</dt><dd>${escape(tip.detail)}</dd>`).join('')}</dl>
+      <div class="buying-sources">${guide.references.map(ref => `<a href="${escape(ref.url)}" target="_blank" rel="noopener">${escape(ref.label)} ↗</a>`).join('')}</div>
+    </details>`;
+  }).join('');
+}
+
+function planSnapshot(m, tasks, power, guides) {
   const beginner = state.experience === 'beginner';
   const seasons = P.activeSeasons(state);
   const sections = [
@@ -163,12 +191,12 @@ function planSnapshot(m, tasks, power) {
     date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
     report: state.report,
     shopping: state.report === 'action' ? null : ReadyShopping.makeList(state, m, power, seasons),
-    worksheets: state.report === 'action' ? [] : ReadyShoppingDetails.worksheets(state, m),
+    worksheets: state.report === 'action' ? [] : (guides ?? ReadyShoppingDetails.worksheets(state, m, power, seasons)),
     sections: state.report === 'shopping' ? [] : sections
   };
 }
-function renderPlan(m, tasks, power) {
-  const plan = planSnapshot(m, tasks, power);
+function renderPlan(m, tasks, power, guides) {
+  const plan = planSnapshot(m, tasks, power, guides);
   const open = tasks.filter(task => task.status === 'open');
   const skipped = tasks.filter(task => task.status === 'skip').length;
   const priority = open.length ? `<ul>${open.slice(0, 3).map(task => `<li>${escape(task.title)}</li>`).join('')}</ul>` : '<p>There are no open checklist actions.</p>';
@@ -179,7 +207,7 @@ function renderPlan(m, tasks, power) {
     <h3>Shopping checklist</h3>
     <ul class="shopping-preview">${plan.shopping.essentials.slice(0, 2).map(item => `<li><strong>${escape(item.item)}</strong> · ${escape(item.target)} target · ${escape(item.have)} on hand · <strong>${escape(item.need)} to add</strong></li>`).join('')}</ul>
     <p>${plan.shopping.essentials.length} essentials${plan.shopping.addOns.length ? ` plus ${plan.shopping.addOns.length} items to consider for your setup` : ''}. The PDF has checkboxes and spaces to fill in.</p>
-    <p><strong>Buying guides included:</strong> a three-day no-cook grocery basket, first aid kit contents, and a medicines and care worksheet.</p>` : '';
+    <p>The PDF follows the shopping checklist with <strong>${plan.worksheets.length} buying guides</strong> tailored to your setup. <a href="#buying-guide">Read the guides here</a>.</p>` : '';
   const supplies = !plan.shopping && plan.sections.length
     ? `<h3>Supply targets</h3><p>${escape(plan.sections[0].items.map(item => item.label + ': ' + item.detail).join(' '))}</p>` : '';
   const actions = plan.sections.length ? `
@@ -206,7 +234,7 @@ function renderExperience(m){
 for(const k of numberKeys){$(k).addEventListener('input',()=>{if($(k).value===''||!$(k).validity.valid)return;state=E.normalize({...state,[k]:$(k).value});$('preset').value=presetValue();save();render();});$(k).addEventListener('change',()=>{state=E.normalize({...state,[k]:$(k).value});sync();save();render();});}
 for(const k of boolKeys)$(k).addEventListener('change',()=>{state[k]=$(k).checked;save();render();});
 for(const k of ['place','notes'])$(k).addEventListener('input',()=>{state[k]=$(k).value;save();if(k==='place')render();else renderPlan(E.calculate(state),P.orderTasks(state,E.tasks(state)),P.portablePower(state));});
-for(const k of ['horizon','report','experience','commsGoal'])$(k).addEventListener('change',()=>{state[k]=$(k).value;save();render();});
+for(const k of ['horizon','report','experience','commsGoal','vehicleRoute'])$(k).addEventListener('change',()=>{state[k]=$(k).value;save();render();});
 $('housing').addEventListener('change',()=>{state.housing=$('housing').value;save();render();});
 $('region').addEventListener('change',()=>{state.region=$('region').value;state.hazards=[...E.REGIONS[state.region].hazards];sync();save();render();});
 $('hazards').addEventListener('change',()=>{state.hazards=[...document.querySelectorAll('[data-hazard]:checked')].map(el=>el.dataset.hazard);save();render();});

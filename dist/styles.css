@@ -42,3 +42,19 @@
   #portable-power { break-inside: auto; }
   .load-card { break-inside: avoid; }
 }
+
+/* Buying guidance uses the same topic order as the printed worksheets. */
+#buying-guide { scroll-margin-top: 1rem; }
+.buying-topic { border-top: 1px solid #cdd8d0; padding: .85rem 0; }
+.buying-topic summary { font-size: 1.02rem; font-weight: 700; cursor: pointer; }
+.buying-topic p { margin: .65rem 0; }
+.buying-topic h3 { margin-top: 1rem; }
+.buying-highlight { padding: .7rem .8rem; background: #eef4eb; border-radius: .35rem; font-weight: 600; }
+.buying-items, .buying-menu { padding: 0; list-style: none; margin-bottom: 1rem; }
+.buying-items li, .buying-menu li { border-bottom: 1px solid #dfe7e0; padding: .6rem .1rem; }
+.buying-items p, .buying-menu p { margin: .23rem 0 0; }
+.buying-quantity { display: inline-block; margin-inline-start: .5rem; color: #285647; font-size: .88rem; font-weight: 700; }
+.buying-tips dt { font-weight: 700; margin-top: .7rem; }
+.buying-tips dd { margin: .15rem 0 0; }
+.buying-sources { display: flex; gap: .35rem 1rem; flex-wrap: wrap; font-size: .85rem; }
+.buying-next { margin-top: .8rem; }
