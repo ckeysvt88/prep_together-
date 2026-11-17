@@ -82,10 +82,10 @@ function tasks(input){
  add('network','Plan','Build a trusted support and recovery network','Agree on check-ins, rides, caregiving and mutual help. Maintain transport/lodging funds and protected records. Keep sensitive inventory private.');
  }
  if(s.horizon==='long'){
-  add('phase-restock','Practice','Set a seasonal inventory review','Put the review on your calendar. Rotate supplies, update contacts and check plan changes.');
+  add('phase-restock','Practice','Schedule regular inventory reviews','Put the review on your calendar. Rotate supplies, update contacts and check plan changes.');
   add('phase-power','Practice','Run a backup power trial before the next outage','Check each backup device under the expected load and keep a second charging or relocation option.');
  }
- for(const key of s.seasons){
+ for(const key of P.activeSeasons(s)){
   const season=P.SEASONS[key];
   add('season-'+key,'Seasonal',season.title,season.detail);
  }

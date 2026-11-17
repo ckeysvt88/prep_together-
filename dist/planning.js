@@ -42,6 +42,9 @@
       solarYield: number(input.solarYield, 10, 100, 70)
     };
   }
+  function activeSeasons(state) {
+    return state.horizon === 'now' ? state.seasons : [];
+  }
   function status(state, id) {
     if (state.notNeeded[id]) return 'skip';
     return state.checked[id] ? 'done' : 'open';
@@ -89,7 +92,7 @@
       : null;
     return { rows, missingEnergy, missingWatts, daily, knownWatts, target, runtime, solar, complete };
   }
-  const api = { HORIZONS, SEASONS, LOAD_PRESETS, STATUS, normalizeProfile, status, orderTasks, portablePower };
+  const api = { HORIZONS, SEASONS, LOAD_PRESETS, STATUS, normalizeProfile, activeSeasons, status, orderTasks, portablePower };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ReadyPlanning = api;
 })(typeof globalThis === 'undefined' ? this : globalThis);

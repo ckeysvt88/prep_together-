@@ -28,14 +28,16 @@ test('older checked tasks and new Not needed selections are distinct', () => {
   assert.equal(state.checked.hygiene, undefined);
   assert.equal(E.normalize(JSON.parse(JSON.stringify(state))).notNeeded.hygiene, true);
 });
-test('timing and selected seasons update priorities independently from supply days', () => {
-  const immediate = E.normalize({ tier: 'super' });
-  const longTerm = E.normalize({ ...immediate, horizon: 'long', seasons: ['winter', 'winter', 'invalid'] });
+test('seasons apply to immediate prep and stay saved when switching to long-term prep', () => {
+  const immediate = E.normalize({ tier: 'super', seasons: ['winter', 'winter', 'invalid'] });
+  const longTerm = E.normalize({ ...immediate, horizon: 'long' });
   const nowTasks = P.orderTasks(immediate, E.tasks(immediate));
   const laterTasks = P.orderTasks(longTerm, E.tasks(longTerm));
   assert.equal(nowTasks[0].id, 'alerts');
-  assert.equal(laterTasks.find(task => task.id === 'season-winter').phase, 'Before the selected season');
-  assert.equal(laterTasks.filter(task => task.id === 'season-winter').length, 1);
+  assert.equal(nowTasks.find(task => task.id === 'season-winter').phase, 'Before the selected season');
+  assert(!laterTasks.some(task => task.cat === 'Seasonal'));
+  assert.deepEqual(longTerm.seasons, ['winter']);
+  assert.deepEqual(P.activeSeasons({ ...longTerm, horizon: 'now' }), ['winter']);
   assert.equal(E.calculate(longTerm).days, 30);
 });
 test('device estimates honor measured usage, incomplete data and station solar limits', () => {

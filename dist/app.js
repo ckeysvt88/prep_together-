@@ -32,6 +32,7 @@ function render() {
   const skipped = tasks.filter(task => task.status === 'skip').length;
   const applicable = tasks.length - skipped;
   $('horizon-help').textContent = P.HORIZONS[state.horizon].detail;
+ $('season-options').hidden = state.horizon === 'long';
  $('experience-help').textContent=E.EXPERIENCES[state.experience].description;
  $('tiers').innerHTML=Object.entries(E.TIERS).map(([k,v],i)=>`<button class="tier" data-tier="${k}" aria-pressed="${state.tier===k}"><span class="number">0${i+1} / ${i===0?'START HERE':i===1?'BUILD CONFIDENCE':'BUILD RESILIENCE'}</span><strong>${v.name}</strong><span class="duration">${v.label}</span></button>`).join('');
  $('plan-title').textContent=`${m.days} days, thoughtfully covered.`;
@@ -113,17 +114,22 @@ function renderPortable(power) {
 }
 function planSnapshot(m, tasks, power) {
   const beginner = state.experience === 'beginner';
-  const seasons = state.seasons.map(key => P.SEASONS[key].label).join(', ') || 'No specific season selected';
+  const seasons = P.activeSeasons(state);
   const sections = [
     { title: 'Supply targets and gaps', items: [
       { label: 'Water', detail: `${fmt(m.water, 2)} gal target; ${fmt(state.storedWater, 2)} gal on hand; ${fmt(m.waterGap, 2)} gal to add.${beginner ? ` About ${m.waterJugs} one-gallon jugs for the full target.` : ''}` },
       { label: 'Food', detail: beginner ? `${m.days} days of family meals; ${fmt(state.simpleFoodDays, 1)} days on hand; ${fmt(m.simpleFoodGapDays, 1)} days to add.` : `${fmt(m.food)} kcal target; ${fmt(state.storedFood)} kcal on hand; ${fmt(m.foodGap)} kcal to add.` }
     ] },
-    { title: 'Location and seasonal priorities', items: [
-      { label: 'Region and hazards', detail: E.REGIONS[state.region].name + ' | ' + (state.hazards.map(key => E.HAZARDS[key].name).join(', ') || 'No hazards selected') },
-      { label: seasons, detail: state.seasons.length ? state.seasons.map(key => P.SEASONS[key].title).join('. ') + '.' : '' }
+    { title: seasons.length ? 'Location and seasonal priorities' : 'Location and hazards', items: [
+      { label: 'Region and hazards', detail: E.REGIONS[state.region].name + ' | ' + (state.hazards.map(key => E.HAZARDS[key].name).join(', ') || 'No hazards selected') }
     ] }
   ];
+  if (seasons.length) {
+    sections[1].items.push({
+      label: seasons.map(key => P.SEASONS[key].label).join(', '),
+      detail: seasons.map(key => P.SEASONS[key].title).join('. ') + '.'
+    });
+  }
   if (state.infants) sections[0].items.push({ label: 'Infant feeding', detail: 'Track infant feeding requirements separately from the family food totals.' });
   if (state.pets) sections[0].items.push({ label: 'Pets', detail: `${m.petDays} pet-days of food at usual daily rations. Water uses ${fmt(state.petWater, 2)} gal/pet/day.` });
   if (state.customPower) {
@@ -162,8 +168,10 @@ function renderPlan(m, tasks, power) {
   const open = tasks.filter(task => task.status === 'open');
   const skipped = tasks.filter(task => task.status === 'skip').length;
   const priority = open.length ? `<ul>${open.slice(0, 3).map(task => `<li>${escape(task.title)}</li>`).join('')}</ul>` : '<p>There are no open checklist actions.</p>';
+  const seasonPreview = P.activeSeasons(state).length
+    ? `<p>Seasonal focus: ${escape(plan.sections[1].items[1].label)}.</p>` : '';
   const powerPreview = state.customPower ? `<p>${escape(describePower(power).slice(0, 2).join(' '))}</p>` : '';
-  $('plan-preview').innerHTML = `<div class="plan-review"><strong>${escape(plan.meta)}</strong><p>${escape(plan.household)}</p><p>${escape(plan.sections[0].items.map(item => item.label + ': ' + item.detail).join(' '))}</p><p>Seasonal focus: ${escape(plan.sections[1].items[1].label)}.</p>${powerPreview}<h3>Next actions</h3>${priority}<p class="help">${open.length} to do · ${tasks.length - open.length - skipped} done · ${skipped} not needed. The PDF includes every task and your saved notes.</p></div>`;
+  $('plan-preview').innerHTML = `<div class="plan-review"><strong>${escape(plan.meta)}</strong><p>${escape(plan.household)}</p><p>${escape(plan.sections[0].items.map(item => item.label + ': ' + item.detail).join(' '))}</p>${seasonPreview}${powerPreview}<h3>Next actions</h3>${priority}<p class="help">${open.length} to do · ${tasks.length - open.length - skipped} done · ${skipped} not needed. The PDF includes every task and your saved notes.</p></div>`;
 }
 
 function renderExperience(m){
