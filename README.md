@@ -17,6 +17,8 @@ Share the planner link so each household can create its own plan. The two refere
 
 ## Build your first plan
 
+Select **Take the tour** on the planner’s home screen to walk through the live controls and finish at the PDF download. You can change settings during the tour or use **Skip tour** to continue on your own.
+
 1. In **Your starting point**, choose **Immediate prep** if you want to act now or **Long-term prep** to build in stages. Immediate prep lets you select seasons. Long-term prep keeps your selected hazards and adds maintenance tasks.
 2. Choose your **Prepper experience**. If this is your first plan, select **Beginner** and start with the **Core** supply goal.
 3. Pick **1 adult**, **2 adults**, or **Family · 2 adults + 2 children**, then edit the counts for your actual household. Count infants separately from children eating solid food. Add pets, phones, home type and any care, mobility, dietary, well-water or transport needs.

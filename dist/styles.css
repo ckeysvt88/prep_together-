@@ -58,3 +58,61 @@
 .buying-tips dd { margin: .15rem 0 0; }
 .buying-sources { display: flex; gap: .35rem 1rem; flex-wrap: wrap; font-size: .85rem; }
 .buying-next { margin-top: .8rem; }
+
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; }
+.hero-actions .hero-plan-link { margin-top: 0; }
+#start-tour { min-height: 44px; }
+
+.planner-tour {
+  position: fixed;
+  z-index: 12;
+  width: min(21rem, calc(var(--tour-viewport-width, 100vw) - 24px));
+  max-height: calc(var(--tour-viewport-height, 100vh) - 24px);
+  overflow: auto;
+  padding: 14px 17px 16px;
+  color: var(--ink);
+  background: #fffef9;
+  border: 1px solid #789381;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px #1b403940;
+}
+#start-tour[hidden], .planner-tour[hidden], #tour-back[hidden] { display: none; }
+.planner-tour[data-side="right"], .planner-tour[data-side="left"],
+.planner-tour[data-side="above"], .planner-tour[data-side="below"] { overflow: visible; }
+.planner-tour:not([data-side=""]):not([data-detached])::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #fffef9;
+  border: solid #789381;
+  border-width: 0 0 1px 1px;
+  transform: rotate(45deg);
+}
+.planner-tour[data-side="right"]::before, .planner-tour[data-side="left"]::before { top: calc(var(--tour-arrow) - 6px); }
+.planner-tour[data-side="right"]::before { left: -6px; }
+.planner-tour[data-side="left"]::before { right: -6px; transform: rotate(225deg); }
+.planner-tour[data-side="below"]::before, .planner-tour[data-side="above"]::before { left: calc(var(--tour-arrow) - 6px); }
+.planner-tour[data-side="below"]::before { top: -6px; transform: rotate(135deg); }
+.planner-tour[data-side="above"]::before { bottom: -6px; transform: rotate(-45deg); }
+.tour-top, .tour-actions { display: flex; justify-content: space-between; align-items: center; gap: .6rem; }
+.tour-top p { margin: 0; font-size: 12px; font-weight: 700; color: var(--muted); }
+.tour-top button { min-height: 36px; padding: 5px 0 5px 12px; border-color: transparent; background: transparent; text-decoration: underline; }
+.planner-tour h2 { font: 700 23px/1.15 var(--serif); margin: 5px 0 8px; }
+.planner-tour h2:focus { outline: none; }
+#tour-description { margin: 0 0 14px; font-size: 13px; }
+.tour-actions button { min-height: 44px; }
+#tour-next { margin-left: auto; }
+.tour-highlight {
+  outline: 3px solid #56815c;
+  outline-offset: 5px;
+  border-radius: 6px;
+  scroll-margin-top: 16px;
+}
+@media (max-width: 760px) {
+  .planner-tour { width: calc(var(--tour-viewport-width, 100vw) - 24px); }
+}
+@media print {
+  #start-tour, .planner-tour { display: none !important; }
+  .tour-highlight { outline: none; }
+}
