@@ -17,6 +17,11 @@
     connectivity: [{ name: 'Router / modem / communications' }],
     other: [{ name: '' }]
   };
+  const REPORTS = {
+    both: { label: 'Shopping checklist + action plan', detail: 'Start with a printable shopping list, then include your full plan.' },
+    shopping: { label: 'Shopping checklist only', detail: 'Print the items, quantities and spaces to mark what you already have.' },
+    action: { label: 'Action plan only', detail: 'Keep the supply summary, action checklist, power details and household notes.' }
+  };
   const STATUS = { open: 'To do', done: 'Done', skip: 'Not needed' };
   const has = (dictionary, key) => Object.hasOwn(dictionary, key);
   const number = (value, min, max, fallback) => {
@@ -26,6 +31,7 @@
   function normalizeProfile(input) {
     return {
       horizon: has(HORIZONS, input.horizon) ? input.horizon : 'now',
+      report: has(REPORTS, input.report) ? input.report : 'both',
       seasons: Array.isArray(input.seasons) ? Object.keys(SEASONS).filter(key => input.seasons.includes(key)) : [],
       notNeeded: Object.fromEntries(Object.entries(input.notNeeded ?? {}).filter(([key, value]) => /^[a-z0-9-]{1,80}$/.test(key) && value === true)),
       customPower: input.customPower === true,
@@ -92,7 +98,7 @@
       : null;
     return { rows, missingEnergy, missingWatts, daily, knownWatts, target, runtime, solar, complete };
   }
-  const api = { HORIZONS, SEASONS, LOAD_PRESETS, STATUS, normalizeProfile, activeSeasons, status, orderTasks, portablePower };
+  const api = { HORIZONS, SEASONS, LOAD_PRESETS, REPORTS, STATUS, normalizeProfile, activeSeasons, status, orderTasks, portablePower };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ReadyPlanning = api;
 })(typeof globalThis === 'undefined' ? this : globalThis);

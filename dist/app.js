@@ -15,7 +15,7 @@ $('seasons').innerHTML = Object.entries(P.SEASONS).map(([key, season]) =>
 function sync() {
   for (const key of [...numberKeys, 'capacityWh', 'usable']) $(key).value = state[key];
   for (const key of boolKeys) $(key).checked = state[key];
-  for (const key of ['horizon', 'experience', 'commsGoal', 'region', 'place', 'housing', 'notes']) $(key).value = state[key];
+  for (const key of ['horizon', 'report', 'experience', 'commsGoal', 'region', 'place', 'housing', 'notes']) $(key).value = state[key];
   $('preset').value = presetValue();
   document.querySelectorAll('[data-hazard]').forEach(el => el.checked = state.hazards.includes(el.dataset.hazard));
   document.querySelectorAll('[data-season]').forEach(el => el.checked = state.seasons.includes(el.dataset.season));
@@ -32,6 +32,7 @@ function render() {
   const skipped = tasks.filter(task => task.status === 'skip').length;
   const applicable = tasks.length - skipped;
   $('horizon-help').textContent = P.HORIZONS[state.horizon].detail;
+ $('report-help').textContent = P.REPORTS[state.report].detail;
  $('season-options').hidden = state.horizon === 'long';
  $('experience-help').textContent=E.EXPERIENCES[state.experience].description;
  $('tiers').innerHTML=Object.entries(E.TIERS).map(([k,v],i)=>`<button class="tier" data-tier="${k}" aria-pressed="${state.tier===k}"><span class="number">0${i+1} / ${i===0?'START HERE':i===1?'BUILD CONFIDENCE':'BUILD RESILIENCE'}</span><strong>${v.name}</strong><span class="duration">${v.label}</span></button>`).join('');
@@ -160,7 +161,9 @@ function planSnapshot(m, tasks, power) {
       state.pets && `${state.pets} ${state.pets === 1 ? 'pet' : 'pets'}`
     ].filter(Boolean).join(', ') + (state.place ? ' | ' + state.place : ''),
     date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
-    sections
+    report: state.report,
+    shopping: state.report === 'action' ? null : ReadyShopping.makeList(state, m, power, seasons),
+    sections: state.report === 'shopping' ? [] : sections
   };
 }
 function renderPlan(m, tasks, power) {
@@ -168,10 +171,20 @@ function renderPlan(m, tasks, power) {
   const open = tasks.filter(task => task.status === 'open');
   const skipped = tasks.filter(task => task.status === 'skip').length;
   const priority = open.length ? `<ul>${open.slice(0, 3).map(task => `<li>${escape(task.title)}</li>`).join('')}</ul>` : '<p>There are no open checklist actions.</p>';
-  const seasonPreview = P.activeSeasons(state).length
-    ? `<p>Seasonal focus: ${escape(plan.sections[1].items[1].label)}.</p>` : '';
+  const seasons = P.activeSeasons(state).map(key => P.SEASONS[key].label);
+  const seasonPreview = seasons.length ? `<p>Seasonal focus: ${escape(seasons.join(', '))}.</p>` : '';
   const powerPreview = state.customPower ? `<p>${escape(describePower(power).slice(0, 2).join(' '))}</p>` : '';
-  $('plan-preview').innerHTML = `<div class="plan-review"><strong>${escape(plan.meta)}</strong><p>${escape(plan.household)}</p><p>${escape(plan.sections[0].items.map(item => item.label + ': ' + item.detail).join(' '))}</p>${seasonPreview}${powerPreview}<h3>Next actions</h3>${priority}<p class="help">${open.length} to do · ${tasks.length - open.length - skipped} done · ${skipped} not needed. The PDF includes every task and your saved notes.</p></div>`;
+  const shopping = plan.shopping ? `
+    <h3>Shopping checklist</h3>
+    <ul class="shopping-preview">${plan.shopping.essentials.slice(0, 2).map(item => `<li><strong>${escape(item.item)}</strong> · ${escape(item.target)} target · ${escape(item.have)} on hand · <strong>${escape(item.need)} to add</strong></li>`).join('')}</ul>
+    <p>${plan.shopping.essentials.length} essentials${plan.shopping.addOns.length ? ` plus ${plan.shopping.addOns.length} items to consider for your setup` : ''}. The PDF has checkboxes and room to write in what you still need.</p>` : '';
+  const supplies = !plan.shopping && plan.sections.length
+    ? `<h3>Supply targets</h3><p>${escape(plan.sections[0].items.map(item => item.label + ': ' + item.detail).join(' '))}</p>` : '';
+  const actions = plan.sections.length ? `
+    <h3>Next actions</h3>${priority}${seasonPreview}${powerPreview}
+    <p class="help">${open.length} to do · ${tasks.length - open.length - skipped} done · ${skipped} not needed. The action plan includes your full checklist and saved notes.</p>` : '';
+  $('plan-preview').innerHTML = `<div class="plan-review"><strong>${escape(P.REPORTS[state.report].label)}</strong><p>${escape(plan.meta)} · ${escape(plan.household)}</p>${shopping}${supplies}${actions}</div>`;
+  $('download-pdf').textContent = state.report === 'shopping' ? 'Download shopping checklist PDF' : state.report === 'action' ? 'Download action plan PDF' : 'Download shopping list & plan PDF';
 }
 
 function renderExperience(m){
@@ -191,7 +204,7 @@ function renderExperience(m){
 for(const k of numberKeys){$(k).addEventListener('input',()=>{if($(k).value===''||!$(k).validity.valid)return;state=E.normalize({...state,[k]:$(k).value});$('preset').value=presetValue();save();render();});$(k).addEventListener('change',()=>{state=E.normalize({...state,[k]:$(k).value});sync();save();render();});}
 for(const k of boolKeys)$(k).addEventListener('change',()=>{state[k]=$(k).checked;save();render();});
 for(const k of ['place','notes'])$(k).addEventListener('input',()=>{state[k]=$(k).value;save();if(k==='place')render();else renderPlan(E.calculate(state),P.orderTasks(state,E.tasks(state)),P.portablePower(state));});
-for(const k of ['horizon','experience','commsGoal'])$(k).addEventListener('change',()=>{state[k]=$(k).value;save();render();});
+for(const k of ['horizon','report','experience','commsGoal'])$(k).addEventListener('change',()=>{state[k]=$(k).value;save();render();});
 $('housing').addEventListener('change',()=>{state.housing=$('housing').value;save();render();});
 $('region').addEventListener('change',()=>{state.region=$('region').value;state.hazards=[...E.REGIONS[state.region].hazards];sync();save();render();});
 $('hazards').addEventListener('change',()=>{state.hazards=[...document.querySelectorAll('[data-hazard]:checked')].map(el=>el.dataset.hazard);save();render();});
@@ -265,7 +278,7 @@ $('download-pdf').addEventListener('click', async () => {
     await ReadyPlanPdf.download(planSnapshot(E.calculate(state), tasks, P.portablePower(state)));
     $('pdf-status').textContent = 'PDF sent to your browser. Look in Downloads or Files.';
   } catch {
-    $('pdf-status').textContent = 'The PDF could not be downloaded. Try again or use Print this page to save a copy.';
+    $('pdf-status').textContent = 'The PDF could not be downloaded. Try again. Print this page is also available for the planner view.';
   } finally {
     button.disabled = false;
   }

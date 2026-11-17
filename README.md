@@ -15,7 +15,7 @@ A US household preparedness guide and a working static planner for people starti
 - Water/food quantities, inventory gaps, tier-specific tasks, checklist filtering and a critical-load battery calculator.
 - Immediate and long-term preparation, seasonal priorities for immediate plans, and three checklist statuses.
 - Portable battery and solar sizing for custom devices, including a thermostat-controlled reptile enclosure example.
-- A final plan preview and a personalized PDF download. Editable JSON backups and browser-local storage are separate from the PDF.
+- A final preview and a personalized PDF with a shopping checklist, an action plan, or both. The printable checklist fills in water and food gaps from inventory and leaves space to count the other gear.
 - Static hosting with no accounts, third-party requests, analytics or build step. The pinned, MIT-licensed pdf-lib 1.17.1 browser bundle loads locally when downloading a PDF.
 
 ## Install on your home screen
@@ -103,7 +103,7 @@ The website source directory combines the 31 reference guide sources in `docs/so
 - Never commit names, addresses, medical details, IDs, access codes, supply locations or exported personal plans. `.gitignore` excludes the default export filename pattern.
 - The town/state field is a label only. Regional presets are editorial prompts, not geocoding, real-time warnings, flood-map analysis or official risk scoring.
 - Care, drinking-water treatment, electrical work, fuel storage and evacuation require current official/product/professional guidance. Medical flags create planning tasks; they do not diagnose, prescribe or validate device compatibility.
-- This is an educational version 1.3. It does not include shopping price feeds, live alerts, account sync, inventory-by-product or guaranteed offline caching.
+- This is an educational version 1.4. It does not include shopping price feeds, live alerts, account sync, inventory-by-product or guaranteed offline caching.
 
 ## Maintaining and sharing
 

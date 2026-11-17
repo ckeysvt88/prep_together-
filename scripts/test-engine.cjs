@@ -56,4 +56,29 @@ test('device estimates honor measured usage, incomplete data and station solar l
   assert.equal(incomplete.runtime, null);
   assert.equal(incomplete.missingEnergy, 1);
 });
+test('shopping list uses reported gaps and leaves untracked equipment blank', () => {
+  const S = require('../dist/shopping.js');
+  const state = E.normalize({ adults: 2, children: 2, storedWater: 5, simpleFoodDays: 1.5, pets: 1, petWater: 0.5 });
+  const totals = E.calculate(state);
+  const list = S.makeList(state, totals, P.portablePower(state), P.activeSeasons(state));
+  assert.deepEqual(list.essentials.slice(0, 2).map(({ target, have, need }) => [target, have, need]), [
+    ['19.5 gal', '5 gal', '14.5 gal'], ['3 days', '1.5 days', '1.5 days']
+  ]);
+  assert.match(list.essentials[0].detail, /15 more/);
+  assert(list.essentials.slice(2).every(row => row.have === null && row.need === null));
+  assert(list.addOns.some(row => row.item.startsWith('Pet food') && row.target === '3 days per pet'));
+});
+test('shopping order has backward-compatible defaults and uses active seasons only', () => {
+  const S = require('../dist/shopping.js');
+  assert.equal(E.normalize({}).report, 'both');
+  assert.equal(E.normalize({ report: 'shopping' }).report, 'shopping');
+  assert.equal(E.normalize({ report: 'action' }).report, 'action');
+  assert.equal(E.normalize({ report: '__proto__' }).report, 'both');
+  for (const horizon of ['now', 'long']) {
+    const state = E.normalize({ horizon, hazards: [], seasons: ['winter'], phones: 0 });
+    const list = S.makeList(state, E.calculate(state), P.portablePower(state), P.activeSeasons(state));
+    assert.equal(list.addOns.some(row => row.item.includes('cold-weather')), horizon === 'now');
+    assert(!list.essentials.some(row => row.item.includes('power banks')));
+  }
+});
 console.log(`${checks} tests passed.`);
