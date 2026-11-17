@@ -1,5 +1,6 @@
 /* Pure planning calculations. US gallons; calorie values are editable assumptions. */
 (function(root){
+const P=typeof module!=='undefined'&&module.exports?require('./planning.js'):root.ReadyPlanning;
 const TIERS={core:{name:'Core',days:3,label:'72 hours',rank:1},advanced:{name:'Advanced',days:14,label:'14 days',rank:2},super:{name:'Super prep',days:30,label:'30 days',rank:3}};
 const REGIONS={
  southeast:{name:'Southeast / Gulf & Atlantic',hazards:['storm','flood','heat','hurricane']},
@@ -25,15 +26,16 @@ const EXPERIENCES={beginner:{name:'Beginner',description:'Tell me what to get an
 const defaults={experience:'beginner',phones:2,simpleFoodDays:0,commsGoal:'alerts',extraWater:false,tier:'core',adults:2,children:2,infants:0,pets:0,petWater:0.25,adultKcal:2000,childKcal:1600,waterRate:1,region:'southeast',hazards:[...REGIONS.southeast.hazards],place:'',housing:'house',well:false,medical:false,access:false,allergy:false,noCar:false,storedWater:0,storedFood:0,weeklyBudget:25,dailyWh:90,capacityWh:0,usable:80,checked:{},notes:''};
 const finite=(v,f,min,max)=>{let n=Number(v);return Number.isFinite(n)?Math.min(max,Math.max(min,n)):f};
 function normalize(x={}){
- const s={...defaults};
+ const s={...defaults,...P.normalizeProfile(x)};
  for(const [k,min,max,int] of [['phones',0,30,1],['simpleFoodDays',0,365,0],['adults',1,20,1],['children',0,20,1],['infants',0,10,1],['pets',0,20,1],['petWater',0,20,0],['adultKcal',1000,6000,1],['childKcal',500,6000,1],['waterRate',1,5,0],['storedWater',0,100000,0],['storedFood',0,100000000,0],['weeklyBudget',0,10000,0],['dailyWh',0,100000,0],['capacityWh',0,1000000,0],['usable',10,100,0]]) {s[k]=finite(x[k]??s[k],s[k],min,max);if(int)s[k]=Math.floor(s[k]);}
- s.experience=EXPERIENCES[x.experience]?x.experience:'beginner';s.commsGoal=['alerts','nearby','town','remote'].includes(x.commsGoal)?x.commsGoal:'alerts';
- s.tier=TIERS[x.tier]?x.tier:defaults.tier;s.region=REGIONS[x.region]?x.region:defaults.region;
- s.hazards=Array.isArray(x.hazards)?[...new Set(x.hazards.filter(k=>HAZARDS[k]))]:[...REGIONS[s.region].hazards];
+ s.experience=Object.hasOwn(EXPERIENCES,x.experience)?x.experience:'beginner';s.commsGoal=['alerts','nearby','town','remote'].includes(x.commsGoal)?x.commsGoal:'alerts';
+ s.tier=Object.hasOwn(TIERS,x.tier)?x.tier:defaults.tier;s.region=Object.hasOwn(REGIONS,x.region)?x.region:defaults.region;
+ s.hazards=Array.isArray(x.hazards)?[...new Set(x.hazards.filter(k=>Object.hasOwn(HAZARDS,k)))]:[...REGIONS[s.region].hazards];
  s.housing=['house','apartment','mobile'].includes(x.housing)?x.housing:'house';
  for(const k of ['well','medical','access','allergy','noCar','extraWater'])s[k]=x[k]===true;
  for(const k of ['place','notes'])s[k]=typeof x[k]==='string'?x[k].slice(0,k==='notes'?3000:100):'';
  s.checked={};if(x.checked&&typeof x.checked==='object')for(const [k,v]of Object.entries(x.checked))if(/^[a-z0-9-]{1,80}$/.test(k)&&v===true)s.checked[k]=true;
+ for(const id of Object.keys(s.notNeeded))delete s.checked[id];
  return s;
 }
 function calculate(input){
@@ -78,6 +80,18 @@ function tasks(input){
  add('resupply','Supplies','Document a realistic resupply plan','Identify safe water sources, transport, food replenishment and necessary care access. State remaining gaps; do not assume distribution, gardens or an untested water source will meet them.');
  add('service','Practice','Write maintenance and backup operating instructions','Record service intervals, spare consumables and equipment limits. Train a second capable operator or helper.');
  add('network','Plan','Build a trusted support and recovery network','Agree on check-ins, rides, caregiving and mutual help. Maintain transport/lodging funds and protected records. Keep sensitive inventory private.');
+ }
+ if(s.horizon==='long'){
+  add('phase-restock','Practice','Set a seasonal inventory review','Put the review on your calendar. Rotate supplies, update contacts and check plan changes.');
+  add('phase-power','Practice','Run a backup power trial before the next outage','Check each backup device under the expected load and keep a second charging or relocation option.');
+ }
+ for(const key of s.seasons){
+  const season=P.SEASONS[key];
+  add('season-'+key,'Seasonal',season.title,season.detail);
+ }
+ if(s.customPower){
+  add('power-devices','Supplies','Size and test power for your critical devices','Measure daily energy, confirm simultaneous watts and startup surge, and test the battery and recharge setup. Write down the backup if power runs low.');
+  if(s.powerLoads.some(row=>/reptile|snake|python|terrarium/i.test(row.name)))add('power-reptile','Care','Protect the reptile enclosure during outages','Keep the thermostat and probe in the circuit and monitor both ends of the enclosure. Measure in cold room conditions, verify restart and have an appropriate heated relocation option.');
  }
  for(const h of s.hazards)add('hazard-'+h,'Local risks',HAZARDS[h].name,HAZARDS[h].action);
  add('radio-listen','Communications','Get one battery-powered AM/FM + NOAA alert radio','Choose AM/FM for local broadcasts AND NOAA weather reception with an actual automatic alert feature. Weather-band tuning alone does not mean it wakes you. SAME county alerts and battery backup are useful at home; use separate receivers if one unit lacks these functions.');

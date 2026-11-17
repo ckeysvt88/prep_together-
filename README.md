@@ -13,8 +13,10 @@ A US household preparedness guide and a working static planner for people starti
 - Household presets for one adult, two adults, and two adults plus two children; editable counts, including infants and pets.
 - Broad regional hazard presets with manual overrides; housing, medical/access, dietary and transport considerations.
 - Water/food quantities, inventory gaps, tier-specific tasks, checklist filtering and a critical-load battery calculator.
-- Browser-local persistence, JSON export/import and print styling for personalized plans.
-- No application backend, API keys, external scripts, analytics, fonts, paid services or build step.
+- Immediate and long-term preparation, optional seasonal priorities and three checklist statuses.
+- Portable battery and solar sizing for custom devices, including a thermostat-controlled reptile enclosure example.
+- A final plan preview and a personalized PDF download. Editable JSON backups and browser-local storage are separate from the PDF.
+- Static hosting with no accounts, third-party requests, analytics or build step. The pinned, MIT-licensed pdf-lib 1.17.1 browser bundle loads locally when downloading a PDF.
 
 ## Run locally
 
@@ -36,7 +38,9 @@ The **Publish Ready Together** workflow tests the planner and publishes `dist/` 
 dist/
   index.html                 Dashboard
   styles.css                 Responsive and print styles
-  engine.js                  Pure calculations and task selection
+  engine.js                  Supply calculations and task selection
+  planning.js                Timing, status, seasons and portable power math
+  plan-pdf.js                Local personalized PDF generation
   app.js                     UI, storage, import/export and print behavior
   sources.html               Assumptions and reference links
   Ready-Together-Guide.pdf    Full guide
@@ -85,7 +89,7 @@ python3 scripts/build_sources.py
 
 The PDF generator uses DejaVu fonts from `/usr/share/fonts/truetype/dejavu/` (Linux). Install the fonts or adjust `FONT` for another operating system. It writes the full or beginner PDF and a corresponding layout-bound check. Re-render and visually review after edits; numerical bounds alone do not prove correct layout. Update the page count in navigation and this README if content changes.
 
-The source directory currently has 31 entries. If sources change, update `docs/sources.json` and run `scripts/build_sources.py`; the generated directory is static, not generated at runtime. Keep PDF and app assumptions synchronized.
+The website source directory combines the 31 reference guide sources in `docs/sources.json` and the planner-specific sources in `docs/planner-sources.json`. After changing either list, run `scripts/build_sources.py`.
 
 ## Privacy and limitations
 
@@ -95,7 +99,7 @@ The source directory currently has 31 entries. If sources change, update `docs/s
 - Never commit names, addresses, medical details, IDs, access codes, supply locations or exported personal plans. `.gitignore` excludes the default export filename pattern.
 - The town/state field is a label only. Regional presets are editorial prompts, not geocoding, real-time warnings, flood-map analysis or official risk scoring.
 - Care, drinking-water treatment, electrical work, fuel storage and evacuation require current official/product/professional guidance. Medical flags create planning tasks; they do not diagnose, prescribe or validate device compatibility.
-- This is an educational version 1.1. It does not include shopping price feeds, live alerts, account sync, inventory-by-product or guaranteed offline caching.
+- This is an educational version 1.2. It does not include shopping price feeds, live alerts, account sync, inventory-by-product or guaranteed offline caching.
 
 ## Maintaining and sharing
 

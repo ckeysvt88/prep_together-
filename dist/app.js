@@ -1,16 +1,37 @@
 (()=>{'use strict';
-const E=ReadyEngine,$=id=>document.getElementById(id),KEY='ready-together-v1';let state=E.normalize(),filter='all',storageOK=true;
+const E=ReadyEngine,P=ReadyPlanning,$=id=>document.getElementById(id),KEY='ready-together-v1';let state=E.normalize(),filter='all',storageOK=true;
 const fmt=(n,d=0)=>Number(n).toLocaleString('en-US',{maximumFractionDigits:d});
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 try{const raw=localStorage.getItem(KEY);if(raw){const payload=JSON.parse(raw);if(payload.version===1&&payload.plan)state=E.normalize({...payload.plan,experience:payload.plan.experience||'advanced'});else throw Error('Unsupported stored plan');}}catch(e){storageOK=false;$('storage-status').textContent='Saved data could not be loaded. Export a backup before closing; you can import an earlier backup.';}
-const numberKeys=['phones','simpleFoodDays','adults','children','infants','pets','petWater','adultKcal','childKcal','waterRate','storedWater','storedFood','weeklyBudget','dailyWh','capacityWh','usable'];
-const boolKeys=['well','medical','access','allergy','noCar','extraWater'];
-function save(){try{localStorage.setItem(KEY,JSON.stringify({version:1,plan:state}));storageOK=true;$('storage-status').textContent='Saved in this browser. Export to move or back up your plan.';}catch(e){storageOK=false;$('storage-status').textContent='Browser storage is unavailable. Export a backup to keep this plan.';}}
+const numberKeys=['phones','simpleFoodDays','adults','children','infants','pets','petWater','adultKcal','childKcal','waterRate','storedWater','storedFood','weeklyBudget','dailyWh','powerHours','solarWatts','solarInput','solarHours','solarYield'];
+const boolKeys=['well','medical','access','allergy','noCar','extraWater','customPower'];
+function save(){try{localStorage.setItem(KEY,JSON.stringify({version:1,plan:state}));storageOK=true;$('storage-status').textContent='Saved in this browser. Save an editable backup to move your plan to another browser.';}catch(e){storageOK=false;$('storage-status').textContent='Browser storage is unavailable. Export a backup to keep this plan.';}}
 function presetValue(){if(state.adults===1&&!state.children&&!state.infants)return 'solo';if(state.adults===2&&!state.children&&!state.infants)return 'duo';if(state.adults===2&&state.children===2&&!state.infants)return 'family';return 'custom';}
 $('region').innerHTML=Object.entries(E.REGIONS).map(([k,v])=>`<option value="${k}">${v.name}</option>`).join('');
 $('hazards').innerHTML=Object.entries(E.HAZARDS).map(([k,v])=>`<label class="chip"><input type="checkbox" data-hazard="${k}">${v.name}</label>`).join('');
-function sync(){for(const k of numberKeys)$ (k).value=state[k];for(const k of boolKeys)$(k).checked=state[k];for(const k of ['experience','commsGoal','region','place','housing','notes'])$(k).value=state[k];$('preset').value=presetValue();document.querySelectorAll('[data-hazard]').forEach(el=>el.checked=state.hazards.includes(el.dataset.hazard));}
-function render(){const beginner=state.experience==='beginner';document.body.dataset.experience=state.experience;const m=E.calculate(state),tasks=E.tasks(state),done=tasks.filter(t=>state.checked[t.id]).length;
+$('seasons').innerHTML = Object.entries(P.SEASONS).map(([key, season]) =>
+  `<label class="chip"><input type="checkbox" data-season="${key}">${season.label}</label>`
+).join('');
+function sync() {
+  for (const key of [...numberKeys, 'capacityWh', 'usable']) $(key).value = state[key];
+  for (const key of boolKeys) $(key).checked = state[key];
+  for (const key of ['horizon', 'experience', 'commsGoal', 'region', 'place', 'housing', 'notes']) $(key).value = state[key];
+  $('preset').value = presetValue();
+  document.querySelectorAll('[data-hazard]').forEach(el => el.checked = state.hazards.includes(el.dataset.hazard));
+  document.querySelectorAll('[data-season]').forEach(el => el.checked = state.seasons.includes(el.dataset.season));
+  $('stationWh').value = state.capacityWh || '';
+  $('stationUsable').value = state.usable;
+  renderLoadRows();
+}
+function render() {
+  const beginner = state.experience === 'beginner';
+  document.body.dataset.experience = state.experience;
+  const m = E.calculate(state);
+  const tasks = P.orderTasks(state, E.tasks(state));
+  const done = tasks.filter(task => task.status === 'done').length;
+  const skipped = tasks.filter(task => task.status === 'skip').length;
+  const applicable = tasks.length - skipped;
+  $('horizon-help').textContent = P.HORIZONS[state.horizon].detail;
  $('experience-help').textContent=E.EXPERIENCES[state.experience].description;
  $('tiers').innerHTML=Object.entries(E.TIERS).map(([k,v],i)=>`<button class="tier" data-tier="${k}" aria-pressed="${state.tier===k}"><span class="number">0${i+1} / ${i===0?'START HERE':i===1?'BUILD CONFIDENCE':'BUILD RESILIENCE'}</span><strong>${v.name}</strong><span class="duration">${v.label}</span></button>`).join('');
  $('plan-title').textContent=`${m.days} days, thoughtfully covered.`;
@@ -28,14 +49,121 @@ function render(){const beginner=state.experience==='beginner';document.body.dat
  if(state.medical)notes.push('<p class="attention">Care priority: arrange provider-approved backup and relocation before power or safe medication storage runs out.</p>');
  if(state.pets)notes.push(`<p>Pet food: ${m.petDays} pet-days at each animal’s usual daily ration. Water entry: ${state.petWater} gal/pet/day; confirm actual needs.</p>`);
  $('context-note').innerHTML=notes.join('');
- const next=m.waterGap>0?tasks.find(t=>t.id==='water'):(beginner?m.simpleFoodGapDays>0:m.foodGap>0)?tasks.find(t=>t.id==='food'):tasks.find(t=>!state.checked[t.id]);$('next-title').textContent=next?next.title:'Keep the plan tested and current.';$('next-detail').textContent=(next?next.detail:'Review inventory, run a drill and confirm destinations. Checked tasks do not prove safety or supply adequacy.')+(state.weeklyBudget?` Your chosen pace: $${fmt(state.weeklyBudget)} per week. Buy only the missing essentials.`:' Use existing supplies first; no weekly spending target set.');
- $('progress-number').textContent=`${done} / ${tasks.length}`;$('progress-bar').style.width=(done/tasks.length*100)+'%';
- const visible=tasks.filter(t=>filter==='all'||(filter==='done')===!!state.checked[t.id]);let group='';
- const categories=['Supplies','Care','Plan','Communications','Practice','Local risks'];
- $('task-list').innerHTML=visible.length?categories.map(cat=>{let items=visible.filter(t=>t.cat===cat);return items.length?`<h3 class="task-group">${cat}</h3>`+items.map(t=>`<label class="task-row ${state.checked[t.id]?'done':''}"><input type="checkbox" data-task="${t.id}" ${state.checked[t.id]?'checked':''}><span><span class="task-title">${escape(t.title)}</span><span class="task-detail">${escape(t.detail)}</span></span></label>`).join(''):''}).join(''):'<p class="empty">No tasks in this view. Choose another filter to see your plan.</p>';
+ const next = tasks.find(task => task.status === 'open');
+ $('next-title').textContent = next ? next.title : 'Review and download your plan.';
+ $('next-detail').textContent = next ? next.detail : 'You can save your PDF and revisit it as conditions change.';
+ $('progress-number').textContent = `${done} / ${applicable}`;
+ $('progress-label').textContent = `applicable tasks done${skipped ? ` · ${skipped} not needed` : ''}`;
+ $('progress-bar').style.width = (applicable ? 100 * done / applicable : 0) + '%';
+ const visible = tasks.filter(task => filter === 'all' || task.status === filter);
+ const phases = [...new Set(visible.map(task => task.phase))];
+ $('task-list').innerHTML = phases.map(phase => {
+   const rows = visible.filter(task => task.phase === phase).map(task => {
+     const options = Object.entries(P.STATUS).map(([value, label]) =>
+       `<option value="${value}" ${task.status === value ? 'selected' : ''}>${label}</option>`
+     ).join('');
+     return `<article class="task-row ${task.status}"><div><span class="task-title" id="title-${task.id}">${escape(task.title)}</span><span class="task-detail">${escape(task.detail)}</span></div><select class="task-status" data-task="${task.id}" aria-labelledby="title-${task.id}">${options}</select></article>`;
+   }).join('');
+   return `<h3 class="task-group">${phase}</h3>${rows}`;
+ }).join('') || '<p class="empty">No tasks in this view.</p>';
+ const power = P.portablePower(state);
+ renderPortable(power);
+ renderPlan(m, tasks, power);
  renderExperience(m);
  $('power-result').innerHTML=m.powerDays===null?'No daily load entered. Add measured watt-hours to estimate runtime.':`<strong>${fmt(m.powerNeed)} Wh</strong> nominal battery capacity for ${m.days} days without recharging.<br>Your entered battery supports about <strong>${fmt(m.powerDays,1)} days</strong> at this load.`;
  if(state.dailyWh===0)$('power-result').textContent='No daily load entered. Add measured watt-hours to estimate runtime.';
+}
+
+function renderLoadRows() {
+  $('load-rows').innerHTML = state.powerLoads.map((row, index) => {
+    const numberField = (key, label, max) => `<label>${label}<input data-load="${index}" data-field="${key}" type="number" min="0" max="${max}" step="any" value="${row[key] ?? ''}"></label>`;
+    return `<fieldset class="load-card"><legend>Device ${index + 1}</legend>
+      <label>Device name<input data-load="${index}" data-field="name" type="text" maxlength="80" value="${escape(row.name)}" placeholder="e.g., Enclosure heater"></label>
+      <div class="inputs three">${numberField('watts', 'Rated watts', 25000)}${numberField('hours', 'Full-power hours / day', 24)}${numberField('measured', 'Measured Wh / day', 600000)}</div>
+      <button type="button" class="text-button remove-load" data-remove="${index}" aria-label="Remove device ${index + 1}">Remove device</button>
+    </fieldset>`;
+  }).join('');
+  $('add-load').disabled = state.powerLoads.length + P.LOAD_PRESETS[$('load-preset').value].length > 12;
+}
+function describePower(power) {
+  if (!power.rows.length) return ['Add a device to start.', 'You can leave estimates blank until you have a label or a meter reading.'];
+  const parts = [power.missingEnergy ? `${power.missingEnergy} device(s) still need energy data. Known subtotal: ${fmt(power.daily, 1)} Wh/day.` : `Daily energy: ${fmt(power.daily, 1)} Wh/day.`];
+  if (power.target !== null) parts.push(`Battery target for ${fmt(state.powerHours, 1)} hours without sun: ${fmt(power.target)} Wh at ${state.usable}% usable capacity.`);
+  if (power.complete && power.daily === 0) parts.push('Add nonzero energy for any device that will run to get a runtime estimate.');
+  if (power.runtime !== null) parts.push(`The ${fmt(state.capacityWh)} Wh station gives about ${fmt(power.runtime, 1)} hours on this average load.`);
+  if (power.missingWatts) parts.push(`Known running watts: ${fmt(power.knownWatts, 1)} W. ${power.missingWatts} device(s) still need rated watts.`);
+  else parts.push(`Simultaneous rated load: ${fmt(power.knownWatts, 1)} W. Check startup surge separately.`);
+  if (power.solar !== null) {
+    const cap = state.solarInput ? `station limit ${fmt(state.solarInput)} W` : 'station input limit still to verify';
+    parts.push(`Solar estimate: ${fmt(power.solar, 1)} Wh/day with ${fmt(state.solarWatts)} W of panels, ${cap}, ${fmt(state.solarHours, 1)} peak sun hours and ${state.solarYield}% estimated yield.`);
+    if (power.complete) {
+      const balance = power.solar - power.daily;
+      parts.push(balance < 0 ? `Estimated daily shortfall: ${fmt(-balance, 1)} Wh. Plan a second way to recharge.` : `Estimated daily margin: ${fmt(balance, 1)} Wh in those conditions. Confirm output and plan for low-sun days.`);
+    }
+  }
+  return parts;
+}
+function renderPortable(power) {
+  $('power-toggle').checked = state.customPower;
+  $('customPower').checked = state.customPower;
+  $('power-setup').hidden = !state.customPower;
+  $('portable-result').innerHTML = describePower(power).map((line, index) =>
+    index === 0 ? `<p><strong>${escape(line)}</strong></p>` : `<p>${escape(line)}</p>`
+  ).join('');
+}
+function planSnapshot(m, tasks, power) {
+  const beginner = state.experience === 'beginner';
+  const seasons = state.seasons.map(key => P.SEASONS[key].label).join(', ') || 'No specific season selected';
+  const sections = [
+    { title: 'Supply targets and gaps', items: [
+      { label: 'Water', detail: `${fmt(m.water, 2)} gal target; ${fmt(state.storedWater, 2)} gal on hand; ${fmt(m.waterGap, 2)} gal to add.${beginner ? ` About ${m.waterJugs} one-gallon jugs for the full target.` : ''}` },
+      { label: 'Food', detail: beginner ? `${m.days} days of family meals; ${fmt(state.simpleFoodDays, 1)} days on hand; ${fmt(m.simpleFoodGapDays, 1)} days to add.` : `${fmt(m.food)} kcal target; ${fmt(state.storedFood)} kcal on hand; ${fmt(m.foodGap)} kcal to add.` }
+    ] },
+    { title: 'Location and seasonal priorities', items: [
+      { label: 'Region and hazards', detail: E.REGIONS[state.region].name + ' | ' + (state.hazards.map(key => E.HAZARDS[key].name).join(', ') || 'No hazards selected') },
+      { label: seasons, detail: state.seasons.length ? state.seasons.map(key => P.SEASONS[key].title).join('. ') + '.' : '' }
+    ] }
+  ];
+  if (state.infants) sections[0].items.push({ label: 'Infant feeding', detail: 'Track infant feeding requirements separately from the family food totals.' });
+  if (state.pets) sections[0].items.push({ label: 'Pets', detail: `${m.petDays} pet-days of food at usual daily rations. Water uses ${fmt(state.petWater, 2)} gal/pet/day.` });
+  if (state.customPower) {
+    const items = [{ label: 'Battery and recharge estimate', detail: describePower(power).join('\n') }];
+    power.rows.forEach((row, index) => items.push({
+      label: row.name || `Device ${index + 1}`,
+      detail: `${row.watts === null ? 'Rated watts unknown' : `${fmt(row.watts, 1)} W rated`} | ${row.daily === null ? 'Daily energy unknown' : `${fmt(row.daily, 1)} Wh/day (${row.measured === null ? `estimated from ${fmt(row.hours, 1)} full-power hours` : 'measured'})`}`
+    }));
+    items.push({ label: 'What to verify', detail: 'Test runtime, startup surge, inverter standby draw, auto-shutoff, restart behavior and charging compatibility. Keep a recharge or relocation fallback.' });
+    sections.push({ title: 'Portable power', items });
+  } else if (!beginner && state.dailyWh > 0) {
+    sections.push({ title: 'Backup power', items: [{ label: 'Quick estimate', detail: `At ${fmt(state.dailyWh)} Wh/day and ${state.usable}% usable capacity, ${m.days} days without recharge need approximately ${fmt(Math.ceil(m.powerNeed))} Wh nominal.${state.capacityWh > 0 ? ` The ${fmt(state.capacityWh)} Wh station gives an estimated ${fmt(m.powerDays, 1)} days.` : ''}` }] });
+  } else {
+    sections.push({ title: 'Backup power', items: [{ label: 'Lights and charging', detail: `Set aside ${m.people} personal lights and test ${state.phones} phone charging setups with matching cables and banks.` }] });
+  }
+  for (const phase of [...new Set(tasks.map(task => task.phase))]) {
+    sections.push({ title: phase, items: tasks.filter(task => task.phase === phase).map(task => ({
+      label: P.STATUS[task.status] + ' | ' + task.title, detail: task.status === 'open' ? task.detail : ''
+    })) });
+  }
+  if (state.notes.trim()) sections.push({ title: 'Household notes', items: [{ label: 'Destinations, responsibilities and reminders', detail: state.notes }] });
+  return {
+    meta: `${P.HORIZONS[state.horizon].label} | ${E.TIERS[state.tier].name} (${m.days} days) | ${E.EXPERIENCES[state.experience].name}`,
+    household: [
+      `${state.adults} ${state.adults === 1 ? 'adult' : 'adults'}`,
+      state.children && `${state.children} ${state.children === 1 ? 'child' : 'children'}`,
+      state.infants && `${state.infants} ${state.infants === 1 ? 'infant' : 'infants'}`,
+      state.pets && `${state.pets} ${state.pets === 1 ? 'pet' : 'pets'}`
+    ].filter(Boolean).join(', ') + (state.place ? ' | ' + state.place : ''),
+    date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+    sections
+  };
+}
+function renderPlan(m, tasks, power) {
+  const plan = planSnapshot(m, tasks, power);
+  const open = tasks.filter(task => task.status === 'open');
+  const skipped = tasks.filter(task => task.status === 'skip').length;
+  const priority = open.length ? `<ul>${open.slice(0, 3).map(task => `<li>${escape(task.title)}</li>`).join('')}</ul>` : '<p>There are no open checklist actions.</p>';
+  const powerPreview = state.customPower ? `<p>${escape(describePower(power).slice(0, 2).join(' '))}</p>` : '';
+  $('plan-preview').innerHTML = `<div class="plan-review"><strong>${escape(plan.meta)}</strong><p>${escape(plan.household)}</p><p>${escape(plan.sections[0].items.map(item => item.label + ': ' + item.detail).join(' '))}</p><p>Seasonal focus: ${escape(plan.sections[1].items[1].label)}.</p>${powerPreview}<h3>Next actions</h3>${priority}<p class="help">${open.length} to do · ${tasks.length - open.length - skipped} done · ${skipped} not needed. The PDF includes every task and your saved notes.</p></div>`;
 }
 
 function renderExperience(m){
@@ -54,14 +182,86 @@ function renderExperience(m){
 
 for(const k of numberKeys){$(k).addEventListener('input',()=>{if($(k).value===''||!$(k).validity.valid)return;state=E.normalize({...state,[k]:$(k).value});$('preset').value=presetValue();save();render();});$(k).addEventListener('change',()=>{state=E.normalize({...state,[k]:$(k).value});sync();save();render();});}
 for(const k of boolKeys)$(k).addEventListener('change',()=>{state[k]=$(k).checked;save();render();});
-for(const k of ['place','notes'])$(k).addEventListener('input',()=>{state[k]=$(k).value;save();if(k==='place')render();});
-for(const k of ['experience','commsGoal'])$(k).addEventListener('change',()=>{state[k]=$(k).value;save();render();});
+for(const k of ['place','notes'])$(k).addEventListener('input',()=>{state[k]=$(k).value;save();if(k==='place')render();else renderPlan(E.calculate(state),P.orderTasks(state,E.tasks(state)),P.portablePower(state));});
+for(const k of ['horizon','experience','commsGoal'])$(k).addEventListener('change',()=>{state[k]=$(k).value;save();render();});
 $('housing').addEventListener('change',()=>{state.housing=$('housing').value;save();render();});
 $('region').addEventListener('change',()=>{state.region=$('region').value;state.hazards=[...E.REGIONS[state.region].hazards];sync();save();render();});
 $('hazards').addEventListener('change',()=>{state.hazards=[...document.querySelectorAll('[data-hazard]:checked')].map(el=>el.dataset.hazard);save();render();});
 $('preset').addEventListener('change',()=>{const v=$('preset').value;if(v==='custom'){$('adults').focus();return;}Object.assign(state,v==='solo'?{adults:1,children:0,infants:0,phones:1}:v==='duo'?{adults:2,children:0,infants:0,phones:2}:{adults:2,children:2,infants:0,phones:2});sync();save();render();});
 $('tiers').addEventListener('click',ev=>{const b=ev.target.closest('[data-tier]');if(!b)return;state.tier=b.dataset.tier;save();render();$('tiers').querySelector(`[data-tier="${state.tier}"]`).focus();});
-$('task-list').addEventListener('change',ev=>{if(!ev.target.dataset.task)return;const id=ev.target.dataset.task;state.checked[id]=ev.target.checked;save();render();const same=$('task-list').querySelector(`[data-task="${id}"]`);if(same)same.focus();});
+$('task-list').addEventListener('change', event => {
+  const id = event.target.dataset.task;
+  if (!id) return;
+  delete state.checked[id];
+  delete state.notNeeded[id];
+  if (event.target.value === 'done') state.checked[id] = true;
+  if (event.target.value === 'skip') state.notNeeded[id] = true;
+  save();
+  render();
+  const same = $('task-list').querySelector(`[data-task="${id}"]`);
+  (same || document.querySelector(`[data-filter="${filter}"]`))?.focus();
+});
+$('seasons').addEventListener('change', () => {
+  state.seasons = [...$('seasons').querySelectorAll('input:checked')].map(el => el.dataset.season);
+  save();
+  render();
+});
+$('power-toggle').addEventListener('change', () => {
+  state.customPower = $('power-toggle').checked;
+  save();
+  render();
+});
+$('load-preset').addEventListener('change', renderLoadRows);
+$('add-load').addEventListener('click', () => {
+  const first = state.powerLoads.length;
+  const rows = P.LOAD_PRESETS[$('load-preset').value];
+  state = E.normalize({ ...state, powerLoads: [...state.powerLoads, ...rows] });
+  renderLoadRows();
+  save();
+  render();
+  $('load-rows').querySelector(`[data-load="${first}"]`)?.focus();
+});
+$('load-rows').addEventListener('input', event => {
+  const { load, field } = event.target.dataset;
+  if (load === undefined || !event.target.validity.valid) return;
+  state.powerLoads[Number(load)][field] = event.target.value;
+  state = E.normalize(state);
+  save();
+  render();
+});
+$('load-rows').addEventListener('click', event => {
+  if (event.target.dataset.remove === undefined) return;
+  state.powerLoads.splice(Number(event.target.dataset.remove), 1);
+  renderLoadRows();
+  save();
+  render();
+  $('add-load').focus();
+});
+for (const [id, key] of [['stationWh', 'capacityWh'], ['stationUsable', 'usable'], ['capacityWh', 'capacityWh'], ['usable', 'usable']]) {
+  $(id).addEventListener('input', event => {
+    if (!event.target.validity.valid || (key === 'usable' && event.target.value === '')) return;
+    state = E.normalize({ ...state, [key]: event.target.value });
+    for (const linked of key === 'capacityWh' ? ['stationWh', 'capacityWh'] : ['stationUsable', 'usable']) {
+      if (linked !== id) $(linked).value = state[key];
+    }
+    save();
+    render();
+  });
+}
+$('download-pdf').addEventListener('click', async () => {
+  const button = $('download-pdf');
+  button.disabled = true;
+  $('pdf-status').textContent = 'Preparing your PDF…';
+  try {
+    const tasks = P.orderTasks(state, E.tasks(state));
+    await ReadyPlanPdf.download(planSnapshot(E.calculate(state), tasks, P.portablePower(state)));
+    $('pdf-status').textContent = 'PDF sent to your browser. Look in Downloads or Files.';
+  } catch {
+    $('pdf-status').textContent = 'The PDF could not be downloaded. Try again or use Print this page to save a copy.';
+  } finally {
+    button.disabled = false;
+  }
+});
 for(const b of document.querySelectorAll('[data-filter]'))b.addEventListener('click',()=>{filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render();});
 $('export').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({version:1,exportedAt:new Date().toISOString(),plan:state},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='ready-together-private-plan.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
 $('import-button').addEventListener('click',()=>$('import').click());

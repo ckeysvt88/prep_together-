@@ -1,0 +1,26 @@
+[
+  {
+    "id": 32,
+    "title": "CDC: What to Do to Protect Yourself During a Power Outage",
+    "url": "https://www.cdc.gov/natural-disasters/response/what-to-do-protect-yourself-during-a-power-outage.html",
+    "use": "Carbon monoxide and combustion generator placement"
+  },
+  {
+    "id": 33,
+    "title": "National Laboratory of the Rockies: PVWatts",
+    "url": "https://pvwatts.nlr.gov/",
+    "use": "Solar resource by location, season and system assumptions. The planner uses a separate user-entered estimate."
+  },
+  {
+    "id": 34,
+    "title": "Merck Veterinary Manual: Management and Husbandry of Reptiles",
+    "url": "https://www.merckvetmanual.com/exotic-and-laboratory-animals/reptiles/management-and-husbandry-of-reptiles",
+    "use": "Species-specific temperature, housing and environmental monitoring"
+  },
+  {
+    "id": 35,
+    "title": "NWS: Awareness and Preparedness Calendar",
+    "url": "https://www.weather.gov/safety/events_calendar",
+    "use": "Seasonal preparedness topics and regional events"
+  }
+]

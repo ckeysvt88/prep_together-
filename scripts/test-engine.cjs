@@ -18,4 +18,40 @@ test('simple food inventory is independent of calories',()=>{assert.equal(E.calc
 test('experience does not change supply duration',()=>{for(const experience of Object.keys(E.EXPERIENCES))for(const [tier,days] of [['core',3],['advanced',14],['super',30]])assert.equal(E.calculate({...core,experience,tier}).days,days);});
 test('communication tasks adapt to goal and experience',()=>{const ids=s=>E.tasks({...core,...s}).map(t=>t.id);for(const id of ['radio-listen','radio-test'])assert(ids({}).includes(id));assert(ids({commsGoal:'nearby'}).includes('radio-frs'));assert(ids({commsGoal:'remote'}).includes('radio-satellite'));assert(ids({commsGoal:'town'}).includes('mesh-proof'));assert(!ids({experience:'beginner',commsGoal:'town'}).includes('mesh-proof'));});
 test('new fields validate and round trip',()=>{const n=E.normalize({experience:'unknown',commsGoal:'unknown',phones:99,simpleFoodDays:-1});assert.equal(n.experience,'beginner');assert.equal(n.commsGoal,'alerts');assert.equal(n.phones,30);assert.equal(n.simpleFoodDays,0);});
+const P = require('../dist/planning.js');
+test('older checked tasks and new Not needed selections are distinct', () => {
+  const state = E.normalize({ checked: { alerts: true, hygiene: true }, notNeeded: { hygiene: true } });
+  const tasks = P.orderTasks(state, E.tasks(state));
+  assert.equal(tasks.find(task => task.id === 'alerts').status, 'done');
+  assert.equal(tasks.find(task => task.id === 'hygiene').status, 'skip');
+  assert.equal(tasks.find(task => task.id === 'water').status, 'open');
+  assert.equal(state.checked.hygiene, undefined);
+  assert.equal(E.normalize(JSON.parse(JSON.stringify(state))).notNeeded.hygiene, true);
+});
+test('timing and selected seasons update priorities independently from supply days', () => {
+  const immediate = E.normalize({ tier: 'super' });
+  const longTerm = E.normalize({ ...immediate, horizon: 'long', seasons: ['winter', 'winter', 'invalid'] });
+  const nowTasks = P.orderTasks(immediate, E.tasks(immediate));
+  const laterTasks = P.orderTasks(longTerm, E.tasks(longTerm));
+  assert.equal(nowTasks[0].id, 'alerts');
+  assert.equal(laterTasks.find(task => task.id === 'season-winter').phase, 'Before the selected season');
+  assert.equal(laterTasks.filter(task => task.id === 'season-winter').length, 1);
+  assert.equal(E.calculate(longTerm).days, 30);
+});
+test('device estimates honor measured usage, incomplete data and station solar limits', () => {
+  const state = E.normalize({
+    powerLoads: [{ name: 'Primary', watts: 80, hours: 12 }, { name: 'Secondary', watts: 40, hours: 24, measured: 480 }],
+    powerHours: 24, capacityWh: 2000, usable: 80, solarWatts: 400, solarInput: 300, solarHours: 3, solarYield: 70
+  });
+  const model = P.portablePower(state);
+  assert.equal(model.daily, 1440);
+  assert.equal(model.knownWatts, 120);
+  assert.equal(model.target, 1800);
+  assert(Math.abs(model.runtime - 26.6667) < 0.001);
+  assert.equal(model.solar, 630);
+  const incomplete = P.portablePower(E.normalize({ ...state, powerLoads: [...state.powerLoads, { name: 'Unknown load' }] }));
+  assert.equal(incomplete.target, null);
+  assert.equal(incomplete.runtime, null);
+  assert.equal(incomplete.missingEnergy, 1);
+});
 console.log(`${checks} tests passed.`);
