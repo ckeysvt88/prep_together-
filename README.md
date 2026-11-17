@@ -1,115 +1,156 @@
 # Ready Together
 
-A US household preparedness guide and a working static planner for people starting from scratch. The guide and app organize readiness into **Core (3 days), Advanced (14 days), and Super prep (30 days)**, with a measured path toward 60–90 days in the PDF.
+Ready Together is a free, US-focused household emergency preparedness planner. Choose who you’re preparing for, what risks you face, and how long you want your supplies to last. The planner turns those choices into a buying guide, supply targets, and a printable plan you can keep for an outage or evacuation.
 
-[Open the interactive planner](https://ckeysvt88.github.io/prep_together-/) · [Beginner guide (PDF)](dist/Ready-Together-Beginner-Guide.pdf) · [Full guide (PDF)](dist/Ready-Together-Guide.pdf)
+**[Open the interactive planner](https://ckeysvt88.github.io/prep_together-/)** · [Buying guide](https://ckeysvt88.github.io/prep_together-/#buying-guide) · [Final plan & PDF](https://ckeysvt88.github.io/prep_together-/#final-plan)
 
-## What is included
+## Start here
 
-- A 37-page, printable PDF with household quantity tables, water/food planning, care, safe power, sanitation, evacuation, regional modules, a Central North Carolina example, worksheets, maintenance and 31 authoritative source links.
-- A separate 9-page beginner quick-start PDF with simple shopping quantities, familiar meals and no electrical homework.
-- Beginner, Intermediate and Advanced experience modes, independently selectable from supply duration.
-- AM/FM and NOAA alert radios, FRS/GMRS voice, mesh text, amateur radio and satellite messaging guidance.
-- Household presets for one adult, two adults, and two adults plus two children; editable counts, including infants and pets.
-- Broad regional hazard presets with manual overrides; housing, medical/access, dietary and transport considerations.
-- Water/food quantities, inventory gaps, tier-specific tasks, checklist filtering and a critical-load battery calculator.
-- Immediate and long-term preparation, seasonal priorities for immediate plans, and three checklist statuses.
-- Portable battery and solar sizing for custom devices, including a thermostat-controlled reptile enclosure example.
-- A buying guide in the planner and in shopping PDFs. Beginners get item examples, counts and setup checks, including three days of no-cook meals. Intermediate plans add backups and a basic roadside kit. Advanced plans add critical-load testing, communications equipment matched to the chosen goal, and road, remote or trail vehicle gear.
-- A final preview and a personalized PDF with a shopping checklist, an action plan, or both. The printable checklist fills in water and food gaps from inventory and leaves space to count the other gear.
-- Static hosting with no accounts, third-party requests, analytics or build step. The pinned, MIT-licensed pdf-lib 1.17.1 browser bundle loads locally when downloading a PDF.
+| If you want to… | Open |
+| --- | --- |
+| Build a plan for one adult, two adults, or a family | [Interactive planner](https://ckeysvt88.github.io/prep_together-/) |
+| Print a short guide with simple supply quantities and familiar meals | [Beginner quick-start PDF](https://ckeysvt88.github.io/prep_together-/Ready-Together-Beginner-Guide.pdf) (9 pages) |
+| Read about longer outages, preparedness by region, or 60–90 day planning | [Complete reference PDF](https://ckeysvt88.github.io/prep_together-/Ready-Together-Guide.pdf) (37 pages, with worksheets) |
+| Check how a target was calculated or find the original guidance | [Sources & assumptions](https://ckeysvt88.github.io/prep_together-/sources.html) |
 
-## Install on your home screen
+Share the planner link so each household can create its own plan. The two reference PDFs above are ready to download and share. Your household’s personalized PDF is generated in the planner.
 
-On iPhone, open the planner in Safari and choose **Share → Add to Home Screen**. Keep **Open as Web App** enabled when offered. Supported browsers on other devices can install it from their main menu. The manifest opens the planner at the repository's GitHub Pages path.
+## Build your first plan
 
-## Run locally
+1. In **Your starting point**, choose **Immediate prep** if you want to act now or **Long-term prep** to build in stages. Immediate prep lets you select seasons. Long-term prep keeps your selected hazards and adds maintenance tasks.
+2. Choose your **Prepper experience**. If this is your first plan, select **Beginner** and start with the **Core** supply goal.
+3. Pick **1 adult**, **2 adults**, or **Family · 2 adults + 2 children**, then edit the counts for your actual household. Count infants separately from children eating solid food. Add pets, phones, home type and any care, mobility, dietary, well-water or transport needs.
+4. Pick a region, then check or uncheck hazards for where you live. Choose what you need backup communications to do. If a device or pet enclosure needs electricity, use **Portable power and solar generators** to enter the specific loads.
+5. Under **Your supply targets**, enter the water and food you already have. Open the **Buying guide** for examples, quantities and setup checks. Mark actions **To do**, **Done**, or **Not needed** as you work.
+6. Choose what to include under **What do you need from this report?** Then open **Final plan & PDF**, review the preview, and download. You can download while tasks are still open.
 
-Open `dist/index.html` in a modern browser, or run a static server:
+### Experience and supply duration
+
+**Experience** sets the depth of guidance. The **supply goal** sets the number of days. For example, a beginner can work toward 14 days using complete days of meals, and an experienced household can use detailed power and communication guidance for a 3-day plan.
+
+| Prepper experience | What the buying guide adds |
+| --- | --- |
+| **Beginner** | Plain-language package checks, normal meal portions, and first steps. The three-day no-cook basket shows how to choose canned food, fruit, cereal, shelf-stable milk and snacks. Get shopping quantities for water, hygiene, first aid, medicines, lights, radios and evacuation supplies. |
+| **Intermediate** | Pantry rotation and backups, a first-aid refill inventory, measured power use, a basic roadside kit, and equipment options for the selected communication goal. |
+| **Advanced** | A pantry trial, critical-load and recharging tests, device and care handoffs, detailed communications shopping lists, and vehicle kits matched to ordinary roads, remote roads or trails. |
+
+| Supply goal | Duration | Work to plan for |
+| --- | --- | --- |
+| **Core** | 3 days | Safe water, ready-to-eat meals, care supplies, lights, communications and an evacuation plan. |
+| **Advanced** | 14 days | Add rotation, backup power, temporary sanitation and practice drills. |
+| **Super prep** | 30 days | Add resupply, maintenance, replacement supplies and a trusted support network. |
+
+**Example.** A beginner planning for two adults and two children selects **Core** and reports 5 gallons of safe water on hand. With no pets, no extra water needs, and **Extreme heat** unselected, the calculator shows 12 gallons total and 7 to add. The food worksheet gives 12 portions for each meal category across the three days, such as 12 lunch protein portions. The planner asks for complete days of meals already stored. [CDC emergency water guidance](https://www.cdc.gov/water-emergency/about/how-to-create-and-store-an-emergency-water-supply.html)
+
+### Tailor the equipment and care lists
+
+- **Communications.** Everyone starts with emergency broadcasts and a check-in plan. Choose nearby voice, across-town contact or travel outside cell coverage to see relevant options. The deeper guidance covers FRS, GMRS or compatible mesh equipment where applicable, and satellite options for remote travel. Bring the guide to the store for quantities, compatibility checks and the test to run at your actual locations.
+- **Power.** Start with lights and phone charging. For other loads, select **Include a portable power setup in my plan**. Add measured daily energy or enter watts and equivalent full-power hours. Presets include a reptile enclosure, refrigerator/freezer, router/modem and USB charging, with room to add your own devices. Compare portable station capacity, no-sun runtime, and estimated solar recharge. Check outlet watts, startup surge, connectors and actual runtime before relying on a setup.
+- **Travel.** Intermediate plans can include a roadside kit. In Advanced, select **Where will you drive?** to add equipment for ordinary roads, remote roads or off-pavement travel. The kit only brings in recovery gear for the trail option. If you need help with evacuation transport, the planner prompts for backup rides.
+- **Household care and local risks.** Review the worksheets for regular medicines, first aid, infant feeding, pets, accessibility and selected hazards. The plan can help you organize questions for a pharmacist or care team and record evacuation and backup arrangements.
+
+## Download the right PDF
+
+| Report selection | What downloads |
+| --- | --- |
+| **Shopping checklist + action plan** | `Ready-Together-My-Plan.pdf`. Shopping checklist first, then detailed buying guides, followed by the household plan and actions. |
+| **Shopping checklist only** | `Ready-Together-Shopping-Checklist.pdf`. A printable list with checkboxes, quantities and spaces to count gear, followed by the detailed buying guides. |
+| **Action plan only** | `Ready-Together-Action-Plan.pdf`. Supply summary, action checklist, power details and household notes. |
+
+The shopping checklist fills in your reported water and food inventory and what is still needed. Count the remaining gear on the printed list. The buying guides give the item examples, package checks and setup steps. **Print this page** prints the planner view. Use **Download** in **Final plan & PDF** for the formatted PDF above.
+
+### On a phone or during an outage
+
+On iPhone, open the planner in Safari, choose **Share → Add to Home Screen**, turn on **Open as Web App** when offered, and tap **Add**. On other devices, look for **Install** or **Add to Home Screen** in your browser menu. [Apple’s iPhone instructions](https://support.apple.com/guide/iphone/bookmark-a-website-iph42ab2f3a7/ios)
+
+Download the PDF before an outage and check that it opens from Files or Downloads. A home-screen shortcut opens the hosted planner, which may require an internet connection. Keep a printed copy if other household members need to find it quickly.
+
+### Back up or move your plan
+
+Use **Save editable backup** to download a JSON file. On the destination device or browser, choose **Import backup** and select that file. Use the JSON to continue editing and the PDF to read or print. Save a backup before resetting the plan or clearing site data. Keep both files private if they contain personal notes, contact information or care details.
+
+### If you can’t find something
+
+| What you see | What to check |
+| --- | --- |
+| The PDF has actions but no shopping checklist | Select a report option that includes **Shopping checklist**, then download a new PDF. |
+| The download finished but the PDF didn’t open | Check your browser’s downloads or the Files app. The filenames are listed above. |
+| Seasonal options disappeared | Switch to **Immediate prep** to use them. The planner remembers previously selected seasons. |
+| A portable battery estimate is missing | Check that each device has measured Wh/day or both rated watts and equivalent full-power hours. |
+
+## How the planner calculates targets
+
+| Estimate | Calculation or rule |
+| --- | --- |
+| **Stored water** | `((adults + children + infants) × gallons per person per day + pets × gallons per pet per day) × days`. Beginner starts at 1 US gallon per person per day and uses a visible 0.5-gallon planning buffer when extreme heat or extra water needs are selected. Intermediate and Advanced use your entered rate. Replace the 0.25 gal/pet/day starter value with your animals’ actual needs. |
+| **Food** | Beginner counts complete household meal-days. Intermediate and Advanced use `(adults × adult kcal/day + children × child kcal/day) × days`. The editable 2,000 and 1,600 kcal defaults are inventory assumptions. Infant feeding is tracked separately. Switching experience preserves both inventories as separate inputs. |
+| **Supply gap** | `max(0, target − on hand)`. The shopping guide rounds the remaining water up when purchasing whole one-gallon jugs. |
+| **Quick battery estimate** | Nominal capacity in Wh = `daily Wh × days ÷ usable fraction`. Runtime in days = `station Wh × usable fraction ÷ daily Wh`. The estimate assumes zero recharge. |
+| **Portable power** | The device’s measured Wh/day takes priority over `rated W × equivalent full-power hours`. Nominal capacity in Wh = `total Wh/day × backup hours ÷ 24 ÷ usable fraction`, rounded up. Complete daily-energy inputs are required for the estimate. |
+| **Solar recharge** | Daily Wh = `lower of panel watts and station input limit × equivalent peak sun hours × yield fraction`. With the station input left blank, the estimate uses the entered panel watts. Verify the actual station limit and panel compatibility. |
+| **Checklist progress** | `Done ÷ applicable tasks`. Tasks marked **Not needed** are excluded from the denominator. This measures progress through the checklist. |
+
+Water quantities use US gallons. Regional presets are broad prompts, and town/state is a label. Check official local alerts, maps, routes and evacuation instructions for your location. Find links for medical, water, food, radio and power guidance in the [source directory](https://ckeysvt88.github.io/prep_together-/sources.html).
+
+## Run the project locally
+
+The app is plain HTML, CSS and JavaScript. All browser assets, including pdf-lib for personalized exports, are in `dist/`. There is no build step for a local preview. With Git and Python 3 installed:
 
 ```bash
+git clone https://github.com/ckeysvt88/prep_together-.git
+cd prep_together-
 python3 -m http.server 8000 --directory dist
 ```
 
-Then open `http://localhost:8000`. Browser storage behavior on local file URLs varies; use the local server for predictable persistence. The hosted version is not guaranteed to work offline because there is no service worker. Keep a downloaded PDF, printed plan or local source copy.
+Open [http://localhost:8000](http://localhost:8000). Keep using the same browser and URL for local testing because saved plans are tied to the site origin. Use the published planner for normal use and the local server for development.
 
-## GitHub Pages deployment
+## Maintain the planner and guides
 
-The **Publish Ready Together** workflow tests the planner and publishes `dist/` to GitHub Pages on pushes to `main`. It can also be run manually from the **Actions** tab. For a new copy of the repository, select **GitHub Actions** under **Settings → Pages → Build and deployment → Source** to enable publishing. Both PDFs are included in the deployed files.
+| Where | What to edit |
+| --- | --- |
+| [Dashboard](dist/index.html) · [CSS](dist/styles.css) · [app.js](dist/app.js) | Form inputs, screen layout, live rendering, storage and export controls |
+| [engine.js](dist/engine.js) · [planning.js](dist/planning.js) | Household calculations, timing, seasons, tasks, state normalization and portable power |
+| [shopping.js](dist/shopping.js) · [buying-guide.js](dist/buying-guide.js) · [shopping-details.js](dist/shopping-details.js) | Summary checklist, tailored buying guidance and detailed worksheets |
+| [plan-pdf.js](dist/plan-pdf.js) | Layout and download of the personalized PDF |
+| [guide.json](docs/guide.json) · [beginner-guide.json](docs/beginner-guide.json) | Content for the two reference PDFs |
+| [sources.json](docs/sources.json) · [planner-sources.json](docs/planner-sources.json) | Reference guide citations and planner source directory |
+| [Web app manifest](dist/manifest.webmanifest) · [icons](dist/icons) | Home-screen name, icons and entry point |
+| [Engine tests](scripts/test-engine.cjs) · [QA notes](docs/QA.md) | Automated checks and historical verification notes |
 
-## Source layout
+### Run the checks
 
-```text
-dist/
-  index.html                 Dashboard
-  styles.css                 Responsive and print styles
-  engine.js                  Supply calculations and task selection
-  buying-guide.js          Shared buying and setup guidance for all experience levels
-  shopping-details.js        Food, first aid, medicines and worksheet ordering
-  planning.js                Timing, status, seasons and portable power math
-  plan-pdf.js                Local personalized PDF generation
-  app.js                     UI, storage, import/export and print behavior
-  sources.html               Assumptions and reference links
-  Ready-Together-Guide.pdf    Full guide
-  Ready-Together-Beginner-Guide.pdf  Simple quick start
-scripts/
-  test-engine.cjs             Calculation and behavior tests
-  build_pdf.py               PDF generator
-  build_sources.py           Website source-directory generator
-docs/
-  guide.json                 Editable full-guide content
-  buying-guide.json        Editable beginner-guide content
-  sources.json               Numbered references
-  QA.md                      Verification record and limits
-.github/workflows/pages.yml  GitHub Pages deployment
-```
-
-## Planning formulas
-
-US gallons throughout; water weight excludes containers.
-
-- **Daily water:** `(adults + children + infants) × waterRate + pets × petWater`.
-- **Stored-water target:** daily water × tier days. Baseline is 1 gallon/person/day. Pets and special needs are additional. Beginner mode uses 1.5 gallons/person/day if extreme heat is selected or the extra-needs box is checked; otherwise 1. The extra half-gallon is a visible editorial starter buffer, not a medical or heat-safety prescription. Intermediate/Advanced use the entered water rate.
-- **Daily food:** `adults × adultKcal + children × childKcal`. Defaults are 2,000 adult and 1,600 child kcal, explicitly editable inventory assumptions, not dietary prescriptions.
-- **Beginner food inventory:** complete household days of familiar meals; gap = selected days minus stored days, clamped at zero. Kept separate from calorie inventory; no automatic conversion.
-- **Beginner power:** one tested USB bank around 20,000 mAh per entered phone, cables and lights. This starter list is not a duration guarantee, whole-house sizing or a medical-device backup.
-- **Food target:** daily food × tier days. Infants are excluded and receive a separate feeding task.
-- **Meal slots:** `(adults + children) × 3 × days`; these are planned person-meals, not manufacturer servings.
-- **Inventory gap:** `max(0, target − onHand)`.
-- **Water weight:** gallons × 8.34 lb.
-- **Nominal battery need:** `dailyWh × days / (usablePercent / 100)`.
-- **Battery runtime:** `capacityWh × (usablePercent / 100) / dailyWh`. A zero load produces no runtime estimate. No recharge is assumed.
-- **Checklist progress:** checked applicable tasks / applicable tasks. This is not a safety score or verification of inventory.
-
-All tiers are cumulative. `normalize` bounds imported values and filters recognized hazards. Pet water defaults to a placeholder of 0.25 gallons per animal/day; users must replace it with actual requirements. It does not calculate animal physiology.
-
-## Tests and PDF rebuild
+Use Node.js 22 to match the GitHub Actions workflow. The tests require no npm install.
 
 ```bash
 node scripts/test-engine.cjs
 node --check dist/app.js
+```
+
+For guidance or PDF changes, use the local planner to try one Beginner export and one Advanced export with relevant add-ons. Check that the PDF opens, the chosen sections are present, and tables and source links fit on the page. For changes to the calculations or conditional lists, update the relevant tests. Include a source link with safety-sensitive content changes and use example households in issues, pull requests, or screenshots.
+
+### Rebuild the reference PDFs and source directory
+
+Use Python 3, ReportLab and the DejaVu fonts. The PDF builder expects DejaVu Sans, DejaVu Sans Bold and DejaVu Serif in `/usr/share/fonts/truetype/dejavu/`. Install the fonts there on Linux or update `FONT` in [build_pdf.py](scripts/build_pdf.py) for your environment.
+
+```bash
 python3 -m pip install -r requirements.txt
 python3 scripts/build_pdf.py
 python3 scripts/build_pdf.py --beginner
 python3 scripts/build_sources.py
 ```
 
-The PDF generator uses DejaVu fonts from `/usr/share/fonts/truetype/dejavu/` (Linux). Install the fonts or adjust `FONT` for another operating system. It writes the full or beginner PDF and a corresponding layout-bound check. Re-render and visually review after edits; numerical bounds alone do not prove correct layout. Update the page count in navigation and this README if content changes.
+The first PDF build writes `dist/Ready-Together-Guide.pdf`. The second writes `dist/Ready-Together-Beginner-Guide.pdf`. Visually review the rebuilt PDFs and update any displayed page counts if they changed. Run the source builder after changes to either source JSON to update `dist/sources.html`. Commit the updated content alongside its generated files.
 
-The website source directory combines the 31 reference guide sources in `docs/sources.json` and the planner-specific sources in `docs/planner-sources.json`. After changing either list, run `scripts/build_sources.py`.
+### Publish to GitHub Pages
 
-## Privacy and limitations
+[Publish Ready Together](.github/workflows/pages.yml) runs the checks and deploys `dist/` on pushes to `main`. You can also run it manually from [Actions](https://github.com/ckeysvt88/prep_together-/actions/workflows/pages.yml).
 
-- Plans remain in `localStorage` under `ready-together-v1`; there is no application database. Hosting infrastructure can still collect ordinary request metadata.
-- Existing version-1 plans without an experience field reopen in Advanced mode to preserve their technical assumptions. New plans default to Beginner.
-- Export format: `{ "version": 1, "exportedAt": "ISO timestamp", "plan": { ... } }`. Treat exported plans as private. Clearing browser data, using private browsing or changing device/origin can lose saved data.
-- Never commit names, addresses, medical details, IDs, access codes, supply locations or exported personal plans. `.gitignore` excludes the default export filename pattern.
-- The town/state field is a label only. Regional presets are editorial prompts, not geocoding, real-time warnings, flood-map analysis or official risk scoring.
-- Care, drinking-water treatment, electrical work, fuel storage and evacuation require current official/product/professional guidance. Medical flags create planning tasks; they do not diagnose, prescribe or validate device compatibility.
-- This is an educational version 1.6. It does not include shopping price feeds, live alerts, account sync, inventory-by-product or guaranteed offline caching.
+For a fork, enable the workflow if needed, choose **Settings → Pages → Build and deployment → Source → GitHub Actions**, and run the workflow on `main`. Check the deployment’s site URL and update the share links in your fork’s README. [GitHub Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 
-## Maintaining and sharing
+## Privacy and reuse
 
-Content reviewed November 16, 2026. Before each hazard season, verify source links and local resources. Use issues/PRs to propose improvements; include the authoritative source for safety-sensitive changes. Add tests for changed formulas and visually inspect rebuilt PDFs. Keep private household data out of bug reports and screenshots.
+The planner keeps information in browser storage and generates your PDF on your device. It has no account, app database or analytics. The host can receive ordinary request metadata. Older version-1 plans without an experience selection reopen in Advanced mode to preserve their technical inputs. New plans start in Beginner mode. The editable backup is versioned JSON with `version`, `exportedAt` and `plan` fields.
 
-The original project materials can be shared and adapted for household preparedness education with attribution to Ready Together. Third-party sources remain under their own terms. See `LICENSE.md` for the project grant and scope.
+Follow local emergency instructions, product manuals and individualized care guidance. Treat household exports as private and share the planner or reference guides with others.
+
+You may use, share or adapt the original Ready Together materials for household preparedness education. Retain the project name and sharing notice with substantial copies. Linked third-party materials have their own terms. See [LICENSE.md](LICENSE.md) and the [pdf-lib license](dist/vendor/pdf-lib-LICENSE.md).
