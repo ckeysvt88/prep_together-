@@ -31,7 +31,8 @@
       description: 'Enter the safe water and food already on hand. The planner shows what you still need. In Beginner, count complete days of meals for everyone in your household.'
     },
     {
-      target: 'buying-heading',
+      target: 'buying-guide',
+      scrollTarget: 'buying-heading',
       title: 'Find out what to buy',
       description: 'Open a topic to see examples, quantities, what to check on the package, and how to set things up. Start with the three-day grocery basket or another topic you need.'
     },
@@ -125,7 +126,8 @@
     next.textContent = index === steps.length - 1 ? 'Finish tour' : 'Next';
     tour.hidden = false;
     tour.scrollTop = 0;
-    target.scrollIntoView({ block: mobile.matches ? 'start' : 'center', behavior: 'instant' });
+    const scrollTarget = step.scrollTarget ? byId(step.scrollTarget) : target;
+    scrollTarget.scrollIntoView({ block: mobile.matches ? 'start' : 'center', behavior: 'instant' });
     position();
     title.focus({ preventScroll: true });
   }
@@ -139,8 +141,7 @@
     tour.hidden = true;
     if (frame) cancelAnimationFrame(frame);
     frame = 0;
-    const control = focus || section.querySelector('select, input, button, a') ||
-      (section.id === 'buying-heading' ? byId('buying-topics').querySelector('summary') : null);
+    const control = focus || section.querySelector('select, input, button, a, summary');
     (control || start).focus({ preventScroll: Boolean(control) });
   }
 

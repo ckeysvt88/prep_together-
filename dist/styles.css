@@ -63,6 +63,11 @@
 .hero-actions .hero-plan-link { margin-top: 0; }
 #start-tour { min-height: 44px; }
 
+.planner-tour, .tour-highlight {
+  --tour-accent: #a34118;
+  --tour-paper: #ffedcd;
+  --tour-ink: #3f2315;
+}
 .planner-tour {
   position: fixed;
   z-index: 12;
@@ -70,11 +75,11 @@
   max-height: calc(var(--tour-viewport-height, 100vh) - 24px);
   overflow: auto;
   padding: 14px 17px 16px;
-  color: var(--ink);
-  background: #fffef9;
-  border: 1px solid #789381;
+  color: var(--tour-ink);
+  background: var(--tour-paper);
+  border: 2px solid var(--tour-accent);
   border-radius: 12px;
-  box-shadow: 0 8px 30px #1b403940;
+  box-shadow: 0 10px 30px #29170d54;
 }
 #start-tour[hidden], .planner-tour[hidden], #tour-back[hidden] { display: none; }
 .planner-tour[data-side="right"], .planner-tour[data-side="left"],
@@ -82,37 +87,46 @@
 .planner-tour:not([data-side=""]):not([data-detached])::before {
   content: "";
   position: absolute;
-  width: 10px;
-  height: 10px;
-  background: #fffef9;
-  border: solid #789381;
-  border-width: 0 0 1px 1px;
+  width: 14px;
+  height: 14px;
+  background: var(--tour-paper);
+  border: solid var(--tour-accent);
+  border-width: 0 0 2px 2px;
   transform: rotate(45deg);
 }
-.planner-tour[data-side="right"]::before, .planner-tour[data-side="left"]::before { top: calc(var(--tour-arrow) - 6px); }
-.planner-tour[data-side="right"]::before { left: -6px; }
-.planner-tour[data-side="left"]::before { right: -6px; transform: rotate(225deg); }
-.planner-tour[data-side="below"]::before, .planner-tour[data-side="above"]::before { left: calc(var(--tour-arrow) - 6px); }
-.planner-tour[data-side="below"]::before { top: -6px; transform: rotate(135deg); }
-.planner-tour[data-side="above"]::before { bottom: -6px; transform: rotate(-45deg); }
+.planner-tour[data-side="right"]::before, .planner-tour[data-side="left"]::before { top: calc(var(--tour-arrow) - 7px); }
+.planner-tour[data-side="right"]::before { left: -8px; }
+.planner-tour[data-side="left"]::before { right: -8px; transform: rotate(225deg); }
+.planner-tour[data-side="below"]::before, .planner-tour[data-side="above"]::before { left: calc(var(--tour-arrow) - 7px); }
+.planner-tour[data-side="below"]::before { top: -8px; transform: rotate(135deg); }
+.planner-tour[data-side="above"]::before { bottom: -8px; transform: rotate(-45deg); }
 .tour-top, .tour-actions { display: flex; justify-content: space-between; align-items: center; gap: .6rem; }
-.tour-top p { margin: 0; font-size: 12px; font-weight: 700; color: var(--muted); }
-.tour-top button { min-height: 36px; padding: 5px 0 5px 12px; border-color: transparent; background: transparent; text-decoration: underline; }
+.tour-top p { margin: 0; padding: 3px 9px; border-radius: 20px; background: #f9d8ab; font-size: 12px; font-weight: 750; }
+.tour-top button { min-height: 36px; padding: 5px 0 5px 12px; border-color: transparent; color: var(--tour-ink); background: transparent; text-decoration: underline; }
 .planner-tour h2 { font: 700 23px/1.15 var(--serif); margin: 5px 0 8px; }
 .planner-tour h2:focus { outline: none; }
 #tour-description { margin: 0 0 14px; font-size: 13px; }
 .tour-actions button { min-height: 44px; }
-#tour-next { margin-left: auto; }
+#tour-back { color: var(--tour-ink); background: #fff9ee; border-color: var(--tour-accent); }
+#tour-next { margin-left: auto; color: white; background: #8d3616; border-color: #8d3616; }
+#tour-next:hover { background: #6e280f; border-color: #6e280f; }
 .tour-highlight {
-  outline: 3px solid #56815c;
-  outline-offset: 5px;
-  border-radius: 6px;
+  position: relative;
+  z-index: 11;
   scroll-margin-top: 16px;
+}
+.tour-highlight::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border: 4px solid var(--tour-accent);
+  border-radius: 10px;
+  box-shadow: 0 0 0 3px #fff2db, 0 0 0 150vmax rgb(24 37 31 / 28%);
+  pointer-events: none;
 }
 @media (max-width: 760px) {
   .planner-tour { width: calc(var(--tour-viewport-width, 100vw) - 24px); }
 }
 @media print {
-  #start-tour, .planner-tour { display: none !important; }
-  .tour-highlight { outline: none; }
+  #start-tour, .planner-tour, .tour-highlight::after { display: none !important; }
 }
