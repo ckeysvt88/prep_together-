@@ -81,4 +81,15 @@ test('shopping order has backward-compatible defaults and uses active seasons on
     assert(!list.essentials.some(row => row.item.includes('power banks')));
   }
 });
+test('grocery examples scale for solid-food eaters and flag the remaining pantry days', () => {
+  const Details = require('../dist/shopping-details.js');
+  const state = E.normalize({ adults: 2, children: 2, infants: 1, tier: 'advanced', storedWater: 4 });
+  const pages = Details.worksheets(state, E.calculate(state));
+  assert.equal(pages[0].rows[0].target, '12 each');
+  assert.equal(pages[0].rows[2].target, '12 portions');
+  assert.match(pages[0].tips[2].detail, /11 more household-days/);
+  assert.match(pages[0].tips[2].detail, /ready-to-feed formula/);
+  assert.equal(pages[1].rows[0].target, '25 assorted');
+  assert(pages[2].rows.some(item => item.item.includes('Child medicine')));
+});
 console.log(`${checks} tests passed.`);

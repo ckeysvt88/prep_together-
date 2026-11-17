@@ -163,6 +163,7 @@ function planSnapshot(m, tasks, power) {
     date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
     report: state.report,
     shopping: state.report === 'action' ? null : ReadyShopping.makeList(state, m, power, seasons),
+    worksheets: state.report === 'action' ? [] : ReadyShoppingDetails.worksheets(state, m),
     sections: state.report === 'shopping' ? [] : sections
   };
 }
@@ -177,7 +178,8 @@ function renderPlan(m, tasks, power) {
   const shopping = plan.shopping ? `
     <h3>Shopping checklist</h3>
     <ul class="shopping-preview">${plan.shopping.essentials.slice(0, 2).map(item => `<li><strong>${escape(item.item)}</strong> · ${escape(item.target)} target · ${escape(item.have)} on hand · <strong>${escape(item.need)} to add</strong></li>`).join('')}</ul>
-    <p>${plan.shopping.essentials.length} essentials${plan.shopping.addOns.length ? ` plus ${plan.shopping.addOns.length} items to consider for your setup` : ''}. The PDF has checkboxes and room to write in what you still need.</p>` : '';
+    <p>${plan.shopping.essentials.length} essentials${plan.shopping.addOns.length ? ` plus ${plan.shopping.addOns.length} items to consider for your setup` : ''}. The PDF has checkboxes and spaces to fill in.</p>
+    <p><strong>Buying guides included:</strong> a three-day no-cook grocery basket, first aid kit contents, and a medicines and care worksheet.</p>` : '';
   const supplies = !plan.shopping && plan.sections.length
     ? `<h3>Supply targets</h3><p>${escape(plan.sections[0].items.map(item => item.label + ': ' + item.detail).join(' '))}</p>` : '';
   const actions = plan.sections.length ? `

@@ -22,5 +22,41 @@
     "title": "NWS: Awareness and Preparedness Calendar",
     "url": "https://www.weather.gov/safety/events_calendar",
     "use": "Seasonal preparedness topics and regional events"
+  },
+  {
+    "id": 36,
+    "title": "USDA: Foods to keep for emergencies",
+    "url": "https://ask.fsis.usda.gov/article/What-foods-should-I-keep-in-my-house-for-emergencies",
+    "use": "Shelf-stable grocery choices and package sizes"
+  },
+  {
+    "id": 37,
+    "title": "USDA: Damaged cans",
+    "url": "https://ask.fsis.usda.gov/article/Is-food-in-damaged-cans-dangerous",
+    "use": "Inspecting commercial canned foods"
+  },
+  {
+    "id": 38,
+    "title": "American Red Cross: First aid kit contents",
+    "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/anatomy-of-a-first-aid-kit.html",
+    "use": "Starter household first aid kit items and counts"
+  },
+  {
+    "id": 39,
+    "title": "CDC: Personal needs",
+    "url": "https://www.cdc.gov/prepare-your-health/take-action/personal-needs.html",
+    "use": "Medical equipment and care supplies"
+  },
+  {
+    "id": 40,
+    "title": "CDC: Prescriptions",
+    "url": "https://www.cdc.gov/prepare-your-health/take-action/prescriptions.html",
+    "use": "Refill and emergency medication planning"
+  },
+  {
+    "id": 41,
+    "title": "CDC: Infant feeding during emergencies",
+    "url": "https://www.cdc.gov/infant-feeding-emergencies-toolkit/php/faqs.html",
+    "use": "Ready-to-feed infant formula and safe water"
   }
 ]
