@@ -1,0 +1,16 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require('node:crypto'),vm=require('node:vm');
+const html=fs.readFileSync('dist/index.html','utf8'),frame=fs.readFileSync('dist/analytics.html','utf8');
+const tag=html.match(/<iframe[^>]+id="ready-analytics"[^>]*>/)[0];
+assert(tag.includes('sandbox="allow-scripts"'));assert(!tag.includes('allow-same-origin'));assert(tag.includes('referrerpolicy="no-referrer"'));
+const parent=html.match(/Content-Security-Policy" content="([^"]+)"/)[1];assert(!parent.includes('google'));assert(parent.includes("frame-src 'self'"));
+const script=frame.match(/<script>([\s\S]+?)<\/script>/)[1],hash=crypto.createHash('sha256').update(script).digest('base64');assert(frame.includes("'sha256-"+hash+"'"));assert(!frame.includes('unsafe-inline'));assert(!frame.includes('unsafe-eval'));
+const inserted=[],node={parentNode:{insertBefore:j=>inserted.push(j)}};
+const messages=[];const context={origin:'null',parent:{postMessage:m=>messages.push(m)},window:{},document:{getElementsByTagName:()=>[node],createElement:()=>({})},Date};context.window=context;vm.runInNewContext(script,context);
+assert.equal(inserted.length,1);assert.equal(inserted[0].src,'https://www.googletagmanager.com/gtm.js?id=GTM-PBJZX3NJ');assert.equal(inserted[0].async,true);
+const entries=context.dataLayer.map(x=>Array.from(x));const consent=entries.find(x=>x[0]==='consent')[2];for(const k of ['analytics_storage','ad_storage','ad_user_data','ad_personalization'])assert.equal(consent[k],'denied');
+assert(entries.find(x=>x[0]==='set'&&x[1]?.page_location)?.[1].page_location==='https://readytogether.info/');
+inserted[0].onload();assert.equal(messages[0],'ready-together-gtm-loaded');
+assert(script.includes("window.parent === window || window.origin !== 'null'"));
+assert(!/parent.document|top\.document|localStorage|sessionStorage|indexedDB|location\.search|location\.hash/.test(script));
+assert(!fs.readFileSync('dist/sw.js','utf8').includes("'analytics.html'"));
+console.log('PASS isolated GTM loader, sandbox boundary, CSP hash, denied storage and no private-data bridge');

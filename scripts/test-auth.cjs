@@ -75,7 +75,7 @@ test('private authentication fields cannot enter normalized saved state or backu
 function worker(){
  const handlers={}, entries=new Map(),removed=[],requests=[];let fail=false;
  const fakecache={addAll:async input=>{requests.push(...input);if(fail)throw Error('offline');for(const r of input)entries.set(r.url,new Response('public asset'));},put:async(url,res)=>entries.set(String(url),res),match:async url=>entries.get(String(url))};
- const sandbox={URL,Request,Response,Set,console,self:{location:{href:'https://example.test/prep/sw.js'},clients:{claim:async()=>{}},addEventListener:(n,cb)=>handlers[n]=cb},caches:{open:async()=>fakecache,keys:async()=>['unrelated','ready-together-public-old','ready-together-public-v1.10'],delete:async n=>removed.push(n)},fetch:async()=>{throw Error('offline')}};
+ const sandbox={URL,Request,Response,Set,console,self:{location:{href:'https://example.test/prep/sw.js'},clients:{claim:async()=>{}},addEventListener:(n,cb)=>handlers[n]=cb},caches:{open:async()=>fakecache,keys:async()=>['unrelated','ready-together-public-old','ready-together-public-v1.11'],delete:async n=>removed.push(n)},fetch:async()=>{throw Error('offline')}};
  vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../dist/sw.js'),'utf8'),sandbox);
  return{handlers,entries,removed,requests,setFail:v=>fail=v};
 }

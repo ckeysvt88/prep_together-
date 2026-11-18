@@ -11,7 +11,7 @@
   }, 15000);
   navigator.serviceWorker.register('./sw.js', { updateViaCache:'none' }).then(async registration => {
     const ready = await navigator.serviceWorker.ready;
-    const cache = await caches.open('ready-together-public-v1.10');
+    const cache = await caches.open('ready-together-public-v1.11');
     const complete = await cache.match(new URL('./offline-ready', document.baseURI).href);
     settled = true; clearTimeout(pending);
     if (complete && ready.active) el.textContent = 'App files ready for offline use on this device. Test airplane mode. Browser keys still clear on reload; keep enrolled codes in your authenticator.';

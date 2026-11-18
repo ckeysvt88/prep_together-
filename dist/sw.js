@@ -1,10 +1,10 @@
 /* Public-file allowlist. No runtime caching, messages, credentials or user data. */
 'use strict';
-const CACHE = 'ready-together-public-v1.10';
+const CACHE = 'ready-together-public-v1.11';
 const BASE = new URL('./', self.location.href);
 const FILES = [
-  './', 'index.html', 'styles.css?v=1.10', 'manifest.webmanifest',
-  'trusted-contact.js?v=1.10', 'trusted-contact-ui.js?v=1.10', 'vendor/qr-encoder.js?v=1.10', 'offline.js?v=1.10',
+  './', 'index.html', 'analytics-host.js?v=1.11', 'styles.css?v=1.10', 'manifest.webmanifest',
+  'trusted-contact.js?v=1.10', 'trusted-contact-ui.js?v=1.10', 'vendor/qr-encoder.js?v=1.10', 'offline.js?v=1.11',
   'medical.js?v=1.9', 'medical-ui.js?v=1.9', 'planning.js?v=1.9', 'engine.js?v=1.10',
   'shopping.js?v=1.9', 'buying-guide.js?v=1.6', 'shopping-details.js?v=1.10',
   'plan-pdf.js?v=1.9', 'app.js?v=1.10', 'tour.js?v=1.10', 'vendor/pdf-lib.min.js',
