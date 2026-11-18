@@ -173,6 +173,7 @@ function planSnapshot(m, tasks, power, guides) {
       (state.experience === 'advanced' && state.medicalBleeding && state.medicalChest ? 'Chest-seal training marked complete. ' : '') +
       (state.medicalTrainingDate ? 'Last relevant training date: ' + state.medicalTrainingDate + '.' : 'Record relevant course dates and scope with your training records.') }
   ] });
+  sections.push({ title: 'Trusted Contact Authentication', items: [ ...ReadyTrusted.steps, ...ReadyTrusted.safeguards ].map(item => ({ label:item.label, detail:item.detail })) });
   if (state.customPower) {
     const items = [{ label: 'Battery and recharge estimate', detail: describePower(power).join('\n') }];
     power.rows.forEach((row, index) => items.push({
@@ -229,7 +230,7 @@ function renderPlan(m, tasks, power, guides) {
     <p class="help">${open.length} to do · ${tasks.length - open.length - skipped} done · ${skipped} not needed. The action plan includes your full checklist and saved notes.</p>` : '';
   const inventory = state.medicalInclude ? '<p>Your filled medical inventory is included in this private PDF.</p>' :
     '<p>Filled medication inventory is excluded. You can download a blank template in the medical section.</p>';
-  $('plan-preview').innerHTML = `<div class="plan-review"><strong>${escape(P.REPORTS[state.report].label)}</strong><p>${escape(plan.meta)} · ${escape(plan.household)}</p>${shopping}${supplies}${actions}${inventory}</div>`;
+  $('plan-preview').innerHTML = `<div class="plan-review"><strong>${escape(P.REPORTS[state.report].label)}</strong><p>${escape(plan.meta)} · ${escape(plan.household)}</p>${shopping}${supplies}${actions}${inventory}<p>Trusted-contact setup and safety guidance is included. Private authentication keys, QR codes, nicknames and rotating codes are excluded.</p></div>`;
   $('download-pdf').textContent = state.report === 'shopping' ? 'Download shopping checklist PDF' : state.report === 'action' ? 'Download action plan PDF' : 'Download shopping list & plan PDF';
 }
 

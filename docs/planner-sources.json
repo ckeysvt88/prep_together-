@@ -238,5 +238,41 @@
     "title": "MedlinePlus: Wound care",
     "url": "https://medlineplus.gov/ency/patientinstructions/000741.htm",
     "use": "Safe cleaning and signs of infection"
+  },
+  {
+    "id": 72,
+    "title": "RFC 6238: Time-Based One-Time Password Algorithm",
+    "url": "https://www.rfc-editor.org/rfc/rfc6238",
+    "use": "TOTP time step, HMAC-SHA-1, security limitations and Appendix B test vectors."
+  },
+  {
+    "id": 73,
+    "title": "Google Authenticator: Key URI Format",
+    "url": "https://github.com/google/google-authenticator/wiki/Key-Uri-Format",
+    "use": "Standard otpauth TOTP enrollment parameters and issuer/account encoding."
+  },
+  {
+    "id": 74,
+    "title": "2FAS Auth: App tutorial",
+    "url": "https://2fas.com/support/2fas-auth-mobile-app/2fas-auth-app-tutorial/",
+    "use": "QR and manual token enrollment on iOS/Android."
+  },
+  {
+    "id": 75,
+    "title": "2FAS Auth: Offline code operation",
+    "url": "https://2fas.com/support/2fas-auth-mobile-app/how-does-the-2fas-app-work/",
+    "use": "Offline TOTP code generation and 30-second rotation."
+  },
+  {
+    "id": 76,
+    "title": "Broadcom: VIP Access credential wallet",
+    "url": "https://vip.symantec.com/",
+    "use": "QR credential wallet; exact custom TOTP enrollment varies by app/version."
+  },
+  {
+    "id": 77,
+    "title": "FTC: Scammers use fake emergencies to steal your money",
+    "url": "https://consumer.ftc.gov/articles/scammers-use-fake-emergencies-steal-your-money",
+    "use": "Voice impersonation and independent callback to a previously trusted number."
   }
 ]

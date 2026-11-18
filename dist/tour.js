@@ -37,6 +37,12 @@
       description: 'Open a topic to see examples, quantities, what to check on the package, and how to set things up. Start with the three-day grocery basket or another topic you need.'
     },
     {
+      target: 'trusted-contact',
+      scrollTarget: 'trusted-heading',
+      title: 'Add a trusted-contact check',
+      description: 'Set up a shared rotating code with someone you trust. Both phones scan the same private QR. Open the five-step guide for setup and safety advice. Your keys stay out of your saved plan and PDFs.'
+    },
+    {
       target: 'medical-module',
       scrollTarget: 'medical-heading',
       title: 'Plan medicines and medical supplies',
