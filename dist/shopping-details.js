@@ -1,7 +1,6 @@
 /* Printable shopping worksheets. Targets are planning examples, not treatment instructions. */
 (function (root) {
   const G = typeof module !== 'undefined' && module.exports ? require('./buying-guide.js') : root.ReadyBuyingGuide;
-  const T = typeof module !== 'undefined' && module.exports ? require('./trusted-contact.js') : root.ReadyTrusted;
   const M = typeof module !== 'undefined' && module.exports ? require('./medical.js') : root.ReadyMedical;
   const number = amount => Number(amount).toLocaleString('en-US', { maximumFractionDigits: 1 });
   const row = (item, target, detail) => ({ item, target, detail, have: null, need: null });
@@ -52,7 +51,7 @@
   function worksheets(state, supplies, power, seasons) {
     return [
       G.foodBasics(), foodPage(state, supplies), G.waterPage(state, supplies),
-      ...M.printableSheets(state), G.powerPage(state, supplies, power), G.communicationPage(state), T.worksheet(),
+      ...M.printableSheets(state), G.powerPage(state, supplies, power), G.communicationPage(state),
       G.evacuationPage(state), G.hazardPage(state, seasons), G.householdPage(state, supplies), G.vehiclePage(state, seasons)
     ].filter(Boolean);
   }
