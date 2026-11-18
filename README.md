@@ -234,6 +234,12 @@ The first PDF build writes `dist/Ready-Together-Guide.pdf`. The second writes `d
 
 For a fork, enable the workflow if needed, choose **Settings → Pages → Build and deployment → Source → GitHub Actions**, and run the workflow on `main`. Check the deployment’s site URL and update the share links in your fork’s README. [GitHub Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 
+### Dedicated Trusted Contact rollback
+
+A tested rollback is retained on `rollback/trusted-contact-authentication`, pinned at commit `be5f131f45a78ae51e3796ecebe10fccd002548b`. In **Actions → Roll back Trusted Contact Authentication → Run workflow**, choose `main` to deploy the pre-authentication app plus a retirement worker that removes only Ready Together’s public offline caches and unregisters itself. The medical module and saved household data are preserved. Devices need an online refresh to receive cleanup.
+
+This deploy-only rollback leaves source history intact; a later push to `main` can publish the feature again. See [dedicated rollback instructions](docs/rollback-trusted-contact.md) before using it. Do not simply delete the service worker or reset to the previous app without the cleanup worker.
+
 ## Privacy and reuse
 
 The planner keeps information in browser storage and generates your PDF on your device. It has no account, app database or analytics. The host can receive ordinary request metadata. Older version-1 plans without an experience selection reopen in Advanced mode to preserve their technical inputs. New plans start in Beginner mode. The editable backup is versioned JSON with `version`, `exportedAt` and `plan` fields.

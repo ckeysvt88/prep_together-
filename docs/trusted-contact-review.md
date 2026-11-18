@@ -52,6 +52,6 @@ The older downloadable Beginner and Complete reference PDFs remain separate read
 
 ## Deployment and rollback
 
-The change is staged for pre-deployment review. The production workflow deploys only on pushes to `main` (or an explicit manual run), so a review branch/PR does not deploy this feature. Merge only after review. Version 1.10 introduces cache `ready-together-public-v1.10`; keep its asset URLs and cache name in sync on future releases. An updated worker waits for old tabs to close rather than replacing running code midway through a session.
+The release is approved for publication. The production workflow deploys on pushes to `main` or an explicit manual run. A dedicated manual rollback workflow deploys the pinned pre-authentication app and retires the installed public-file cache; see [rollback instructions](rollback-trusted-contact.md). Version 1.10 introduces cache `ready-together-public-v1.10`; keep its asset URLs and cache name in sync on future releases. An updated worker waits for old tabs to close rather than replacing running code midway through a session.
 
 A rollback after deploying a service worker must include a worker update at the same `sw.js` URL that deletes the Ready Together public caches and unregisters itself. Simply deleting the worker file or reverting only `index.html` may leave cached assets/worker registration on previously installed clients. Close/reopen and test both an existing install and a fresh browser after any rollback. Preserve household local storage; it is independent of the public-file cache.
