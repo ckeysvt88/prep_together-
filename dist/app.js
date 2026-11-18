@@ -1,11 +1,11 @@
 (()=>{'use strict';
-const E=ReadyEngine,P=ReadyPlanning,$=id=>document.getElementById(id),KEY='ready-together-v1';let state=E.normalize(),filter='all',storageOK=true;
+const E=ReadyEngine,P=ReadyPlanning,M=ReadyMedical,$=id=>document.getElementById(id),KEY='ready-together-v1';let state=E.normalize(),filter='all',storageOK=true;
 const fmt=(n,d=0)=>Number(n).toLocaleString('en-US',{maximumFractionDigits:d});
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 try{const raw=localStorage.getItem(KEY);if(raw){const payload=JSON.parse(raw);if(payload.version===1&&payload.plan)state=E.normalize({...payload.plan,experience:payload.plan.experience||'advanced'});else throw Error('Unsupported stored plan');}}catch(e){storageOK=false;$('storage-status').textContent='Saved data could not be loaded. Export a backup before closing; you can import an earlier backup.';}
 const numberKeys=['phones','simpleFoodDays','adults','children','infants','pets','petWater','adultKcal','childKcal','waterRate','storedWater','storedFood','weeklyBudget','dailyWh','powerHours','solarWatts','solarInput','solarHours','solarYield'];
 const boolKeys=['well','medical','access','allergy','noCar','extraWater','customPower'];
-function save(){try{localStorage.setItem(KEY,JSON.stringify({version:1,plan:state}));storageOK=true;$('storage-status').textContent='Saved in this browser. Save an editable backup to move your plan to another browser.';}catch(e){storageOK=false;$('storage-status').textContent='Browser storage is unavailable. Export a backup to keep this plan.';}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify({version:1,plan:M.forStorage(state)}));storageOK=true;$('storage-status').textContent='Saved in this browser. Save an editable backup to move your plan to another browser.';}catch(e){storageOK=false;$('storage-status').textContent='Browser storage is unavailable. Export a backup to keep this plan.';}}
 function presetValue(){if(state.adults===1&&!state.children&&!state.infants)return 'solo';if(state.adults===2&&!state.children&&!state.infants)return 'duo';if(state.adults===2&&state.children===2&&!state.infants)return 'family';return 'custom';}
 $('region').innerHTML=Object.entries(E.REGIONS).map(([k,v])=>`<option value="${k}">${v.name}</option>`).join('');
 $('hazards').innerHTML=Object.entries(E.HAZARDS).map(([k,v])=>`<label class="chip"><input type="checkbox" data-hazard="${k}">${v.name}</label>`).join('');
@@ -22,6 +22,7 @@ function sync() {
   $('stationWh').value = state.capacityWh || '';
   $('stationUsable').value = state.usable;
   renderLoadRows();
+  ReadyMedicalUI.renderInventory();
 }
 function render() {
   const beginner = state.experience === 'beginner';
@@ -60,17 +61,22 @@ function render() {
  $('progress-bar').style.width = (applicable ? 100 * done / applicable : 0) + '%';
  const visible = tasks.filter(task => filter === 'all' || task.status === filter);
  const phases = [...new Set(visible.map(task => task.phase))];
+ const medicalOpen = new Set([...$('task-list').querySelectorAll('[data-medical-phase][open]')].map(el => el.dataset.medicalPhase));
  $('task-list').innerHTML = phases.map(phase => {
-   const rows = visible.filter(task => task.phase === phase).map(task => {
+   const rows = [], medicalRows = [];
+   for (const task of visible.filter(task => task.phase === phase)) {
      const options = Object.entries(P.STATUS).map(([value, label]) =>
        `<option value="${value}" ${task.status === value ? 'selected' : ''}>${label}</option>`
      ).join('');
-     return `<article class="task-row ${task.status}"><div><span class="task-title" id="title-${task.id}">${escape(task.title)}</span><span class="task-detail">${escape(task.detail)}</span></div><select class="task-status" data-task="${task.id}" aria-labelledby="title-${task.id}">${options}</select></article>`;
-   }).join('');
-   return `<h3 class="task-group">${phase}</h3>${rows}`;
+     const row = `<article class="task-row ${task.status}"><div><span class="task-title" id="title-${task.id}">${escape(task.title)}</span><span class="task-detail">${escape(task.detail)}</span></div><select class="task-status" data-task="${task.id}" aria-labelledby="title-${task.id}">${options}</select></article>`;
+     (task.cat === 'Medical' ? medicalRows : rows).push(row);
+   }
+   const medical = medicalRows.length ? `<details data-medical-phase="${escape(phase)}" ${medicalOpen.has(phase) ? 'open' : ''}><summary>Medical supplies and care · ${medicalRows.length} actions</summary>${medicalRows.join('')}</details>` : '';
+   return `<h3 class="task-group">${phase}</h3>${rows.join('')}${medical}`;
  }).join('') || '<p class="empty">No tasks in this view.</p>';
  const power = P.portablePower(state);
  const guides = ReadyShoppingDetails.worksheets(state, m, power, P.activeSeasons(state));
+ ReadyMedicalUI.render();
  renderBuyingGuide(guides);
  renderPortable(power);
  renderPlan(m, tasks, power, guides);
@@ -127,7 +133,7 @@ function renderBuyingGuide(guides) {
   container.innerHTML = guides.map(guide => {
     const id = guide.banner.toLowerCase().replaceAll(' ', '-');
     const rows = guide.rows?.length ? `<h3>${escape(guide.tableTitle)}</h3><ul class="buying-items">${guide.rows.map(row => `
-      <li><strong>${escape(row.item)}</strong><span class="buying-quantity">${escape(row.target)}</span><p>${escape(row.detail)}</p></li>`).join('')}</ul>` : '';
+      <li><strong>${escape(row.item)}</strong><span class="buying-quantity">${escape(row.target)}</span><p>${escape(row.detail)}</p>${row.url ? `<a href="${escape(row.url)}" target="_blank" rel="noopener">Source / shopping example ↗</a>` : ''}</li>`).join('')}</ul>` : '';
     const menu = guide.menu ? `<h3>Three days of easy meals</h3><p>Every day, start with cereal and shelf-stable milk and include your usual snacks.</p><ul class="buying-menu">${guide.menu.map(({ day, lunch, dinner }) => `
       <li><strong>${escape(day)}</strong><p>Lunch · ${escape(lunch)}<br>Dinner · ${escape(dinner)}</p></li>`).join('')}</ul>` : '';
     return `<details class="buying-topic" data-topic="${id}" ${expanded.has(id) ? 'open' : ''}>
@@ -161,6 +167,12 @@ function planSnapshot(m, tasks, power, guides) {
   }
   if (state.infants) sections[0].items.push({ label: 'Infant feeding', detail: 'Track infant feeding requirements separately from the family food totals.' });
   if (state.pets) sections[0].items.push({ label: 'Pets', detail: `${m.petDays} pet-days of food at usual daily rations. Water uses ${fmt(state.petWater, 2)} gal/pet/day.` });
+  sections.push({ title: 'Medical preparedness', items: [
+    { label: M.LEVELS[state.experience] + ' medical plan', detail: 'Review prescriptions and OTC choices with your pharmacist or clinician. Keep a private care list and printed references.' },
+    { label: 'Reported training', detail: (state.medicalBleeding ? 'Bleeding-control training marked complete. ' : 'Bleeding-control training not marked complete. ') +
+      (state.experience === 'advanced' && state.medicalBleeding && state.medicalChest ? 'Chest-seal training marked complete. ' : '') +
+      (state.medicalTrainingDate ? 'Last relevant training date: ' + state.medicalTrainingDate + '.' : 'Record relevant course dates and scope with your training records.') }
+  ] });
   if (state.customPower) {
     const items = [{ label: 'Battery and recharge estimate', detail: describePower(power).join('\n') }];
     power.rows.forEach((row, index) => items.push({
@@ -192,6 +204,8 @@ function planSnapshot(m, tasks, power, guides) {
     report: state.report,
     shopping: state.report === 'action' ? null : ReadyShopping.makeList(state, m, power, seasons),
     worksheets: state.report === 'action' ? [] : (guides ?? ReadyShoppingDetails.worksheets(state, m, power, seasons)),
+    inventory: state.medicalInclude ? state.medicalInventory : null,
+    inventoryReview: state.medicalInclude ? state.medicalReview : '',
     sections: state.report === 'shopping' ? [] : sections
   };
 }
@@ -213,7 +227,9 @@ function renderPlan(m, tasks, power, guides) {
   const actions = plan.sections.length ? `
     <h3>Next actions</h3>${priority}${seasonPreview}${powerPreview}
     <p class="help">${open.length} to do · ${tasks.length - open.length - skipped} done · ${skipped} not needed. The action plan includes your full checklist and saved notes.</p>` : '';
-  $('plan-preview').innerHTML = `<div class="plan-review"><strong>${escape(P.REPORTS[state.report].label)}</strong><p>${escape(plan.meta)} · ${escape(plan.household)}</p>${shopping}${supplies}${actions}</div>`;
+  const inventory = state.medicalInclude ? '<p>Your filled medical inventory is included in this private PDF.</p>' :
+    '<p>Filled medication inventory is excluded. You can download a blank template in the medical section.</p>';
+  $('plan-preview').innerHTML = `<div class="plan-review"><strong>${escape(P.REPORTS[state.report].label)}</strong><p>${escape(plan.meta)} · ${escape(plan.household)}</p>${shopping}${supplies}${actions}${inventory}</div>`;
   $('download-pdf').textContent = state.report === 'shopping' ? 'Download shopping checklist PDF' : state.report === 'action' ? 'Download action plan PDF' : 'Download shopping list & plan PDF';
 }
 
@@ -314,7 +330,7 @@ $('download-pdf').addEventListener('click', async () => {
   }
 });
 for(const b of document.querySelectorAll('[data-filter]'))b.addEventListener('click',()=>{filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render();});
-$('export').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({version:1,exportedAt:new Date().toISOString(),plan:state},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='ready-together-private-plan.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
+$('export').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({version:1,exportedAt:new Date().toISOString(),plan:M.forBackup(state)},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='ready-together-private-plan.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
 $('import-button').addEventListener('click',()=>$('import').click());
 $('import').addEventListener('change',async ev=>{const f=ev.target.files[0];if(!f)return;try{if(f.size>200000)throw Error('File too large.');const parsed=JSON.parse(await f.text());if(parsed.version!==1||!parsed.plan||typeof parsed.plan!=='object'||Array.isArray(parsed.plan))throw Error('Choose a version 1 Ready Together backup.');state=E.normalize({...parsed.plan,experience:parsed.plan.experience||'advanced'});sync();save();render();$('storage-status').textContent='Backup imported and saved in this browser.';}catch(e){$('storage-status').textContent='Import failed: '+e.message;}ev.target.value='';});
 $('reset').addEventListener('click',()=>$('reset-dialog').showModal());$('cancel-reset').addEventListener('click',()=>$('reset-dialog').close());$('confirm-reset').addEventListener('click',()=>{state=E.normalize();filter='all';document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter==='all')));sync();save();render();$('reset-dialog').close();});
@@ -322,5 +338,10 @@ let previousFilter,openDetails=[];
 window.addEventListener('beforeprint',()=>{previousFilter=filter;filter='all';render();openDetails=[...document.querySelectorAll('details')].map(d=>[d,d.open]);openDetails.forEach(([d])=>d.open=true);});
 window.addEventListener('afterprint',()=>{filter=previousFilter||'all';openDetails.forEach(([d,v])=>d.open=v);render();});
 $('print').addEventListener('click',()=>window.print());
+ReadyMedicalUI.init(() => state, patch => {
+  state = E.normalize({ ...state, ...patch });
+  save();
+  render();
+});
 sync();render();if(storageOK)$('storage-status').textContent='This plan stays in this browser. Export a backup to keep a separate copy.';
 })();

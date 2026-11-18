@@ -37,6 +37,12 @@
       description: 'Open a topic to see examples, quantities, what to check on the package, and how to set things up. Start with the three-day grocery basket or another topic you need.'
     },
     {
+      target: 'medical-module',
+      scrollTarget: 'medical-heading',
+      title: 'Plan medicines and medical supplies',
+      description: 'Open the medical checklists for first aid, separate adult and child supplies, prescription continuity and training. The optional inventory tracks refill dates. Choose whether to save it or include it in your PDF.'
+    },
+    {
       target: 'tour-download',
       title: 'Download your final plan',
       description: 'Save your personalized PDF here, even with tasks still open. Use the report choice in Your starting point if you’d like just the shopping checklist, just the action plan, or both.'

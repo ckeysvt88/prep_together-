@@ -2,16 +2,16 @@
 
 Ready Together is a free, US-focused household emergency preparedness planner. Choose who you’re preparing for, what risks you face, and how long you want your supplies to last. The planner turns those choices into a buying guide, supply targets, and a printable plan you can keep for an outage or evacuation.
 
-**[Open the interactive planner](https://ckeysvt88.github.io/prep_together-/)** · [Buying guide](https://ckeysvt88.github.io/prep_together-/#buying-guide) · [Final plan & PDF](https://ckeysvt88.github.io/prep_together-/#final-plan)
+**[Open the interactive planner](https://readytogether.info/)** · [Buying guide](https://readytogether.info/#buying-guide) · [Final plan & PDF](https://readytogether.info/#final-plan)
 
 ## Start here
 
 | If you want to… | Open |
 | --- | --- |
-| Build a plan for one adult, two adults, or a family | [Interactive planner](https://ckeysvt88.github.io/prep_together-/) |
-| Print a short guide with simple supply quantities and familiar meals | [Beginner quick-start PDF](https://ckeysvt88.github.io/prep_together-/Ready-Together-Beginner-Guide.pdf) (9 pages) |
-| Read about longer outages, preparedness by region, or 60–90 day planning | [Complete reference PDF](https://ckeysvt88.github.io/prep_together-/Ready-Together-Guide.pdf) (37 pages, with worksheets) |
-| Check how a target was calculated or find the original guidance | [Sources & assumptions](https://ckeysvt88.github.io/prep_together-/sources.html) |
+| Build a plan for one adult, two adults, or a family | [Interactive planner](https://readytogether.info/) |
+| Print a short guide with simple supply quantities and familiar meals | [Beginner quick-start PDF](https://readytogether.info/Ready-Together-Beginner-Guide.pdf) (9 pages) |
+| Read about longer outages, preparedness by region, or 60–90 day planning | [Complete reference PDF](https://readytogether.info/Ready-Together-Guide.pdf) (37 pages, with worksheets) |
+| Check how a target was calculated or find the original guidance | [Sources & assumptions](https://readytogether.info/sources.html) |
 
 Share the planner link so each household can create its own plan. The two reference PDFs above are ready to download and share. Your household’s personalized PDF is generated in the planner.
 
@@ -80,6 +80,43 @@ Use **Save editable backup** to download a JSON file. On the destination device 
 | Seasonal options disappeared | Switch to **Immediate prep** to use them. The planner remembers previously selected seasons. |
 | A portable battery estimate is missing | Check that each device has measured Wh/day or both rated watts and equivalent full-power hours. |
 
+## Emergency medical preparedness
+
+Open **Medical** in the navigation or scroll to **Emergency medical preparedness**. The panel uses the current household, experience, medical-power flag, checklist statuses and PDF selection.
+
+| Existing experience setting | Medical depth |
+| --- | --- |
+| Beginner | Essential adult OTC choices, first aid, pediatric plans when applicable, regular prescriptions and basic training |
+| Intermediate | Advanced medical planning, optional clinician-reviewed standby prescription kits, bleeding-control training and appropriate monitoring tools |
+| Advanced | Expert continuity planning, redundant critical equipment and supplies matched to the skills you report |
+
+Supply duration remains Core (3 days), Advanced (14 days), or Super prep (30 days). Prescription reserves are discussed with the prescriber and pharmacist, aiming for 14–30 days where feasible. They are recorded per person and prescription. Medicines are never multiplied into a treatment dose or assumed safe for a child.
+
+The buying guides distinguish adult OTC products, regular prescription continuity, prescribed rescue medicines, pediatric supplies and optional upgrades. First-aid consumables use a starter kit per four household members, rounded up, with replenishment based on use. OTC packages and cost ranges are shopping allowances, not dosing schedules. Individual products may be unsuitable for a person’s health conditions or other medicines.
+
+Under **Tailor medical supplies and training**, add optional dental or veterinary supplies. Mark completed bleeding-control training to see matching trauma supplies in Intermediate or Advanced. Chest seals appear only at Expert medical depth when you also report specific chest-seal training. The planner records your declaration and optional training date. It does not certify skills.
+
+JaseCase, Prepare Medical’s US offering, and Contingency Medical Ready Pack Plus are examples of services arranging prescriptions through health review and pharmacy dispensing. The module compares their published contents, approximate cost, support and limits. Listed provider/manufacturer prices were checked November 18, 2026. Other prices are labeled planning allowances. Confirm current state availability, patient eligibility, prescribing-clinician and dispensing-pharmacy licensing, final contents, follow-up terms and price before purchase. Provider pages describe their processes; this project has not independently audited their clinicians or every pharmacy partner.
+
+Only a licensed clinician can authorize and guide prescription use. Never self-prescribe antibiotics, share a prescription kit or use leftover antibiotics to treat a new illness. Keep the prescriber’s written directions and contact route. Emergency symptoms require emergency care. The guide includes care escalation, offline references, FDA and CDC safeguards, Red Cross first aid and ACS Stop the Bleed resources.
+
+### Medication inventory and reminders
+
+Expand **Medication inventory and refill reminders**. You can enter up to 40 medicines or supplies with an optional household alias, type, name, strength/formulation, quantity with units, expiration, refill/review date and storage requirements. Keep prescribed directions and care contacts with private care records. Names, birth dates, diagnoses and identification numbers are not requested.
+
+Two independent controls manage the inventory.
+
+- **Keep my filled inventory in this browser** saves entries in unencrypted browser storage. It starts off. Without it, entries last for the current page session and disappear on reload.
+- **Include my filled inventory in PDFs and editable backups** adds entries to personalized PDF and JSON exports. It starts off. The separate filled-inventory download becomes available when this option is on.
+
+A blank inventory PDF is always available from the panel. Download it for handwriting, or opt into a filled PDF for an offline copy. A filled inventory can be included with any report selection, including Action plan only. The general **Print this page** view hides the private inventory panel; use the inventory download to print that list.
+
+Refill/review and expiration alerts appear for overdue dates, dates due today and dates within 30 days when the planner is open. Choose a next household stock-review date and review monthly. No background notifications, email, calendar integration or quantity-based run-out calculation is provided. An absence of date alerts does not validate stock or storage. Offline use requires downloading and testing the PDF/reference files before an outage.
+
+**Done** and **Not needed** medical selections use the same state as the action checklist. Remaining-shopping summaries omit those completed/skipped medical items. Detailed medical PDF worksheets retain their status labels for review. Pediatric products appear only for households with infants or children and always require an individual age/weight/formulation check. Adult medicines and adult prescription kits are never assigned to children automatically.
+
+Medical actions are grouped in expandable sections of the main checklist, and the tour includes the medical panel before the PDF step. The personalized report includes medical worksheets and clickable product/source links when shopping content is selected. The two prewritten reference PDFs remain separate reading resources. The live medical module and personalized export carry the updated material.
+
 ## How the planner calculates targets
 
 | Estimate | Calculation or rule |
@@ -92,7 +129,7 @@ Use **Save editable backup** to download a JSON file. On the destination device 
 | **Solar recharge** | Daily Wh = `lower of panel watts and station input limit × equivalent peak sun hours × yield fraction`. With the station input left blank, the estimate uses the entered panel watts. Verify the actual station limit and panel compatibility. |
 | **Checklist progress** | `Done ÷ applicable tasks`. Tasks marked **Not needed** are excluded from the denominator. This measures progress through the checklist. |
 
-Water quantities use US gallons. Regional presets are broad prompts, and town/state is a label. Check official local alerts, maps, routes and evacuation instructions for your location. Find links for medical, water, food, radio and power guidance in the [source directory](https://ckeysvt88.github.io/prep_together-/sources.html).
+Water quantities use US gallons. Regional presets are broad prompts, and town/state is a label. Check official local alerts, maps, routes and evacuation instructions for your location. Find links for medical, water, food, radio and power guidance in the [source directory](https://readytogether.info/sources.html).
 
 ## Run the project locally
 
@@ -111,6 +148,7 @@ Open [http://localhost:8000](http://localhost:8000). Keep using the same browser
 | Where | What to edit |
 | --- | --- |
 | [Dashboard](dist/index.html) · [CSS](dist/styles.css) · [app.js](dist/app.js) | Form inputs, screen layout, live rendering, storage and export controls |
+| [medical.js](dist/medical.js) · [medical-ui.js](dist/medical-ui.js) | Shared medical content, inventory normalization, date reminders, privacy filters and medical panel |
 | [engine.js](dist/engine.js) · [planning.js](dist/planning.js) | Household calculations, timing, seasons, tasks, state normalization and portable power |
 | [shopping.js](dist/shopping.js) · [buying-guide.js](dist/buying-guide.js) · [shopping-details.js](dist/shopping-details.js) | Summary checklist, tailored buying guidance and detailed worksheets |
 | [plan-pdf.js](dist/plan-pdf.js) | Layout and download of the personalized PDF |
@@ -126,7 +164,11 @@ Use Node.js 22 to match the GitHub Actions workflow. The tests require no npm in
 ```bash
 node scripts/test-engine.cjs
 node --check dist/app.js
+node --check dist/medical.js
+node --check dist/medical-ui.js
 ```
+
+The automated checks cover inventory validation and privacy, date reminders, household quantities, pediatric conditions, training-based trauma lists and shared checklist statuses.
 
 For guidance or PDF changes, use the local planner to try one Beginner export and one Advanced export with relevant add-ons. Check that the PDF opens, the chosen sections are present, and tables and source links fit on the page. For changes to the calculations or conditional lists, update the relevant tests. Include a source link with safety-sensitive content changes and use example households in issues, pull requests, or screenshots.
 

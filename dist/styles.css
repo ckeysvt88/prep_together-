@@ -130,3 +130,29 @@
 @media print {
   #start-tour, .planner-tour, .tour-highlight::after { display: none !important; }
 }
+
+#medical-module { margin: 0 0 22px; scroll-margin-top: 16px; }
+.medical-important { background: #fff1d9; border-left: 4px solid #a34118; padding: 10px 12px; font-size: 13px; }
+.medical-inventory-card { border: 1px solid var(--line); border-radius: 7px; padding: 12px; min-width: 0; }
+.medical-inventory-card input, .medical-inventory-card select { min-width: 0; width: 100%; }
+.medical-inventory-card legend { padding: 0 5px; }
+.medical-inventory-card button { margin-top: 10px; }
+.medical-item { display: grid; grid-template-columns: minmax(0,1fr) 105px; gap: 12px; }
+.medical-item select { align-self: start; min-width: 0; font-size: 12px; }
+.medical-item.skip > div { color: var(--muted); }
+.medical-item.done > div > strong { text-decoration: line-through; }
+#medical-reminders { overflow-wrap: anywhere; }
+#medical-module details p, #medical-module .buying-items { font-size: 13px; }
+#medical-module .buying-sources { margin-top: 10px; }
+#medicalReview, #medicalTrainingDate { max-width: 230px; }
+#medical-inventory-panel .help { overflow-wrap: anywhere; }
+#medical-module [hidden] { display: none; }
+@media(max-width:760px) {
+  .medical-inventory-card .inputs { grid-template-columns: 1fr; }
+  .medical-item { grid-template-columns: minmax(0,1fr); }
+  .medical-item select { width: 120px; }
+}
+@media print {
+  #medical-inventory-panel { display: none !important; }
+  .medical-item { break-inside: avoid; }
+}

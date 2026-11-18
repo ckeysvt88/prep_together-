@@ -100,5 +100,143 @@
     "title": "Ford: Off-road equipment and trip preparation",
     "url": "https://www.ford.com/experiences/off-road-adventures/moab-telluride",
     "use": "Trail-specific equipment and recovery-point checks"
+  },
+  {
+    "id": 49,
+    "title": "CDC: Antibiotic use",
+    "url": "https://www.cdc.gov/antibiotic-use/about/",
+    "use": "Individual prescription use, avoiding shared or leftover antibiotics"
+  },
+  {
+    "id": 50,
+    "title": "FDA: Licensed online pharmacy checks",
+    "url": "https://www.fda.gov/drugs/besaferx-your-source-online-pharmacy-information/locate-state-licensed-online-pharmacy",
+    "use": "Checking the dispensing pharmacy and prescription requirements"
+  },
+  {
+    "id": 51,
+    "title": "MedlinePlus: OTC medicines",
+    "url": "https://medlineplus.gov/ency/article/002208.htm",
+    "use": "OTC categories and motion-sickness distinction"
+  },
+  {
+    "id": 52,
+    "title": "MedlinePlus: Loperamide",
+    "url": "https://medlineplus.gov/druginfo/meds/a682280.html",
+    "use": "Age, label, diarrhea and heart-risk safeguards"
+  },
+  {
+    "id": 53,
+    "title": "MedlinePlus: Polyethylene glycol",
+    "url": "https://medlineplus.gov/druginfo/meds/a603032.html",
+    "use": "Constipation option and warning symptoms"
+  },
+  {
+    "id": 54,
+    "title": "MedlinePlus: Diarrhea",
+    "url": "https://medlineplus.gov/diarrhea.html",
+    "use": "Dehydration and seeking medical advice"
+  },
+  {
+    "id": 55,
+    "title": "FDA: Children and medicines",
+    "url": "https://www.fda.gov/consumers/consumer-updates/should-you-give-kids-medicine-coughs-and-colds",
+    "use": "Avoiding adult products and duplicate ingredients; measuring tools"
+  },
+  {
+    "id": 56,
+    "title": "AAP: Fever and infants",
+    "url": "https://www.healthychildren.org/english/health-issues/conditions/fever/Pages/Fever-and-Your-Baby.aspx",
+    "use": "Prompt evaluation for fever in young infants"
+  },
+  {
+    "id": 57,
+    "title": "ACS: Stop the Bleed training",
+    "url": "https://www.stopthebleed.org/get-trained/",
+    "use": "Hands-on bleeding-control training"
+  },
+  {
+    "id": 58,
+    "title": "ACS: Stop the Bleed kit contents",
+    "url": "https://www.stopthebleed.org/shop/",
+    "use": "Pressure dressings, packing gauze, tourniquets and chest seals"
+  },
+  {
+    "id": 59,
+    "title": "FDA: Pulse oximeters",
+    "url": "https://www.fda.gov/medical-devices/products-and-medical-procedures/pulse-oximeters",
+    "use": "Limitations including skin pigmentation; symptoms matter"
+  },
+  {
+    "id": 60,
+    "title": "AHA: Home blood pressure monitoring",
+    "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home",
+    "use": "Validation, upper-arm cuff fit and clinician checks"
+  },
+  {
+    "id": 61,
+    "title": "ADA: Dental emergencies",
+    "url": "https://www.mouthhealthy.org/all-topics-a-z/dental-emergencies",
+    "use": "Dental supplies and prompt professional care"
+  },
+  {
+    "id": 62,
+    "title": "AVMA: Pet first aid",
+    "url": "https://www.avma.org/resources/pet-owners/emergencycare/pet-first-aid-basic-procedures",
+    "use": "Veterinary instructions and species-specific planning"
+  },
+  {
+    "id": 63,
+    "title": "Jase: JaseCase",
+    "url": "https://jase.com/products/jase-case",
+    "use": "Provider-published US offering and price checked November 18, 2026"
+  },
+  {
+    "id": 64,
+    "title": "Prepare Medical: US kits",
+    "url": "https://www.preparemedical.com/en-us",
+    "use": "US clinician/pharmacy model, package differences and prices checked November 18, 2026"
+  },
+  {
+    "id": 65,
+    "title": "Contingency Medical: Ready Pack Plus",
+    "url": "https://contingencymedical.com/product/ready-pack-plus/",
+    "use": "Provider-published contents, support and price checked November 18, 2026"
+  },
+  {
+    "id": 66,
+    "title": "North American Rescue: C-A-T",
+    "url": "https://www.narescue.com/combat-application-tourniquet-c-a-t.html",
+    "use": "Manufacturer shopping example and price checked November 18, 2026"
+  },
+  {
+    "id": 67,
+    "title": "North American Rescue: QuikClot",
+    "url": "https://www.narescue.com/quikclot-bleeding-control-dressings.html",
+    "use": "Hemostatic dressing example and starting price checked November 18, 2026"
+  },
+  {
+    "id": 68,
+    "title": "North American Rescue: HyFin Vent",
+    "url": "https://www.narescue.com/hyfin-vent-chest-seal-twin-pack.html",
+    "use": "Vented seal example and price checked November 18, 2026"
+  },
+  {
+    "id": 69,
+    "title": "OMRON: BP7150",
+    "url": "https://omronhealthcare.com/products/3-series-upper-arm-blood-pressure-monitor-bp7150",
+    "use": "Adult cuff specification and MSRP checked November 18, 2026"
+  },
+  {
+    "id": 70,
+    "title": "Red Cross: Emergency assessment",
+    "url": "https://www.redcross.org/take-a-class/first-aid/performing-first-aid/first-aid-steps",
+    "use": "Emergency care and scope of training"
+  },
+  {
+    "id": 71,
+    "title": "MedlinePlus: Wound care",
+    "url": "https://medlineplus.gov/ency/patientinstructions/000741.htm",
+    "use": "Safe cleaning and signs of infection"
   }
 ]

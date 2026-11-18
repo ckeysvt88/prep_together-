@@ -1,5 +1,6 @@
 /* Personal shopping checklist. Only water and food have recorded inventories. */
 (function (root) {
+  const M = typeof module !== 'undefined' && module.exports ? require('./medical.js') : root.ReadyMedical;
   const fmt = (amount, decimals = 0) => Number(amount).toLocaleString('en-US', { maximumFractionDigits: decimals });
 
   function makeList(state, supplies, power, seasons) {
@@ -22,8 +23,8 @@
       row('Manual can opener', '1 if needed', 'Set one aside if your food includes cans that need an opener.'),
       row('Flashlights or headlamps', `${people} lights`, 'One per person. Adults manage children’s lights. Add spare batteries or charging cables.'),
       row('Battery-powered radio', '1 setup', 'Receive NOAA alerts and AM/FM on one or two radios. Include matching spare batteries.'),
-      row('First aid kit', '1 kit', 'Check bandages, dressings, tape, gloves and the first aid instructions.'),
-      row('Medicines and care supplies', 'Household needs', 'Set aside regular supplies. Ask your pharmacist or care team about permitted refills and storage.'),
+      row('First aid kit', Math.ceil(people / 4) + ' starter kit(s)', 'Check bandages, dressings, tape, gloves and the first aid instructions.'),
+      row('Medicines and care supplies', 'Household needs', 'Use the medical worksheets for separate adult OTC, prescriptions, and pediatric plans. Costs and shopping references appear with relevant items.'),
       row('Hygiene and cleanup supplies', '1 household kit', 'Soap, toilet paper, wipes, trash bags and any personal hygiene items.'),
       row('Grab-and-go basics', 'For each person', 'A carryable bag, sturdy shoes, clothing and a copy of your emergency contacts.')
     ];
@@ -32,6 +33,15 @@
     }
 
     const addOns = [];
+    const medicalSheets = M.printableSheets(state);
+    for (const sheet of medicalSheets.filter(sheet => sheet.banner !== 'PRESCRIPTION SERVICES')) {
+      for (const item of sheet.rows) {
+        if (state.notNeeded[item.id] || state.checked[item.id]) continue;
+        const target = (item.optional ? 'Optional: ' : '') + item.target;
+        const itemRow = row(item.item, target, item.detail);
+        (item.optional ? addOns : essentials).push(itemRow);
+      }
+    }
     if (state.infants > 0) {
       addOns.push(row('Infant feeding and diaper supplies', `${days} days`, `Cover ${state.infants} ${state.infants === 1 ? 'infant' : 'infants'} using their usual feeding plan and daily diaper count. Set aside feeding equipment and cleaning supplies.`));
     }

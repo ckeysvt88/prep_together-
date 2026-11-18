@@ -1,5 +1,6 @@
 /* Timing, seasonal actions and portable power planning. */
 (function (root) {
+  const Medical = typeof module !== 'undefined' && module.exports ? require('./medical.js') : root.ReadyMedical;
   const HORIZONS = {
     now: { label: 'Immediate prep', detail: 'Prioritize what you can do today with supplies, alerts, safe shelter and backup power.' },
     long: { label: 'Long-term prep', detail: 'Build in stages. Handle essentials first, then test, expand and maintain your setup.' }
@@ -30,6 +31,7 @@
   };
   function normalizeProfile(input) {
     return {
+      ...Medical.normalize(input),
       horizon: has(HORIZONS, input.horizon) ? input.horizon : 'now',
       report: has(REPORTS, input.report) ? input.report : 'both',
       vehicleRoute: ['road', 'remote', 'trail'].includes(input.vehicleRoute) ? input.vehicleRoute : 'road',

@@ -1,6 +1,7 @@
 /* Pure planning calculations. US gallons; calorie values are editable assumptions. */
 (function(root){
 const P=typeof module!=='undefined'&&module.exports?require('./planning.js'):root.ReadyPlanning;
+const M=typeof module!=='undefined'&&module.exports?require('./medical.js'):root.ReadyMedical;
 const TIERS={core:{name:'Core',days:3,label:'72 hours',rank:1},advanced:{name:'Advanced',days:14,label:'14 days',rank:2},super:{name:'Super prep',days:30,label:'30 days',rank:3}};
 const REGIONS={
  southeast:{name:'Southeast / Gulf & Atlantic',hazards:['storm','flood','heat','hurricane']},
@@ -101,7 +102,7 @@ function tasks(input){
  if(s.commsGoal==='remote')add('radio-satellite','Communications','Verify a satellite messaging option before remote travel','Check the exact device or phone’s supported features, coverage, activation and service requirements. Many dedicated messengers require a paid plan, including for SOS. Practice using its test mode with a clear sky view; never send a real SOS as a drill.');
  if(s.experience==='advanced'&&s.commsGoal==='town')add('mesh-proof','Communications','Document an off-grid mesh acceptance test','Use compatible firmware, region/frequency, radio preset and channel/key settings. Disable MQTT/internet bridges on the nodes involved, keep local Bluetooth as needed, and exchange acknowledged messages both directions. Record failed locations and relay power dependencies.');
  if(beginner){const plain={lights:`Set out ${m.people} lights (adults manage young children’s lights), spare batteries and ${s.phones} phone charging cables. Start with ${s.phones} USB power banks and test each phone from one.`,rotate:'Put new groceries behind older usable ones. Write a review date on water containers; replace water you fill yourself every six months.',backup:'Practice charging phones from your banks. For longer outages, identify a safe place to recharge or relocate; one bank per phone is only a starter, not a multiweek power supply.',skills:'Practice carrying the bags and loading your ride. Take first-aid training. Keep medical equipment and safety alarms operating during practice.'};for(const t of a)if(plain[t.id])t.detail=plain[t.id];}
- return a;
+ return a.concat(M.tasks(s));
 }
 const api={EXPERIENCES,TIERS,REGIONS,HAZARDS,defaults,normalize,calculate,tasks};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.ReadyEngine=api;
 })(typeof globalThis!=='undefined'?globalThis:this);

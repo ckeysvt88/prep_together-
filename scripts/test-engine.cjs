@@ -98,8 +98,8 @@ test('grocery examples scale for solid-food eaters and flag the remaining pantry
   assert.equal(grocery.rows[2].target, '12 portions');
   assert.match(grocery.tips.at(-1).detail, /11 more household-days/);
   assert.match(grocery.tips.at(-1).detail, /ready-to-feed formula/);
-  assert.equal(pages['FIRST AID'].rows[0].target, '25 assorted');
-  assert(pages['MEDICINES AND CARE'].rows.some(item => item.item.includes('Child medicine')));
+  assert.equal(pages['FIRST AID'].rows[0].target, '50 assorted');
+  assert(pages['PEDIATRIC MEDICAL'].rows.some(item => item.item.includes('Pediatric pain')));
 });
 test('buying guidance deepens by experience even on the same supply tier', () => {
   const pages = ['beginner', 'intermediate', 'advanced'].map(experience =>
@@ -111,7 +111,7 @@ test('buying guidance deepens by experience even on the same supply tier', () =>
   assert(has(pages[2], 'COMMUNICATIONS', /LoRa/));
   assert(!has(pages[0], 'LIGHTS AND BACKUP POWER', /energy meter/));
   assert(has(pages[1], 'LIGHTS AND BACKUP POWER', /energy meter/));
-  assert(has(pages[2], 'MEDICINES AND CARE', /specific device/));
+  assert(has(pages[2], 'PRESCRIPTION CONTINUITY', /device backup/));
   assert(pages[2]['FOOD SHOPPING'].tips.some(tip => tip.label === 'Test one pantry day'));
 });
 test('the vehicle list matches experience, available transport and actual route', () => {
@@ -134,5 +134,80 @@ test('buying guides use seasons only in immediate plans and retain selected haza
     ['Flood or flash flood', 'Extreme heat', 'Winter weather']);
   assert.deepEqual(local({ horizon: 'long', hazards: ['flood'], seasons: ['winter', 'summer'] }),
     ['Flood or flash flood']);
+});
+const Medical = require('../dist/medical.js');
+test('medical inventory normalizes imported fields and preserves older plans', () => {
+  assert.deepEqual(E.normalize({}).medicalInventory, []);
+  const state = E.normalize({ medicalSave: true, medicalInventory: [
+    { name: '  Example medicine ', kind: 'bad', quantity: '28 tablets', expires: '2026-02-30', refill: '2026-12-01', storage: 'Below label limit' },
+    null
+  ] });
+  assert.equal(state.medicalInventory[0].name, 'Example medicine');
+  assert.equal(state.medicalInventory[0].kind, 'rx');
+  assert.equal(state.medicalInventory[0].expires, '');
+  assert.equal(state.medicalInventory[0].refill, '2026-12-01');
+  assert.equal(E.normalize({ medicalInventory: Array(100).fill({}) }).medicalInventory.length, 40);
+  assert.deepEqual(E.normalize(JSON.parse(JSON.stringify(state))), state);
+});
+test('medical privacy choices independently control browser saving and backup export', () => {
+  for (const medicalSave of [false, true]) for (const medicalInclude of [false, true]) {
+    const state = E.normalize({ medicalSave, medicalInclude, medicalInventory: [{ name: 'Private example' }] });
+    assert.equal(Medical.forStorage(state).medicalInventory.length, medicalSave ? 1 : 0);
+    assert.equal(Medical.forBackup(state).medicalInventory.length, medicalInclude ? 1 : 0);
+    assert.equal(state.medicalInventory.length, 1);
+  }
+});
+test('medical reminders cover overdue, today and upcoming dates without false all-clear', () => {
+  const today = new Date(2026, 10, 18);
+  const state = E.normalize({ medicalReview: '2026-11-17', medicalInventory: [
+    { name: 'Refill', refill: '2026-11-18', expires: '2026-12-18' },
+    { name: 'Later', expires: '2026-12-19' },
+    { name: 'Expired', expires: '2026-11-01' }
+  ] });
+  const alerts = Medical.reminders(state, today);
+  assert.equal(alerts.length, 4);
+  assert(alerts.some(alert => alert.detail === 'Refill/review is today.'));
+  assert(!alerts.some(alert => alert.label === 'Later'));
+});
+test('medical training and experience determine trauma supply inclusion', () => {
+  const has = (input, id) => Medical.tasks(E.normalize(input)).some(task => task.id === id);
+  assert(!has({ experience: 'beginner', medicalBleeding: true, medicalChest: true }, 'med-tourniquet'));
+  assert(!has({ experience: 'intermediate' }, 'med-tourniquet'));
+  assert(has({ experience: 'intermediate', medicalBleeding: true }, 'med-tourniquet'));
+  assert(!has({ experience: 'intermediate', medicalBleeding: true, medicalChest: true }, 'med-chest'));
+  assert(!has({ experience: 'advanced', medicalBleeding: true }, 'med-chest'));
+  assert(has({ experience: 'advanced', medicalBleeding: true, medicalChest: true }, 'med-chest'));
+});
+test('pediatric, dental and veterinary lists follow the household and chosen add-ons', () => {
+  const has = (input, id) => Medical.tasks(E.normalize(input)).some(task => task.id === id);
+  assert(!has({ adults: 1, children: 0, infants: 0 }, 'med-child-fever'));
+  assert(has({ adults: 1, children: 0, infants: 1 }, 'med-child-fever'));
+  assert(!has({ pets: 0, medicalPets: true }, 'med-pets'));
+  assert(has({ pets: 1, medicalPets: true }, 'med-pets'));
+  assert(!has({}, 'med-dental'));
+  assert(has({ medicalDental: true }, 'med-dental'));
+  const tasks = Medical.tasks(E.normalize({ children: 2 }));
+  assert.match(tasks.find(task => task.id === 'med-child-fever').detail, /pediatric formulation/);
+});
+test('Not needed medical rows are labeled in PDFs and excluded from remaining purchases', () => {
+  const S = require('../dist/shopping.js');
+  const state = E.normalize({ notNeeded: { 'med-pain': true }, checked: { 'med-allergy': true } });
+  const list = S.makeList(state, E.calculate(state), P.portablePower(state), P.activeSeasons(state));
+  assert(!list.essentials.some(row => row.item === 'Adult pain and fever relief'));
+  assert(!list.essentials.some(row => row.item === 'Adult allergy relief'));
+  const rows = Medical.printableSheets(state).flatMap(sheet => sheet.rows);
+  assert.equal(rows.find(row => row.id === 'med-pain').target, 'Not needed');
+  assert.match(rows.find(row => row.id === 'med-allergy').detail, /Marked Done/);
+  const ordered = P.orderTasks(state, E.tasks(state));
+  assert.equal(ordered.find(task => task.id === 'med-pain').status, 'skip');
+});
+test('medical first aid quantities scale with household while medicines remain individual', () => {
+  const sheets = input => Medical.worksheets(E.normalize(input));
+  const one = sheets({ adults: 1, children: 0, infants: 0 });
+  const many = sheets({ adults: 5, children: 2, infants: 1 });
+  assert.equal(one[0].rows[0].target, '25 assorted');
+  assert.equal(many[0].rows[0].target, '50 assorted');
+  const reserve = many.find(sheet => sheet.banner === 'PRESCRIPTION CONTINUITY').rows.find(row => row.id === 'med-rx');
+  assert.equal(reserve.target, 'Per person and prescription');
 });
 console.log(`${checks} tests passed.`);

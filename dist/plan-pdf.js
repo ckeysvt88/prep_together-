@@ -59,7 +59,7 @@
   async function makePdf(plan, lib) {
     const { PDFDocument, PDFString, StandardFonts, rgb } = lib;
     const doc = await PDFDocument.create();
-    doc.setTitle(plan.report === 'shopping' ? 'Ready Together | Shopping checklist' : 'Ready Together | My preparedness plan');
+    doc.setTitle(plan.report === 'medical' ? 'Ready Together | Medical inventory' : plan.report === 'shopping' ? 'Ready Together | Shopping checklist' : 'Ready Together | My preparedness plan');
     doc.setSubject('Household preparedness supplies and priorities');
     const regular = await doc.embedFont(StandardFonts.Helvetica);
     const bold = await doc.embedFont(StandardFonts.HelveticaBold);
@@ -69,7 +69,7 @@
     const pale = rgb(.91, .94, .89);
     const grid = rgb(.77, .82, .78);
     const stripe = rgb(.97, .98, .96);
-    const left = 48, right = 564, width = right - left, bottom = 56;
+    const left = 48, right = 564, width = right - left, bottom = 78;
     let page, y, currentSection = 'PERSONAL PLAN';
     function pageStart(section = currentSection) {
       currentSection = section;
@@ -82,7 +82,7 @@
       if (y - height < bottom) pageStart();
     }
     function lines(text, font = regular, size = 10, color = green, leading = 14) {
-      for (const line of wrap(text, font, size, width)) {
+      for (const line of wrap(text, font, size, width - 6)) {
         ensure(leading);
         if (line) page.drawText(line, { x: left, y, font, size, color });
         y -= leading;
@@ -216,7 +216,21 @@
         lines(tip.detail, regular, 10, muted);
         y -= 7;
       }
-      let sourceY = 53;
+      const shops = (worksheet.rows ?? []).filter(item => item.url);
+      if (shops.length) {
+        ensure(27);
+        lines('Shopping and product references', bold);
+        for (const item of shops) {
+          ensure(23);
+          lines(item.item, regular, 9, green, 12);
+          const linkY = y + 12;
+          page.node.addAnnot(doc.context.register(doc.context.obj({
+            Type: 'Annot', Subtype: 'Link', Rect: [left, linkY - 3, right, linkY + 9], Border: [0, 0, 0],
+            A: { Type: 'Action', S: 'URI', URI: PDFString.of(item.url) }
+          })));
+        }
+      }
+      let sourceY = 64;
       const prefix = 'Sources: ';
       page.drawText(prefix, { x: left, y: sourceY, font: regular, size: 9, color: muted });
       let x = left + regular.widthOfTextAtSize(prefix, 9) + 3;
@@ -257,6 +271,32 @@
         y -= 8;
       }
     }
+    if (plan.inventory != null) {
+      const entries = plan.inventory.length ? plan.inventory : Array.from({ length: 5 }, () => ({}));
+      function inventoryHeader() {
+        pageStart('PRIVATE MEDICAL INVENTORY');
+        lines(plan.inventoryBlank || !plan.inventory.length ? 'Medication inventory template' : 'Household medical inventory', display, 24, green, 32);
+        lines('Keep with private care records. Copy names, strength, quantity and storage limits from original labels. Keep prescribed directions and care-team contacts with this list.', regular, 10, muted);
+        if (plan.inventoryReview) lines('Next stock review: ' + plan.inventoryReview, bold);
+        y -= 12;
+      }
+      inventoryHeader();
+      entries.forEach((item, index) => {
+        const blank = !Object.values(item).some(Boolean);
+        const fields = [
+          ['Household alias / type', [item.member, { rx: 'Prescription', otc: 'OTC', supply: 'Supply/equipment', pet: 'Veterinary' }[item.kind]].filter(Boolean).join(' | ')],
+          ['Medicine or supply / strength', [item.name, item.strength].filter(Boolean).join(' | ')],
+          ['Quantity and units', item.quantity],
+          ['Expiration / next refill or review', [item.expires, item.refill].map(value => value || '__________').join(' / ')],
+          ['Storage limits / requirements', item.storage]
+        ];
+        const height = 32 + fields.reduce((total, [label, value]) => total + wrap(label + ': ' + (value || '________________________________'), regular, 10, width - 6).length * 14, 0);
+        if (y - height < bottom) inventoryHeader();
+        heading('Item ' + (index + 1));
+        for (const [label, value] of fields) lines(label + ': ' + (blank || !value ? '________________________________' : value), regular, 10, muted);
+        y -= 12;
+      });
+    }
     const total = doc.getPageCount();
     doc.getPages().forEach((p, index) => {
       p.drawLine({ start: { x: left, y: 44 }, end: { x: right, y: 44 }, color: pale, thickness: 1 });
@@ -272,6 +312,7 @@
     const link = document.createElement('a');
     link.href = url;
     const fileNames = {
+      medical: 'Ready-Together-Medical-Inventory.pdf',
       shopping: 'Ready-Together-Shopping-Checklist.pdf',
       action: 'Ready-Together-Action-Plan.pdf',
       both: 'Ready-Together-My-Plan.pdf'
