@@ -85,7 +85,7 @@ test('offline install caches complete allowlisted assets and supports subdirecto
  const w=worker();await waitEvent(w.handlers.install);
  assert(w.entries.has('https://example.test/prep/offline-ready'));assert(w.requests.length>20);
  const html=fs.readFileSync(path.join(__dirname,'../dist/index.html'),'utf8');
- for(const src of [...html.matchAll(/<script[^>]*src="([^"]+)"/g)].map(m=>m[1]))assert(w.entries.has('https://example.test/prep/'+src),'missing '+src);
+ for(const src of [...html.matchAll(/<script[^>]*src="([^"]+)"/g)].map(m=>m[1]).filter(src=>!src.startsWith('https://')))assert(w.entries.has('https://example.test/prep/'+src),'missing '+src);
  for(const href of [...html.matchAll(/<link[^>]*rel="stylesheet"[^>]*href="([^"]+)"/g)].map(m=>m[1]))assert(w.entries.has('https://example.test/prep/'+href),'missing '+href);
  for(const r of w.requests){assert.equal(r.credentials,'omit');const u=new URL(r.url);assert.equal(u.origin,'https://example.test');assert(!u.searchParams.has('secret'));const rel=decodeURIComponent(u.pathname.slice('/prep/'.length));assert(fs.existsSync(path.join(__dirname,'../dist',rel||'index.html')),'missing file '+rel);}
  await waitEvent(w.handlers.activate);assert.deepEqual(w.removed,['ready-together-public-old']);

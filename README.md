@@ -250,9 +250,9 @@ This deploy-only rollback leaves source history intact; a later push to `main` c
 
 ## Public-site usage measurement
 
-Public visit measurement is off by default. Visitors can enable or disable it in the footer. On opt-in, the site loads the Google tag for Ready Together’s verified GA4 stream (**G-7SVFRB09B6**) in an opaque-origin sandbox. It sends a page view using a temporary client ID and fixed public page metadata. Advertising consent remains denied. The earlier Tag Manager container is no longer loaded alongside this direct tag. Only the opt-in preference is saved in the planner browser storage.
+The planner loads the Google tag directly in the main page for **G-7SVFRB09B6**. Analytics runs automatically. The app supplies fixed public page metadata and no planner event payloads. Advertising consent remains denied. Review the GA4 stream’s enhanced measurement and user-provided data settings separately.
 
-To remove measurement, remove the analytics controls, loader and `analytics.html`, update the public-file cache version, and redeploy. The earlier dedicated Trusted Contact rollback remains pinned to its documented pre-authentication app and also removes this later analytics addition if used.
+To remove measurement, remove both analytics script tags and the loader from the service worker allowlist, update the public-file cache version, and redeploy. The earlier dedicated Trusted Contact rollback remains pinned to its documented pre-authentication app and also removes this later analytics addition if used.
 
 ## Privacy and reuse
 
