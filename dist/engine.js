@@ -8,6 +8,7 @@ const REGIONS={
  northeast:{name:'Northeast / Mid-Atlantic',hazards:['winter','storm','flood','heat']},
  midwest:{name:'Midwest / Great Plains',hazards:['storm','winter','flood','heat']},
  southwest:{name:'Southwest / desert',hazards:['heat','fire','flood']},
+ pnw:{name:'Pacific Northwest (Washington / Oregon)',hazards:['quake','flood','wind','winter','fire','heat']},
  west:{name:'Pacific coast',hazards:['quake','fire','heat','flood']},
  mountain:{name:'Mountain / interior west',hazards:['winter','fire','flood']},
  alaska:{name:'Alaska',hazards:['winter','quake']},
@@ -15,6 +16,9 @@ const REGIONS={
  custom:{name:'Custom / select hazards',hazards:[]}
 };
 const HAZARDS={
+ wind:{name:'High wind / power outage',action:'Plan for loss of power. Charge phones and lights beforehand, shelter in a sturdy building away from windows during warnings, and stay away from downed power lines.',source:'https://www.weather.gov/safety/wind-during'},
+ tsunami:{name:'Tsunami (coastal zones)',action:'Check local inundation maps and practice your evacuation route. In a coastal hazard zone, if you feel strong or long shaking, protect yourself until it stops, then evacuate on foot to high ground or inland along the marked route. Do not wait for an official warning.',source:'https://www.oregon.gov/oem/hazardsprep/Pages/Tsunami.aspx'},
+ lahar:{name:'Volcanic mudflow / lahar (mapped zones)',action:'Check local lahar maps for your home, school and routes. If in a mapped valley, know and practice the signed route to high ground and follow evacuation instructions.',source:'https://dnr.wa.gov/washington-geological-survey/frequently-asked-questions'},
  storm:{name:'Severe storms / tornado',action:'Choose a suitable shelter and a nighttime alert method. In a warning, use an interior protected area away from windows; mobile homes need a sturdy shelter plan.',source:'https://www.weather.gov/safety/tornado-during'},
  flood:{name:'Flood / flash flood',action:'Check official property and route exposure. Prepare an early exit route; never walk or drive into floodwater or past barricades.',source:'https://www.weather.gov/safety/flood-during'},
  heat:{name:'Extreme heat',action:'Confirm a reliably cooled destination and a ride. Consider a higher water allowance; do not depend on a fan alone during extreme indoor heat.',source:'https://www.cdc.gov/extreme-heat/prevention/'},

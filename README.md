@@ -34,6 +34,8 @@ Select **Take the tour** on the planner’s home screen to walk through the live
 5. Under **Your supply targets**, enter the water and food you already have. Open the **Buying guide** for examples, quantities and setup checks. Mark actions **To do**, **Done**, or **Not needed** as you work.
 6. Choose what to include under **What do you need from this report?** Then open **Final plan & PDF**, review the preview, and download. You can download while tasks are still open.
 
+The Pacific Northwest preset covers Washington and Oregon. It starts with earthquakes, flooding, high winds and outages, winter weather, wildfire smoke, and extreme heat. Add tsunami and volcanic mudflow separately if local maps show exposure. These selections feed the action checklist and personalized PDF.
+
 ### Experience and supply duration
 
 **Experience** sets the depth of guidance. The **supply goal** sets the number of days. For example, a beginner can work toward 14 days using complete days of meals, and an experienced household can use detailed power and communication guidance for a 3-day plan.

@@ -247,6 +247,9 @@
   }
 
   const riskGear = {
+    wind: ['High wind and power outages', 'Charged lights and phone power banks', 'Keep lights and charging gear accessible. Choose a sturdy shelter away from windows and stay clear of downed lines.', 'https://www.weather.gov/safety/wind-during'],
+    tsunami: ['Tsunami evacuation', 'Printed evacuation map and sturdy shoes', 'Mark a walking route out of the mapped zone. After strong or long coastal shaking stops, leave immediately for high ground or inland along the signed route.', 'https://www.oregon.gov/oem/hazardsprep/Pages/Tsunami.aspx'],
+    lahar: ['Volcanic mudflow evacuation', 'Printed lahar zone and route maps', 'Check whether your usual locations are in mapped valleys. Practice the signed route to high ground and follow local evacuation instructions.', 'https://dnr.wa.gov/washington-geological-survey/frequently-asked-questions'],
     storm: ['Severe storms or tornadoes', 'Alert receiver and sturdy shoes', 'Place your battery-backed receiver where it can wake you. Put shoes and a light by your shelter. If you live in a mobile home, choose a sturdy shelter you can reach in time.', 'https://www.weather.gov/safety/tornado-during'],
     flood: ['Flood or flash flood', 'Route map and document pouch', 'Mark an exit to higher ground. Keep keys and records in a water-resistant pouch. Leave early when directed. Never drive or walk through floodwater.', 'https://www.weather.gov/safety/flood-during'],
     heat: ['Extreme heat', 'Drinking water and cooling plan', 'Put safe water where everyone can reach it. Write down a cooling location, its hours and a ride there. Arrange a regular check-in for anyone who needs help.', 'https://www.cdc.gov/extreme-heat/prevention/'],
@@ -267,10 +270,10 @@
         const [label, gear, detail] = riskGear[key];
         return row(label, gear, detail);
       }),
-      tips: state.experience === 'beginner' ? [] : [
+      tips: [...(state.region === 'pnw' ? [tip('Check local exposure', 'Use Washington or Oregon emergency maps. Select Tsunami for coastal inundation zones and Lahar for mapped volcanic mudflow zones, including places you travel to.')] : []), ...(state.experience === 'beginner' ? [] : [
         tip('Try your plan under realistic conditions', 'Check which alerts you can hear at night. Walk the route to shelter and time how long it takes to get everyone out with the supplies they need.'),
         ...(state.experience === 'advanced' ? [tip('Choose when to switch to your backup', 'Write down the conditions that would send you to your backup destination. Test a second route and confirm that it meets the household’s access, medical and pet needs.')] : [])
-      ],
+      ])],
       references: risks.map(key => source(riskGear[key][0], riskGear[key][3]))
     };
   }

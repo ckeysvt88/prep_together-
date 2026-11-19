@@ -60,6 +60,9 @@
     if (state.hazards.includes('heat') || seasons.includes('summer')) {
       addOns.push(row('Portable water bottles', 'For each person', 'Use for travel or while getting to a cooled location. Count filled bottles toward the water target.'));
     }
+    if (['tsunami', 'lahar'].some(hazard => state.hazards.includes(hazard) && !state.notNeeded['hazard-' + hazard])) {
+      addOns.push(row('Printed local evacuation maps', '1 copy per grab bag', 'Mark the routes to high ground or out of the mapped hazard zone for the coastal or volcanic risks you selected.'));
+    }
     if (state.hazards.includes('fire')) {
       addOns.push(row('Smoke preparation supplies', 'As applicable', 'Check your portable air cleaner filter size and stock a replacement if you use one.'));
     }
