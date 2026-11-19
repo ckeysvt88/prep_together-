@@ -73,9 +73,10 @@ test('private authentication fields cannot enter normalized saved state or backu
  assert(fs.readFileSync(path.join(__dirname,'../dist/styles.css'),'utf8').includes('@media print{#trusted-workspace'));
 });
 function worker(){
+ const currentCache=fs.readFileSync(path.join(__dirname,'../dist/sw.js'),'utf8').match(/const CACHE = '([^']+)'/)[1];
  const handlers={}, entries=new Map(),removed=[],requests=[];let fail=false;
  const fakecache={addAll:async input=>{requests.push(...input);if(fail)throw Error('offline');for(const r of input)entries.set(r.url,new Response('public asset'));},put:async(url,res)=>entries.set(String(url),res),match:async url=>entries.get(String(url))};
- const sandbox={URL,Request,Response,Set,console,self:{location:{href:'https://example.test/prep/sw.js'},clients:{claim:async()=>{}},addEventListener:(n,cb)=>handlers[n]=cb},caches:{open:async()=>fakecache,keys:async()=>['unrelated','ready-together-public-old','ready-together-public-v1.11'],delete:async n=>removed.push(n)},fetch:async()=>{throw Error('offline')}};
+ const sandbox={URL,Request,Response,Set,console,self:{location:{href:'https://example.test/prep/sw.js'},clients:{claim:async()=>{}},addEventListener:(n,cb)=>handlers[n]=cb},caches:{open:async()=>fakecache,keys:async()=>['unrelated','ready-together-public-old',currentCache],delete:async n=>removed.push(n)},fetch:async()=>{throw Error('offline')}};
  vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../dist/sw.js'),'utf8'),sandbox);
  return{handlers,entries,removed,requests,setFail:v=>fail=v};
 }
@@ -85,6 +86,7 @@ test('offline install caches complete allowlisted assets and supports subdirecto
  assert(w.entries.has('https://example.test/prep/offline-ready'));assert(w.requests.length>20);
  const html=fs.readFileSync(path.join(__dirname,'../dist/index.html'),'utf8');
  for(const src of [...html.matchAll(/<script[^>]*src="([^"]+)"/g)].map(m=>m[1]))assert(w.entries.has('https://example.test/prep/'+src),'missing '+src);
+ for(const href of [...html.matchAll(/<link[^>]*rel="stylesheet"[^>]*href="([^"]+)"/g)].map(m=>m[1]))assert(w.entries.has('https://example.test/prep/'+href),'missing '+href);
  for(const r of w.requests){assert.equal(r.credentials,'omit');const u=new URL(r.url);assert.equal(u.origin,'https://example.test');assert(!u.searchParams.has('secret'));const rel=decodeURIComponent(u.pathname.slice('/prep/'.length));assert(fs.existsSync(path.join(__dirname,'../dist',rel||'index.html')),'missing file '+rel);}
  await waitEvent(w.handlers.activate);assert.deepEqual(w.removed,['ready-together-public-old']);
 });

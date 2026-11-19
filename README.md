@@ -15,6 +15,14 @@ Ready Together is a free, US-focused household emergency preparedness planner. C
 
 Share the planner link so each household can create its own plan. The two reference PDFs above are ready to download and share. Your household’s personalized PDF is generated in the planner.
 
+## Compact topic cards
+
+Version 1.12 keeps the original one-page planner and adds eight expandable cards: Water & cleanup, Food & meal planning, Medical & first aid, Power & lighting, Communications, Home/travel/special needs, Your action checklist, and Notes & references. Selecting a card expands it in place; opening another closes the previous card. Household setup can collapse after editing, and supply targets and the final PDF area remain visible. The sage setup sidebar, soft topic colors, and stronger header separate settings, guidance, and download actions. Keyboard and hash-link navigation open the relevant cards automatically; the tour reveals its target before highlighting it.
+
+Saved household plans continue using the existing browser storage key. Checklists, medical privacy choices, authentication sessions and PDF contents retain their existing behavior. The service worker caches the new public layout files for offline use. Close other app/PWA windows and reopen online to activate an updated worker.
+
+A dedicated [layout rollback](docs/rollback-expandable-layout.md) restores the previous application without deleting browser data.
+
 ## Build your first plan
 
 Select **Take the tour** on the planner’s home screen to walk through the live controls and finish at the PDF download. You can change settings during the tour or use **Skip tour** to continue on your own.

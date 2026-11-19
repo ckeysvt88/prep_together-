@@ -31,8 +31,7 @@
       description: 'Enter the safe water and food already on hand. The planner shows what you still need. In Beginner, count complete days of meals for everyone in your household.'
     },
     {
-      target: 'buying-guide',
-      scrollTarget: 'buying-heading',
+      target: 'middle-food',
       title: 'Find out what to buy',
       description: 'Open a topic to see examples, quantities, what to check on the package, and how to set things up. Start with the three-day grocery basket or another topic you need.'
     },
@@ -128,6 +127,12 @@
     target?.classList.remove('tour-highlight');
     index = stepIndex;
     target = element;
+    // Reveal collapsed setup/topic cards before measuring or highlighting them.
+    let ancestor = target;
+    while (ancestor) {
+      if (ancestor.tagName === 'DETAILS') ancestor.open = true;
+      ancestor = ancestor.parentElement;
+    }
     // Place the help before the active section in reading and keyboard order.
     target.before(tour);
     target.classList.add('tour-highlight');

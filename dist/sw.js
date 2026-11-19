@@ -1,13 +1,13 @@
 /* Public-file allowlist. No runtime caching, messages, credentials or user data. */
 'use strict';
-const CACHE = 'ready-together-public-v1.11';
+const CACHE = 'ready-together-public-v1.12';
 const BASE = new URL('./', self.location.href);
 const FILES = [
-  './', 'index.html', 'analytics-host.js?v=1.11', 'styles.css?v=1.10', 'manifest.webmanifest',
+  './', 'index.html', 'analytics-host.js?v=1.11', 'styles.css?v=1.12', 'manifest.webmanifest', 'sections.css?v=1.12', 'sections.js?v=1.12',
   'trusted-contact.js?v=1.10', 'trusted-contact-ui.js?v=1.10', 'vendor/qr-encoder.js?v=1.10', 'offline.js?v=1.11',
   'medical.js?v=1.9', 'medical-ui.js?v=1.9', 'planning.js?v=1.9', 'engine.js?v=1.10',
   'shopping.js?v=1.9', 'buying-guide.js?v=1.6', 'shopping-details.js?v=1.10',
-  'plan-pdf.js?v=1.9', 'app.js?v=1.10', 'tour.js?v=1.10', 'vendor/pdf-lib.min.js',
+  'plan-pdf.js?v=1.9', 'app.js?v=1.12', 'tour.js?v=1.12', 'vendor/pdf-lib.min.js',
   'sources.html', 'styles.css', 'Ready-Together-Beginner-Guide.pdf', 'Ready-Together-Guide.pdf',
   'icons/ready-together-32.png', 'icons/ready-together-96.png', 'icons/ready-together-180.png',
   'icons/ready-together-192.png', 'icons/ready-together-512.png', 'icons/ready-together-maskable-512.png'

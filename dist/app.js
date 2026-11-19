@@ -25,6 +25,7 @@ function sync() {
   ReadyMedicalUI.renderInventory();
 }
 function render() {
+  queueMicrotask(()=>window.dispatchEvent(new Event('middleupdated')));
   const beginner = state.experience === 'beginner';
   document.body.dataset.experience = state.experience;
   const m = E.calculate(state);
