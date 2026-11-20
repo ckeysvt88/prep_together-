@@ -1,6 +1,6 @@
 /* Public-file allowlist. No runtime caching, messages, credentials or user data. */
 'use strict';
-const CACHE = 'ready-together-public-v1.15';
+const CACHE = 'ready-together-public-v1.16';
 const BASE = new URL('./', self.location.href);
 const FILES = [
   './', 'index.html', 'analytics-host.js?v=1.14', 'styles.css?v=1.12', 'manifest.webmanifest', 'sections.css?v=1.12', 'sections.js?v=1.12',
