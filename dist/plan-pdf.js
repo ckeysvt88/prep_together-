@@ -258,6 +258,7 @@
       pageStart('PERSONAL PLAN');
       introduction('My household preparedness plan');
       for (const section of plan.sections) {
+        if (section.title === 'Children’s play & learning') pageStart('CHILDREN / CAREGIVER SHEET');
         const firstHeight = itemHeight(section.items[0]);
         ensure(28 + (firstHeight < 625 ? firstHeight : 42));
         heading(section.title);

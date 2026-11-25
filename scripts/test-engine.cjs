@@ -211,3 +211,16 @@ test('medical first aid quantities scale with household while medicines remain i
   assert.equal(reserve.target, 'Per person and prescription');
 });
 console.log(`${checks} tests passed.`);
+{
+ const state=E.normalize({children:2,childAges:[4,6],tier:'advanced',childStock:{paper:1,books:2},notNeeded:{'play-crayons':true}});
+ const child=require('../dist/child-learning.js');
+ const family=child.plan(state),rows=family.rows;
+ assert.equal(rows.find(r=>r.key==='paper').need,'1');
+ assert.equal(rows.find(r=>r.key==='crayons').status,'Not needed');
+ assert.ok(family.activities.some(a=>a.label.includes('shop')));
+ assert.equal(child.plan(E.normalize({children:0,infants:0})),null);
+ assert.equal(child.plan(E.normalize({children:0,infants:1})).rows.length,2);
+ assert.deepEqual(E.normalize({children:2,childAges:[-1,99]}).childAges,[null,null]);
+ assert.deepEqual(E.normalize(state).childAges,[4,6]);
+ console.log('PASS family enrichment quantities, statuses, ages and household changes');
+}

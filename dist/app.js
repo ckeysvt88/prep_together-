@@ -24,7 +24,37 @@ function sync() {
   renderLoadRows();
   ReadyMedicalUI.renderInventory();
 }
+function renderChildren() {
+  const family=ReadyChildren.plan(state), body=$('family-learning');
+  $('child-age-box').hidden=!state.children;
+  const ages=$('child-ages');
+  if(ages.childElementCount!==state.children){
+    ages.replaceChildren();
+    state.childAges.forEach((_,i)=>{
+      const label=document.createElement('label'),select=document.createElement('select');
+      label.append('Child '+(i+1),select);select.add(new Option('Choose age (optional)',''));
+      for(let age=0;age<=17;age++)select.add(new Option(age===0?'Under 1 year':age+' year'+(age===1?'':'s'),age));
+      select.onchange=()=>{state.childAges[i]=select.value===''?null:Number(select.value);save();render();};
+      ages.append(label);
+    });
+  }
+  state.childAges.forEach((age,i)=>ages.children[i].querySelector('select').value=age??'');
+  if(!body)return;
+  body.parentElement.hidden=!family;
+  if(!family){body.replaceChildren();return;}
+  const opened=new Set([...body.querySelectorAll('details[open]')].map(d=>d.dataset.part));
+  const panel=(part,title,html)=>`<details class="buying-topic" data-part="${part}" ${opened.has(part)?'open':''}><summary>${title}</summary>${html}</details>`;
+  const tips=items=>items.map(t=>`<p><strong>${escape(t.label)}</strong> · ${escape(t.detail)}</p>`).join('');
+  body.innerHTML=panel('pack','What to pack',family.rows.map(r=>`<label>${r.item} · target ${r.target} · ${r.status}<br>On hand <input type="number" min="0" max="100" data-stock="${r.key}" value="${r.have}"></label><p>${r.detail}</p>`).join(''))+panel('play','Activities for your children',tips(family.activities))+panel('routine','If school stays closed',tips(family.routine));
+  body.onchange=event=>{const input=event.target;if(!input.dataset.stock)return;
+    if(!input.validity.valid){input.reportValidity();return;}
+    const key=input.dataset.stock;state.childStock[key]=Number(input.value);save();render();
+    body.querySelector('[data-stock="'+key+'"]').focus();
+  };
+}
+window.addEventListener('familyready',renderChildren);
 function render() {
+  renderChildren();
   queueMicrotask(()=>window.dispatchEvent(new Event('middleupdated')));
   const beginner = state.experience === 'beginner';
   document.body.dataset.experience = state.experience;
@@ -193,19 +223,23 @@ function planSnapshot(m, tasks, power, guides) {
       label: P.STATUS[task.status] + ' | ' + task.title, detail: task.status === 'open' ? task.detail : ''
     })) });
   }
+  const family=ReadyChildren.plan(state);
+  if(family)sections.push({title:'Children’s play & learning',items:[...family.activities,...family.routine]});
+  const worksheets=[...(guides??ReadyShoppingDetails.worksheets(state,m,power,seasons))];
+  if(family)worksheets.unshift({banner:'CHILDREN / PACKING LIST',title:'Play & learning supplies',lead:'Check what you already own before shopping.',tableTitle:'Household packing list',rows:family.rows.map(r=>({...r,target:r.target+' total | '+r.have+' on hand | '+(r.status==='To do'?r.need+' to add':r.status)})),tips:family.routine,references:[{label:'UNICEF | Screen-free play',url:'https://www.unicef.org/parenting/child-care/screen-free-activities'}]});
   if (state.notes.trim()) sections.push({ title: 'Household notes', items: [{ label: 'Destinations, responsibilities and reminders', detail: state.notes }] });
   return {
     meta: `${P.HORIZONS[state.horizon].label} | ${E.TIERS[state.tier].name} (${m.days} days) | ${E.EXPERIENCES[state.experience].name}`,
     household: [
       `${state.adults} ${state.adults === 1 ? 'adult' : 'adults'}`,
-      state.children && `${state.children} ${state.children === 1 ? 'child' : 'children'}`,
+      state.children && (`${state.children} ${state.children === 1 ? 'child' : 'children'}` + (state.childAges.some(a=>a!==null)?' (ages: '+state.childAges.map(a=>a===null?'unspecified':a===0?'under 1':a).join(', ')+')':'')),
       state.infants && `${state.infants} ${state.infants === 1 ? 'infant' : 'infants'}`,
       state.pets && `${state.pets} ${state.pets === 1 ? 'pet' : 'pets'}`
     ].filter(Boolean).join(', ') + (state.place ? ' | ' + state.place : ''),
     date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
     report: state.report,
     shopping: state.report === 'action' ? null : ReadyShopping.makeList(state, m, power, seasons),
-    worksheets: state.report === 'action' ? [] : (guides ?? ReadyShoppingDetails.worksheets(state, m, power, seasons)),
+    worksheets: state.report === 'action' ? [] : worksheets,
     inventory: state.medicalInclude ? state.medicalInventory : null,
     inventoryReview: state.medicalInclude ? state.medicalReview : '',
     sections: state.report === 'shopping' ? [] : sections
@@ -231,7 +265,7 @@ function renderPlan(m, tasks, power, guides) {
     <p class="help">${open.length} to do · ${tasks.length - open.length - skipped} done · ${skipped} not needed. The action plan includes your full checklist and saved notes.</p>` : '';
   const inventory = state.medicalInclude ? '<p>Your filled medical inventory is included in this private PDF.</p>' :
     '<p>Filled medication inventory is excluded. You can download a blank template in the medical section.</p>';
-  $('plan-preview').innerHTML = `<div class="plan-review"><strong>${escape(P.REPORTS[state.report].label)}</strong><p>${escape(plan.meta)} · ${escape(plan.household)}</p>${shopping}${supplies}${actions}${inventory}<p>Trusted-contact setup and safety guidance is included. Private authentication keys, QR codes, nicknames and rotating codes are excluded.</p></div>`;
+  $('plan-preview').innerHTML = `<div class="plan-review"><strong>${escape(P.REPORTS[state.report].label)}</strong><p>${escape(plan.meta)} · ${escape(plan.household)}</p>${state.children||state.infants?'<p>Includes children’s play and learning guidance tailored to your household.</p>':''}${shopping}${supplies}${actions}${inventory}<p>Trusted-contact setup and safety guidance is included. Private authentication keys, QR codes, nicknames and rotating codes are excluded.</p></div>`;
   $('download-pdf').textContent = state.report === 'shopping' ? 'Download shopping checklist PDF' : state.report === 'action' ? 'Download action plan PDF' : 'Download shopping list & plan PDF';
 }
 

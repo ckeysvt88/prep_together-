@@ -2,6 +2,7 @@
 (function(root){
 const P=typeof module!=='undefined'&&module.exports?require('./planning.js'):root.ReadyPlanning;
 const M=typeof module!=='undefined'&&module.exports?require('./medical.js'):root.ReadyMedical;
+const Children=typeof module!=='undefined'&&module.exports?require('./child-learning.js'):root.ReadyChildren;
 const TIERS={core:{name:'Core',days:3,label:'72 hours',rank:1},advanced:{name:'Advanced',days:14,label:'14 days',rank:2},super:{name:'Super prep',days:30,label:'30 days',rank:3}};
 const REGIONS={
  southeast:{name:'Southeast / Gulf & Atlantic',hazards:['storm','flood','heat','hurricane']},
@@ -41,6 +42,7 @@ function normalize(x={}){
  for(const k of ['place','notes'])s[k]=typeof x[k]==='string'?x[k].slice(0,k==='notes'?3000:100):'';
  s.checked={};if(x.checked&&typeof x.checked==='object')for(const [k,v]of Object.entries(x.checked))if(/^[a-z0-9-]{1,80}$/.test(k)&&v===true)s.checked[k]=true;
  for(const id of Object.keys(s.notNeeded))delete s.checked[id];
+ Object.assign(s, Children.normalize(x,s.children));
  return s;
 }
 function calculate(input){
@@ -65,6 +67,7 @@ function tasks(input){
  add('practice','Practice','Run a calm practice evening','Serve a planned meal, find the lights and contact sheet, and rehearse check-in. Keep medical equipment powered and alarms active.');
  if(s.adults===1)add('solo','Plan','Name a check-in partner and backup helper','A trusted person should know when to check on you and how to help. If children or dependents are present, arrange a second caregiver.');
  if(s.adults>1)add('cross-train','Practice','Cross-train another adult','Both adults should know kit locations, care responsibilities and the departure plan. Avoid keeping essential instructions with only one person.');
+ for(const row of Children.plan(s)?.rows??[])add(row.id,'Care','Pack or prepare: '+row.item,row.target+' needed for the household. '+row.detail);
  if(s.children)add('children','Care','Add child-specific supplies and pickup plans',beginner?'Familiar safe foods in normal portions, fitting clothing, comfort activities and school pickup permissions.':'Familiar safe foods, fitting clothing, comfort activities and school pickup permissions. Adjust calorie assumptions for actual ages and needs.');
  if(s.infants)add('infants','Care','Make a separate infant feeding plan','Stock the actual feeding supply, diapers and safe sleep/transport needs. Ready-to-feed formula is preferred during emergencies for formula-fed infants. Do not dilute formula. Infant food is excluded from calorie totals.');
  if(s.pets)add('pets','Care','Measure animal needs and confirm lodging',`${m.petDays} pet-days of usual food, plus animal-specific medicines, carriers and waste supplies. ${s.petWater} gal per pet per day is your current entry: verify it for each animal, climate and species.`);

@@ -263,3 +263,9 @@ The planner keeps information in browser storage and generates your PDF on your 
 Follow local emergency instructions, product manuals and individualized care guidance. Treat household exports as private and share the planner or reference guides with others.
 
 You may use, share or adapt the original Ready Together materials for household preparedness education. Retain the project name and sharing notice with substantial copies. Linked third-party materials have their own terms. See [LICENSE.md](LICENSE.md) the [pdf-lib license](dist/vendor/pdf-lib-LICENSE.md), and the [QR encoder MIT license](dist/vendor/qr-encoder-LICENSE.txt).
+
+## Children’s play and learning
+
+Enter child and infant counts in Household and expand **Children’s ages** to personalize suggestions. The family topic has collapsible packing, activity and school-closure sections. Enter on-hand quantities there and use the action checklist for Done or Not needed. Shopping exports include remaining items and a packing worksheet. Action exports include activities and routines. The combined download includes both. The 3-, 14- and 30-day goals adjust school-closure planning. Ages are optional and saved with the household on this device and in its editable backup.
+
+The pre-release snapshot is on `rollback/before-child-enrichment-20261125`. To undo this release while preserving subsequent history, revert the child-enrichment commit on main and deploy the revert through the existing Pages workflow.

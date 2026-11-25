@@ -86,6 +86,7 @@
       addOns.push(row('Portable power station', target, detail));
       if (state.solarWatts > 0) addOns.push(row('Compatible solar panels', `${fmt(state.solarWatts)} W entered`, 'This is the panel size you entered for comparison. Confirm the station input limits and the expected daily recharge.'));
     }
+    for(const row of root.ReadyChildren.plan(state)?.rows??[]) if(row.status==='To do' && Number(row.need)>0)addOns.push(row);
     return { essentials, addOns };
   }
 
